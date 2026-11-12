@@ -1,0 +1,542 @@
+{
+ "site": "gaur_city",
+ "generated_from": "tools/build_sites.py",
+ "imagery": {
+  "m_per_px": 0.55,
+  "origin_px": [
+   930,
+   470
+  ],
+  "rotation_deg": 0.0,
+  "scale_bar_m": 50,
+  "bearing_note": "North-up capture; the island sits where the two visible links cross near the image centre"
+ },
+ "display": {
+  "px_per_m": 6.2,
+  "origin_px": [
+   960,
+   540
+  ],
+  "rotation_deg": 0.0
+ },
+ "geometry_check": {
+  "tolerance_pct": 5.0,
+  "links_checked": 73,
+  "links_over_tolerance": 0,
+  "max_error_pct": 3.024,
+  "detail": [
+   {
+    "link": "RING.l0.m0.0",
+    "drawn_m": 7.26,
+    "surveyed_m": 7.13,
+    "error_pct": 1.892
+   },
+   {
+    "link": "RING.l0.m1.0",
+    "drawn_m": 36.32,
+    "surveyed_m": 36.84,
+    "error_pct": 1.399
+   },
+   {
+    "link": "RING.l0.m2.0",
+    "drawn_m": 7.26,
+    "surveyed_m": 7.17,
+    "error_pct": 1.324
+   },
+   {
+    "link": "RING.l0.m3.0",
+    "drawn_m": 36.32,
+    "surveyed_m": 37.08,
+    "error_pct": 2.037
+   },
+   {
+    "link": "RING.l0.m4.0",
+    "drawn_m": 7.26,
+    "surveyed_m": 7.22,
+    "error_pct": 0.622
+   },
+   {
+    "link": "RING.l0.m5.0",
+    "drawn_m": 36.32,
+    "surveyed_m": 37.31,
+    "error_pct": 2.641
+   },
+   {
+    "link": "RING.l0.m6.0",
+    "drawn_m": 7.26,
+    "surveyed_m": 7.27,
+    "error_pct": 0.07
+   },
+   {
+    "link": "RING.l0.m7.0",
+    "drawn_m": 36.32,
+    "surveyed_m": 35.37,
+    "error_pct": 2.699
+   },
+   {
+    "link": "RING.l1.m0.0",
+    "drawn_m": 8.18,
+    "surveyed_m": 8.3,
+    "error_pct": 1.431
+   },
+   {
+    "link": "RING.l1.m1.0",
+    "drawn_m": 40.91,
+    "surveyed_m": 40.42,
+    "error_pct": 1.203
+   },
+   {
+    "link": "RING.l1.m2.0",
+    "drawn_m": 8.18,
+    "surveyed_m": 8.36,
+    "error_pct": 2.138
+   },
+   {
+    "link": "RING.l1.m3.0",
+    "drawn_m": 40.91,
+    "surveyed_m": 40.68,
+    "error_pct": 0.556
+   },
+   {
+    "link": "RING.l1.m4.0",
+    "drawn_m": 8.18,
+    "surveyed_m": 8.41,
+    "error_pct": 2.72
+   },
+   {
+    "link": "RING.l1.m5.0",
+    "drawn_m": 40.91,
+    "surveyed_m": 40.95,
+    "error_pct": 0.107
+   },
+   {
+    "link": "RING.l1.m6.0",
+    "drawn_m": 8.18,
+    "surveyed_m": 7.97,
+    "error_pct": 2.65
+   },
+   {
+    "link": "RING.l1.m7.0",
+    "drawn_m": 40.91,
+    "surveyed_m": 41.21,
+    "error_pct": 0.737
+   },
+   {
+    "link": "AR0.in.0",
+    "drawn_m": 230.0,
+    "surveyed_m": 225.19,
+    "error_pct": 2.136
+   },
+   {
+    "link": "AR0.in.1",
+    "drawn_m": 230.0,
+    "surveyed_m": 225.22,
+    "error_pct": 2.122
+   },
+   {
+    "link": "AR0.in.2",
+    "drawn_m": 230.0,
+    "surveyed_m": 225.24,
+    "error_pct": 2.113
+   },
+   {
+    "link": "AR0.out.0",
+    "drawn_m": 230.0,
+    "surveyed_m": 231.91,
+    "error_pct": 0.824
+   },
+   {
+    "link": "AR0.out.1",
+    "drawn_m": 230.0,
+    "surveyed_m": 231.93,
+    "error_pct": 0.832
+   },
+   {
+    "link": "AR0.out.2",
+    "drawn_m": 230.0,
+    "surveyed_m": 231.95,
+    "error_pct": 0.841
+   },
+   {
+    "link": "AR0.sl.0",
+    "drawn_m": 46.0,
+    "surveyed_m": 47.06,
+    "error_pct": 2.252
+   },
+   {
+    "link": "AR1.in.0",
+    "drawn_m": 230.0,
+    "surveyed_m": 232.99,
+    "error_pct": 1.283
+   },
+   {
+    "link": "AR1.in.1",
+    "drawn_m": 230.0,
+    "surveyed_m": 233.01,
+    "error_pct": 1.292
+   },
+   {
+    "link": "AR1.out.0",
+    "drawn_m": 230.0,
+    "surveyed_m": 236.3,
+    "error_pct": 2.666
+   },
+   {
+    "link": "AR1.out.1",
+    "drawn_m": 230.0,
+    "surveyed_m": 236.33,
+    "error_pct": 2.678
+   },
+   {
+    "link": "AR1.sl.0",
+    "drawn_m": 46.03,
+    "surveyed_m": 45.89,
+    "error_pct": 0.312
+   },
+   {
+    "link": "AR2.in.0",
+    "drawn_m": 230.0,
+    "surveyed_m": 226.96,
+    "error_pct": 1.339
+   },
+   {
+    "link": "AR2.in.1",
+    "drawn_m": 230.0,
+    "surveyed_m": 226.99,
+    "error_pct": 1.326
+   },
+   {
+    "link": "AR2.in.2",
+    "drawn_m": 230.0,
+    "surveyed_m": 227.01,
+    "error_pct": 1.317
+   },
+   {
+    "link": "AR2.out.0",
+    "drawn_m": 230.0,
+    "surveyed_m": 229.82,
+    "error_pct": 0.078
+   },
+   {
+    "link": "AR2.out.1",
+    "drawn_m": 230.0,
+    "surveyed_m": 229.84,
+    "error_pct": 0.07
+   },
+   {
+    "link": "AR2.sl.0",
+    "drawn_m": 46.0,
+    "surveyed_m": 44.65,
+    "error_pct": 3.024
+   },
+   {
+    "link": "AR3.in.0",
+    "drawn_m": 230.0,
+    "surveyed_m": 234.76,
+    "error_pct": 2.028
+   },
+   {
+    "link": "AR3.in.1",
+    "drawn_m": 230.0,
+    "surveyed_m": 234.78,
+    "error_pct": 2.036
+   },
+   {
+    "link": "AR3.out.0",
+    "drawn_m": 230.0,
+    "surveyed_m": 234.21,
+    "error_pct": 1.798
+   },
+   {
+    "link": "AR3.out.1",
+    "drawn_m": 230.0,
+    "surveyed_m": 234.23,
+    "error_pct": 1.806
+   },
+   {
+    "link": "AR3.sl.0",
+    "drawn_m": 46.03,
+    "surveyed_m": 46.25,
+    "error_pct": 0.469
+   },
+   {
+    "link": "RG.in0.c1",
+    "drawn_m": 4.87,
+    "surveyed_m": 4.96,
+    "error_pct": 1.816
+   },
+   {
+    "link": "RG.in0.c2",
+    "drawn_m": 7.0,
+    "surveyed_m": 7.13,
+    "error_pct": 1.823
+   },
+   {
+    "link": "RG.in0.c3",
+    "drawn_m": 2.39,
+    "surveyed_m": 2.44,
+    "error_pct": 1.868
+   },
+   {
+    "link": "RG.in0.c4",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.57,
+    "error_pct": 1.961
+   },
+   {
+    "link": "RG.in0.c5",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.57,
+    "error_pct": 1.96
+   },
+   {
+    "link": "RG.in0.c6",
+    "drawn_m": 2.39,
+    "surveyed_m": 2.44,
+    "error_pct": 1.868
+   },
+   {
+    "link": "RG.in1.c1",
+    "drawn_m": 2.39,
+    "surveyed_m": 2.38,
+    "error_pct": 0.606
+   },
+   {
+    "link": "RG.in1.c2",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.48,
+    "error_pct": 0.575
+   },
+   {
+    "link": "RG.in1.c3",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.48,
+    "error_pct": 0.576
+   },
+   {
+    "link": "RG.in1.c4",
+    "drawn_m": 2.39,
+    "surveyed_m": 2.38,
+    "error_pct": 0.606
+   },
+   {
+    "link": "RG.in2.c1",
+    "drawn_m": 4.87,
+    "surveyed_m": 5.01,
+    "error_pct": 2.796
+   },
+   {
+    "link": "RG.in2.c2",
+    "drawn_m": 7.0,
+    "surveyed_m": 7.2,
+    "error_pct": 2.778
+   },
+   {
+    "link": "RG.in2.c3",
+    "drawn_m": 2.39,
+    "surveyed_m": 2.46,
+    "error_pct": 2.666
+   },
+   {
+    "link": "RG.in2.c4",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.6,
+    "error_pct": 2.778
+   },
+   {
+    "link": "RG.in2.c5",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.6,
+    "error_pct": 2.777
+   },
+   {
+    "link": "RG.in2.c6",
+    "drawn_m": 2.39,
+    "surveyed_m": 2.46,
+    "error_pct": 2.666
+   },
+   {
+    "link": "RG.in3.c1",
+    "drawn_m": 2.39,
+    "surveyed_m": 2.4,
+    "error_pct": 0.232
+   },
+   {
+    "link": "RG.in3.c2",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.51,
+    "error_pct": 0.285
+   },
+   {
+    "link": "RG.in3.c3",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.51,
+    "error_pct": 0.284
+   },
+   {
+    "link": "RG.in3.c4",
+    "drawn_m": 2.39,
+    "surveyed_m": 2.4,
+    "error_pct": 0.232
+   },
+   {
+    "link": "RG.out0.c1",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.5,
+    "error_pct": 0.0
+   },
+   {
+    "link": "RG.out0.c2",
+    "drawn_m": 7.0,
+    "surveyed_m": 7.0,
+    "error_pct": 0.0
+   },
+   {
+    "link": "RG.out0.c3",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.5,
+    "error_pct": 0.004
+   },
+   {
+    "link": "RG.out0.c4",
+    "drawn_m": 6.83,
+    "surveyed_m": 6.84,
+    "error_pct": 0.088
+   },
+   {
+    "link": "RG.out0.c5",
+    "drawn_m": 10.28,
+    "surveyed_m": 10.29,
+    "error_pct": 0.107
+   },
+   {
+    "link": "RG.out1.c1",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.41,
+    "error_pct": 2.639
+   },
+   {
+    "link": "RG.out1.c2",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.41,
+    "error_pct": 2.635
+   },
+   {
+    "link": "RG.out1.c3",
+    "drawn_m": 6.83,
+    "surveyed_m": 6.67,
+    "error_pct": 2.458
+   },
+   {
+    "link": "RG.out2.c1",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.54,
+    "error_pct": 1.13
+   },
+   {
+    "link": "RG.out2.c2",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.54,
+    "error_pct": 1.134
+   },
+   {
+    "link": "RG.out2.c3",
+    "drawn_m": 6.83,
+    "surveyed_m": 6.91,
+    "error_pct": 1.1
+   },
+   {
+    "link": "RG.out3.c1",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.45,
+    "error_pct": 1.449
+   },
+   {
+    "link": "RG.out3.c2",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.45,
+    "error_pct": 1.445
+   },
+   {
+    "link": "RG.out3.c3",
+    "drawn_m": 6.83,
+    "surveyed_m": 6.74,
+    "error_pct": 1.394
+   }
+  ]
+ },
+ "connector_endpoint_check": {
+  "tolerance_m": 1.2,
+  "note": "each turn's from-link end and to-link start must join within 1.2 m"
+ },
+ "physical_parameters": {
+  "idm": {
+   "a_max_mps2": 1.4,
+   "b_mps2": 2.6,
+   "b_comfort_mps2": 1.7,
+   "s0_m": 2.2,
+   "T_s": 1.1,
+   "lane_change": "gap acceptance at merges only"
+  },
+  "curve": {
+   "a_lat_max_mps2": 2.0,
+   "k_c": 1.0,
+   "note": "a_curve = -k_c * max(0, v^2/R - a_lat), so a driver only brakes beyond the lateral-comfort threshold"
+  },
+  "signal": {
+   "stop_line_tolerance_m": 0.5,
+   "amber_model": "kinematic b_comfort to the stop line",
+   "all_red": "clearance before the next phase"
+  },
+  "tolerances": {
+   "geh_max": 5.0,
+   "queue_pct": 20.0,
+   "travel_time_pct": 10.0,
+   "geometry_pct": 5.0
+  }
+ },
+ "targets": {
+  "peak_direction_vph_total": 5446,
+  "legs": [
+   {
+    "leg": "Ganga Road (south) in",
+    "peak_vph": 898
+   },
+   {
+    "leg": "Ganga Road (south) slip",
+    "peak_vph": 259
+   },
+   {
+    "leg": "Gaur Road (west) in",
+    "peak_vph": 1245
+   },
+   {
+    "leg": "Gaur Road (west) slip",
+    "peak_vph": 361
+   },
+   {
+    "leg": "Greater Noida West link (east) in",
+    "peak_vph": 1245
+   },
+   {
+    "leg": "Greater Noida West link (east) slip",
+    "peak_vph": 352
+   },
+   {
+    "leg": "Site-5 approach road (north) in",
+    "peak_vph": 842
+   },
+   {
+    "leg": "Site-5 approach road (north) slip",
+    "peak_vph": 244
+   }
+  ],
+  "mean_link_free_flow_travel_time_s": 18.4,
+  "measured_queue_m_peak": {
+   "value": null,
+   "source": "stop-count survey, to be filled by engine run"
+  },
+  "note": "queue and travel-time targets are filled by `--verify`, which writes verification/calibration_<site>.csv with GEH per movement"
+ },
+ "survey": "Greater Noida Authority junction counts at Char Murti (Sector 1), weekday PM peak video classification; island geometry from the imagery"
+}
