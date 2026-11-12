@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   "Midnight Expressway" — the PRD section 15.2 token set, exposed as CSS
+   custom properties so the canvas overlays and the DOM panels share one theme.
+   --------------------------------------------------------------------------- */
+@theme {
+  --color-bg: #0f172a;
+  --color-panel: #111c2e;
+  --color-panel2: #16243a;
+  --color-hair: #1f2f45;
+  --color-ink: #e5edf7;
+  --color-muted: #8ba0b8;
+  --color-accent: #38bdf8;
+  --color-accent2: #0ea5e9;
+  --color-heat-low: #10b981;
+  --color-heat-mid: #f59e0b;
+  --color-heat-high: #ef4444;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* thin, quiet scrollbars in the panel columns */
+.thin-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.thin-scroll::-webkit-scrollbar-track { background: transparent; }
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: #24384f;
+  border-radius: 4px;
+}
+.thin-scroll::-webkit-scrollbar-thumb:hover { background: #31506b; }
+
+.hairline { border-color: var(--color-hair); }
+.tabular { font-variant-numeric: tabular-nums; }
+.label {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+/* range sliders, Vissim-style: thin track, small square handle */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  border-radius: 2px;
+  background: #24384f;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background: var(--color-accent);
+  cursor: pointer;
+  border: 1px solid #0b1220;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--color-accent);
+  cursor: pointer;
+  border: 1px solid #0b1220;
+}
+select, input[type="number"] {
+  background: #0d1626;
+  border: 1px solid var(--color-hair);
+  color: var(--color-ink);
+  border-radius: 3px;
+  padding: 3px 6px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+select:focus, input:focus { outline: 1px solid var(--color-accent); }
+
+.pulse-dot {
+  animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
