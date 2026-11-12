@@ -1,0 +1,13 @@
+case,method,iterations,bisections,final_abs_f,estimate,truth,abs_error,converged,trace
+"linear crossing (overspeed)",newton,2,0,9.352519e-13,5.916666667,5.916666667,7.789325e-13,true,""
+"linear crossing (overspeed)",bisection,13,0,9.765625e-05,5.916748047,5.916666667,8.138021e-05,true,""
+"linear crossing (overspeed)",secant,1,0,8.881784e-16,5.916666667,5.916666667,0.000000e+00,true,""
+"linear crossing (overspeed)",safeguarded,2,0,9.352519e-13,5.916666667,5.916666667,7.789325e-13,true,""
+"grazing root (v→0 standstill)",newton,5,0,3.906250e-05,5.012500000,5.000000000,1.250000e-02,true,""
+"grazing root (v→0 standstill)",bisection,35,0,2.025000e-01,5.900000000,5.000000000,9.000000e-01,false,""
+"grazing root (v→0 standstill)",secant,14,0,4.303054e-05,4.986880466,5.000000000,1.311953e-02,true,""
+"grazing root (v→0 standstill)",safeguarded,58,0,7.147159e-26,5.000000000,5.000000000,5.346834e-13,true,"tangential: |f| minimised"
+"steep crossing (gap-events)",newton,4,0,1.862126e-09,4.858853402,4.858853402,8.867307e-11,true,""
+"steep crossing (gap-events)",bisection,16,0,5.877480e-05,4.858856201,4.858853402,2.798797e-06,true,""
+"steep crossing (gap-events)",secant,20,0,2.856030e+01,0.520621278,4.858853402,4.338232e+00,false,""
+"steep crossing (gap-events)",safeguarded,4,0,1.862126e-09,4.858853402,4.858853402,8.867307e-11,true,""

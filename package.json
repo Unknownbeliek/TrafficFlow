@@ -1,0 +1,24 @@
+{
+  "name": "trackflow",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Trackflow — live microscopic traffic-flow simulator for five Delhi-NCR interchanges",
+  "type": "module",
+  "scripts": {
+    "dev": "node server/index.js",
+    "build": "vite build",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "@vitejs/plugin-react": "^5.0.4",
+    "tailwindcss": "^4.3.5",
+    "vite": "^7.1.12"
+  }
+}

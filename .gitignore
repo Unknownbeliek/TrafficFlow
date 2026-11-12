@@ -3,3 +3,17 @@
 */preview*.svg
 __pycache__/
 *.pyc
+
+# node
+node_modules/
+dist/
+.vite/
+
+# engine build products
+engine/*.o
+engine/*.d
+engine/trackflow_engine
+engine/trackflow_trace.jsonl
+
+# OS noise
+.DS_Store

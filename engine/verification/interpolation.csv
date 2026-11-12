@@ -1,0 +1,6 @@
+n_points,window_points,degree,max_error_in_span,rms_in_span,span_covered_pct,extrapolation_error,note
+4,4,3,2.143692e+00,9.043937e-01,100.0,7.105830e-01,
+5,5,4,7.689531e-01,3.951099e-01,100.0,3.643865e+00,
+6,5,4,2.996740e-01,1.367341e-01,80.0,1.240291e+00,sliding window of 5 consecutive samples
+9,5,4,1.170442e-02,4.160902e-03,50.0,1.139321e-01,sliding window of 5 consecutive samples
+9,9,8,0.00483253,,,,"degree 8 uncapped (reference only)

@@ -1,0 +1,4 @@
+*.o
+*.d
+trackflow_engine
+trackflow_trace.jsonl
