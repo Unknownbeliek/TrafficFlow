@@ -252,6 +252,23 @@ function Row({ k, v }) {
 
 export function BottomPanel({ snapshot, approaches, onMultiplier, mode }) {
   const events = (snapshot?.events || []).slice(-6).reverse();
+  // Live rows come from the engine snapshot; the site's demand list only seeds
+  // the table before the first frame arrives.
+  const rows =
+    snapshot?.approaches?.length
+      ? snapshot.approaches
+      : (approaches || []).map((a) => ({
+          id: a.id,
+          name: a.name,
+          demand: a.veh_per_hour,
+          mult: 1,
+          queue: 0,
+          vk: 0,
+          k: 0,
+          los: "A",
+          thr: 0,
+        }));
+
   return (
     <footer className="grid shrink-0 grid-cols-1 gap-2 border-t border-hairline bg-panel/80 p-2 lg:grid-cols-[1fr_360px]">
       <div className="panel overflow-auto p-2">
@@ -261,7 +278,7 @@ export function BottomPanel({ snapshot, approaches, onMultiplier, mode }) {
             <tr>
               <th className="py-1 font-normal">approach</th>
               <th className="font-normal">demand veh/h</th>
-              <th className="font-normal">mult</th>
+              <th className="font-normal">live</th>
               <th className="font-normal">queue</th>
               <th className="font-normal">speed</th>
               <th className="font-normal">k</th>
@@ -270,24 +287,22 @@ export function BottomPanel({ snapshot, approaches, onMultiplier, mode }) {
             </tr>
           </thead>
           <tbody>
-            {(approaches || []).map((a) => (
+            {rows.map((a) => (
               <tr key={a.id} className="border-t border-hairline/60">
                 <td className="py-1 text-ink">{a.name}</td>
                 <td className="mono">{a.demand}</td>
-                <td>
+                <td className="whitespace-nowrap">
                   <input
                     type="range"
                     min="0"
                     max="200"
                     step="5"
-                    value={Math.round((snapshot?.approaches?.find((x) => x.id === a.id)?.mult ?? 1) * 100)}
+                    value={Math.round((a.mult ?? 1) * 100)}
                     disabled={mode !== "manual"}
                     onChange={(e) => onMultiplier(a.id, Number(e.target.value) / 100)}
-                    className="w-20 accent-sky-400 disabled:opacity-30"
+                    className="w-16 accent-sky-400 disabled:opacity-30"
                   />
-                  <span className="mono ml-1 text-[10px]">
-                    {Math.round((snapshot?.approaches?.find((x) => x.id === a.id)?.mult ?? 1) * 100)}%
-                  </span>
+                  <span className="mono ml-1 text-[10px]">{Math.round((a.mult ?? 1) * 100)}%</span>
                 </td>
                 <td className="mono">{a.queue}</td>
                 <td className="mono">{a.vk} km/h</td>
@@ -309,7 +324,7 @@ export function BottomPanel({ snapshot, approaches, onMultiplier, mode }) {
 
       <div className="panel overflow-auto p-2">
         <div className="mono mb-1 flex items-center gap-2 text-[10px] uppercase tracking-wider text-muted">
-          Alert log <span className="text-[9px] normal-case text-muted/70">newton–raphson crossing time</span>
+          Alert log <span className="text-[9px] normal-case text-muted/70">newton-raphson crossing time</span>
         </div>
         {events.length === 0 && <div className="text-[11px] text-muted">no threshold crossings yet</div>}
         <ul className="space-y-1">
@@ -322,7 +337,7 @@ export function BottomPanel({ snapshot, approaches, onMultiplier, mode }) {
               <span className="mono text-ink">{e.type}</span>
               <span className="mono text-muted">{e.link}</span>
               {e.veh >= 0 && <span className="mono text-muted">#{e.veh}</span>}
-              <span className="mono ml-auto text-accent">t={e.t.toFixed(2)}s</span>
+              <span className="mono ml-auto text-accent">t={Number(e.t).toFixed(2)}s</span>
               <span className="mono text-[9px] text-muted">{e.iter}it</span>
             </li>
           ))}
