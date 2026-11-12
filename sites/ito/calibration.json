@@ -1,0 +1,30 @@
+{
+ "metres_per_pixel": 0.7,
+ "rotation_deg": 0.0,
+ "control_points": [
+  {
+   "pixel": [
+    0,
+    566
+   ],
+   "note": "west frame edge, carriageway centre"
+  },
+  {
+   "pixel": [
+    690,
+    575
+   ],
+   "note": "junction box centre"
+  },
+  {
+   "pixel": [
+    690,
+    0
+   ],
+   "note": "north frame edge"
+  }
+ ],
+ "known_length_m": 30.0,
+ "length_check_px": 44.0,
+ "residual_m": 1.5
+}

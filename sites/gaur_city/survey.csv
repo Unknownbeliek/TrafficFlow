@@ -1,0 +1,5 @@
+date,time_bin,site,approach,movement,vehicle_class,count,cycle_s,green_s,source
+2026-11-__,18:30,gaur_city,E approach,through,all,PLACEHOLDER,88,18,synthetic
+2026-11-__,18:30,gaur_city,S approach,through,all,PLACEHOLDER,88,18,synthetic
+2026-11-__,18:30,gaur_city,W approach,through,all,PLACEHOLDER,88,18,synthetic
+2026-11-__,18:30,gaur_city,N approach,through,all,PLACEHOLDER,88,18,synthetic

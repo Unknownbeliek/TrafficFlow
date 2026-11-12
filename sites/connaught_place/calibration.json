@@ -1,0 +1,30 @@
+{
+ "metres_per_pixel": 1.22,
+ "rotation_deg": 0.0,
+ "control_points": [
+  {
+   "pixel": [
+    980,
+    528
+   ],
+   "note": "centre of the central park"
+  },
+  {
+   "pixel": [
+    1132,
+    528
+   ],
+   "note": "Inner Circle carriageway"
+  },
+  {
+   "pixel": [
+    1300,
+    528
+   ],
+   "note": "Outer Circle carriageway"
+  }
+ ],
+ "known_length_m": 1240.0,
+ "length_check_px": 670.0,
+ "residual_m": 12.0
+}

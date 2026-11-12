@@ -1,0 +1,5 @@
+date,time_bin,site,approach,movement,vehicle_class,count,cycle_s,green_s,source
+2026-11-__,08:00,kalindi_kunj,NW approach,through,all,PLACEHOLDER,120,120,synthetic
+2026-11-__,08:15,kalindi_kunj,NW approach,through,all,PLACEHOLDER,120,120,synthetic
+2026-11-__,08:30,kalindi_kunj,NW approach,through,all,PLACEHOLDER,120,120,synthetic
+2026-11-__,08:45,kalindi_kunj,NW approach,through,all,PLACEHOLDER,120,120,synthetic

@@ -1,0 +1,603 @@
+{
+ "id": "gaur_city",
+ "name": "Gaur City Char Murti Chowk",
+ "kind": "Signalised roundabout",
+ "signal_groups": [
+  "sg_e",
+  "sg_s",
+  "sg_w",
+  "sg_n"
+ ],
+ "signal_plans": [
+  {
+   "id": "gc_4phase",
+   "cycle": 88,
+   "offset": 0,
+   "phases": [
+    {
+     "name": "E",
+     "duration": 18,
+     "states": {
+      "sg_e": "G",
+      "sg_s": "R",
+      "sg_w": "R",
+      "sg_n": "R"
+     }
+    },
+    {
+     "name": "amber",
+     "duration": 4,
+     "states": {
+      "sg_e": "A",
+      "sg_s": "R",
+      "sg_w": "R",
+      "sg_n": "R"
+     }
+    },
+    {
+     "name": "S",
+     "duration": 18,
+     "states": {
+      "sg_e": "R",
+      "sg_s": "G",
+      "sg_w": "R",
+      "sg_n": "R"
+     }
+    },
+    {
+     "name": "amber",
+     "duration": 4,
+     "states": {
+      "sg_e": "R",
+      "sg_s": "A",
+      "sg_w": "R",
+      "sg_n": "R"
+     }
+    },
+    {
+     "name": "W",
+     "duration": 18,
+     "states": {
+      "sg_e": "R",
+      "sg_s": "R",
+      "sg_w": "G",
+      "sg_n": "R"
+     }
+    },
+    {
+     "name": "amber",
+     "duration": 4,
+     "states": {
+      "sg_e": "R",
+      "sg_s": "R",
+      "sg_w": "A",
+      "sg_n": "R"
+     }
+    },
+    {
+     "name": "N",
+     "duration": 18,
+     "states": {
+      "sg_e": "R",
+      "sg_s": "R",
+      "sg_w": "R",
+      "sg_n": "G"
+     }
+    },
+    {
+     "name": "amber",
+     "duration": 4,
+     "states": {
+      "sg_e": "R",
+      "sg_s": "R",
+      "sg_w": "R",
+      "sg_n": "A"
+     }
+    }
+   ]
+  }
+ ],
+ "links": [
+  {
+   "id": "GC_RING_0",
+   "name": "Roundabout arc e",
+   "points": [
+    [
+     1092.0,
+     591.0
+    ],
+    [
+     1091.3,
+     600.1
+    ],
+    [
+     1089.2,
+     608.9
+    ],
+    [
+     1085.7,
+     617.3
+    ],
+    [
+     1080.9,
+     625.1
+    ],
+    [
+     1075.0,
+     632.0
+    ],
+    [
+     1068.1,
+     637.9
+    ],
+    [
+     1060.3,
+     642.7
+    ],
+    [
+     1051.9,
+     646.2
+    ],
+    [
+     1043.1,
+     648.3
+    ],
+    [
+     1034.0,
+     649.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 30,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "GC_RING_1",
+     "weight": 0.8
+    },
+    {
+     "link": "GC_OUT_s",
+     "weight": 0.2
+    }
+   ]
+  },
+  {
+   "id": "GC_RING_1",
+   "name": "Roundabout arc s",
+   "points": [
+    [
+     1034.0,
+     649.0
+    ],
+    [
+     1024.9,
+     648.3
+    ],
+    [
+     1016.1,
+     646.2
+    ],
+    [
+     1007.7,
+     642.7
+    ],
+    [
+     999.9,
+     637.9
+    ],
+    [
+     993.0,
+     632.0
+    ],
+    [
+     987.1,
+     625.1
+    ],
+    [
+     982.3,
+     617.3
+    ],
+    [
+     978.8,
+     608.9
+    ],
+    [
+     976.7,
+     600.1
+    ],
+    [
+     976.0,
+     591.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 30,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "GC_RING_2",
+     "weight": 0.8
+    },
+    {
+     "link": "GC_OUT_w",
+     "weight": 0.2
+    }
+   ]
+  },
+  {
+   "id": "GC_RING_2",
+   "name": "Roundabout arc w",
+   "points": [
+    [
+     976.0,
+     591.0
+    ],
+    [
+     976.7,
+     581.9
+    ],
+    [
+     978.8,
+     573.1
+    ],
+    [
+     982.3,
+     564.7
+    ],
+    [
+     987.1,
+     556.9
+    ],
+    [
+     993.0,
+     550.0
+    ],
+    [
+     999.9,
+     544.1
+    ],
+    [
+     1007.7,
+     539.3
+    ],
+    [
+     1016.1,
+     535.8
+    ],
+    [
+     1024.9,
+     533.7
+    ],
+    [
+     1034.0,
+     533.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 30,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "GC_RING_3",
+     "weight": 0.8
+    },
+    {
+     "link": "GC_OUT_n",
+     "weight": 0.2
+    }
+   ]
+  },
+  {
+   "id": "GC_RING_3",
+   "name": "Roundabout arc n",
+   "points": [
+    [
+     1034.0,
+     533.0
+    ],
+    [
+     1043.1,
+     533.7
+    ],
+    [
+     1051.9,
+     535.8
+    ],
+    [
+     1060.3,
+     539.3
+    ],
+    [
+     1068.1,
+     544.1
+    ],
+    [
+     1075.0,
+     550.0
+    ],
+    [
+     1080.9,
+     556.9
+    ],
+    [
+     1085.7,
+     564.7
+    ],
+    [
+     1089.2,
+     573.1
+    ],
+    [
+     1091.3,
+     581.9
+    ],
+    [
+     1092.0,
+     591.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 30,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "GC_RING_0",
+     "weight": 0.8
+    },
+    {
+     "link": "GC_OUT_e",
+     "weight": 0.2
+    }
+   ]
+  },
+  {
+   "id": "GC_IN_e",
+   "name": "E approach",
+   "points": [
+    [
+     1464.0,
+     591.0
+    ],
+    [
+     1092.0,
+     591.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_e",
+   "turns": [
+    {
+     "link": "GC_RING_0",
+     "weight": 1.0
+    }
+   ]
+  },
+  {
+   "id": "GC_OUT_e",
+   "name": "E exit",
+   "points": [
+    [
+     1092.0,
+     591.0
+    ],
+    [
+     1464.0,
+     591.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "GC_IN_s",
+   "name": "S approach",
+   "points": [
+    [
+     1034.0,
+     1021.0
+    ],
+    [
+     1034.0,
+     649.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_s",
+   "turns": [
+    {
+     "link": "GC_RING_1",
+     "weight": 1.0
+    }
+   ]
+  },
+  {
+   "id": "GC_OUT_s",
+   "name": "S exit",
+   "points": [
+    [
+     1034.0,
+     649.0
+    ],
+    [
+     1034.0,
+     1021.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "GC_IN_w",
+   "name": "W approach",
+   "points": [
+    [
+     604.0,
+     591.0
+    ],
+    [
+     976.0,
+     591.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_w",
+   "turns": [
+    {
+     "link": "GC_RING_2",
+     "weight": 1.0
+    }
+   ]
+  },
+  {
+   "id": "GC_OUT_w",
+   "name": "W exit",
+   "points": [
+    [
+     976.0,
+     591.0
+    ],
+    [
+     604.0,
+     591.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "GC_IN_n",
+   "name": "N approach",
+   "points": [
+    [
+     1034.0,
+     161.0
+    ],
+    [
+     1034.0,
+     533.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_n",
+   "turns": [
+    {
+     "link": "GC_RING_3",
+     "weight": 1.0
+    }
+   ]
+  },
+  {
+   "id": "GC_OUT_n",
+   "name": "N exit",
+   "points": [
+    [
+     1034.0,
+     533.0
+    ],
+    [
+     1034.0,
+     161.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0
+  }
+ ],
+ "demand": [
+  {
+   "id": "gc_e",
+   "name": "East approach (NH-9)",
+   "link": "GC_IN_e",
+   "veh_per_hour": 1850,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.28,
+    "auto": 0.14,
+    "lcv": 0.05,
+    "truck": 0.08,
+    "bus": 0.03
+   }
+  },
+  {
+   "id": "gc_s",
+   "name": "South approach",
+   "link": "GC_IN_s",
+   "veh_per_hour": 1200,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.32,
+    "auto": 0.15,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.03
+   }
+  },
+  {
+   "id": "gc_w",
+   "name": "West approach",
+   "link": "GC_IN_w",
+   "veh_per_hour": 1450,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.3,
+    "auto": 0.14,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.03
+   }
+  },
+  {
+   "id": "gc_n",
+   "name": "North approach (Gaur City)",
+   "link": "GC_IN_n",
+   "veh_per_hour": 1600,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.29,
+    "auto": 0.13,
+    "lcv": 0.05,
+    "truck": 0.07,
+    "bus": 0.03
+   }
+  }
+ ],
+ "notes": [
+  "Circulating carriageway is two lanes with a 58 px radius (about 35 m).",
+  "Four-phase signal, 18 s green each: entries queue back down the approaches."
+ ],
+ "image": "section_img/gaur_city/base.png",
+ "source_image": "section_img/GaurCIty_charmurtiG.png",
+ "image_size": [
+  1920,
+  1080
+ ],
+ "metres_per_pixel": 0.6
+}

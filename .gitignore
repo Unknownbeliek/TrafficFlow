@@ -1,0 +1,15 @@
+# engine build output
+engine/build/
+engine/trackflow
+
+# node
+node_modules/
+web/node_modules/
+server/node_modules/
+
+# built dashboard (rebuild with: cd web && npm run build)
+webroot/
+
+# local scratch
+.cache/
+*.log

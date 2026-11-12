@@ -1,0 +1,209 @@
+{
+ "id": "kalindi_kunj",
+ "name": "Kalindi Kunj Bridge",
+ "kind": "Linear bottleneck",
+ "signal_groups": [],
+ "signal_plans": [
+  {
+   "id": "priority",
+   "cycle": 1,
+   "phases": [
+    {
+     "name": "free",
+     "duration": 1,
+     "states": {}
+    }
+   ]
+  }
+ ],
+ "links": [
+  {
+   "id": "KK_NW_IN",
+   "name": "Kalindi Kunj Rd NW approach",
+   "points": [
+    [
+     607.0,
+     117.0
+    ],
+    [
+     872.0,
+     437.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "KK_NW_OUT",
+     "weight": 1.0
+    }
+   ]
+  },
+  {
+   "id": "KK_NW_OUT",
+   "name": "Kalindi Kunj Rd NW exit (bridge deck)",
+   "points": [
+    [
+     872.0,
+     437.0
+    ],
+    [
+     1280.0,
+     830.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "KK_SE_IN",
+   "name": "Kalindi Kunj Rd SE approach",
+   "points": [
+    [
+     1294.0,
+     820.0
+    ],
+    [
+     886.0,
+     427.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "KK_SE_OUT",
+     "weight": 1.0
+    }
+   ]
+  },
+  {
+   "id": "KK_SE_OUT",
+   "name": "Kalindi Kunj Rd SE exit",
+   "points": [
+    [
+     886.0,
+     427.0
+    ],
+    [
+     621.0,
+     107.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "KK_ARM_IN",
+   "name": "Okhla barrage road",
+   "points": [
+    [
+     426.0,
+     620.0
+    ],
+    [
+     872.0,
+     437.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "KK_NW_OUT",
+     "weight": 0.55
+    },
+    {
+     "link": "KK_SE_OUT",
+     "weight": 0.45
+    }
+   ]
+  },
+  {
+   "id": "KK_ARM_OUT",
+   "name": "Barrage road exit",
+   "points": [
+    [
+     872.0,
+     437.0
+    ],
+    [
+     466.0,
+     690.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0
+  }
+ ],
+ "demand": [
+  {
+   "id": "kk_nw",
+   "name": "NW approach (Okhla)",
+   "link": "KK_NW_IN",
+   "veh_per_hour": 3400,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.26,
+    "auto": 0.09,
+    "lcv": 0.07,
+    "truck": 0.09,
+    "bus": 0.05
+   }
+  },
+  {
+   "id": "kk_se",
+   "name": "SE approach (Noida)",
+   "link": "KK_SE_IN",
+   "veh_per_hour": 2900,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.26,
+    "auto": 0.09,
+    "lcv": 0.05,
+    "truck": 0.07,
+    "bus": 0.04
+   }
+  },
+  {
+   "id": "kk_arm",
+   "name": "Barrage road",
+   "link": "KK_ARM_IN",
+   "veh_per_hour": 900,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.38,
+    "auto": 0.12,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.03
+   }
+  }
+ ],
+ "notes": [
+  "No signals: the bridge operates as a priority merge, which is exactly why one truck paces the whole corridor.",
+  "Truck share is kept high on purpose: it is the lane-blocking demo."
+ ],
+ "image": "section_img/kalindi_kunj/base.png",
+ "source_image": "section_img/KalindiKunj.png",
+ "image_size": [
+  1920,
+  1080
+ ],
+ "metres_per_pixel": 0.55
+}

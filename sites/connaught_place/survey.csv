@@ -1,0 +1,9 @@
+date,time_bin,site,approach,movement,vehicle_class,count,cycle_s,green_s,source
+2026-11-__,18:00,connaught_place,N avenue,through,all,PLACEHOLDER,96,9,synthetic
+2026-11-__,18:00,connaught_place,NE avenue,through,all,PLACEHOLDER,96,9,synthetic
+2026-11-__,18:00,connaught_place,E avenue,through,all,PLACEHOLDER,96,9,synthetic
+2026-11-__,18:00,connaught_place,SE avenue,through,all,PLACEHOLDER,96,9,synthetic
+2026-11-__,18:00,connaught_place,S avenue,through,all,PLACEHOLDER,96,9,synthetic
+2026-11-__,18:00,connaught_place,SW avenue,through,all,PLACEHOLDER,96,9,synthetic
+2026-11-__,18:00,connaught_place,W avenue,through,all,PLACEHOLDER,96,9,synthetic
+2026-11-__,18:00,connaught_place,NW avenue,through,all,PLACEHOLDER,96,9,synthetic

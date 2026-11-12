@@ -1,0 +1,5 @@
+date,time_bin,site,approach,movement,vehicle_class,count,cycle_s,green_s,source
+2026-11-__,09:00,ito,W,through,all,PLACEHOLDER,88,46,synthetic
+2026-11-__,09:00,ito,E,through,all,PLACEHOLDER,88,46,synthetic
+2026-11-__,09:00,ito,N,through,all,PLACEHOLDER,88,46,synthetic
+2026-11-__,09:00,ito,S,through,all,PLACEHOLDER,88,46,synthetic

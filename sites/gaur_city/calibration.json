@@ -1,0 +1,30 @@
+{
+ "metres_per_pixel": 0.6,
+ "rotation_deg": 0.0,
+ "control_points": [
+  {
+   "pixel": [
+    1034,
+    591
+   ],
+   "note": "roundabout centre island"
+  },
+  {
+   "pixel": [
+    1092,
+    591
+   ],
+   "note": "east edge of circulating carriageway"
+  },
+  {
+   "pixel": [
+    1430,
+    443
+   ],
+   "note": "NH-9 carriageway edge (road width check)"
+  }
+ ],
+ "known_length_m": 33.0,
+ "length_check_px": 55.0,
+ "residual_m": 2.0
+}

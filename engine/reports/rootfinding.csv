@@ -1,0 +1,5 @@
+method,iterations,root,residual,converged,fallback
+newton-raphson,6,2.0433,1.59129e-07,1,0
+bisection,16,2.04331,2.8733e-05,1,0
+secant,8,2.0433,2.63355e-07,1,0
+newton-safeguarded,4,2.04329,2.67617e-05,1,0

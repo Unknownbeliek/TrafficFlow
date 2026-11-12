@@ -1,0 +1,30 @@
+{
+ "metres_per_pixel": 0.55,
+ "rotation_deg": 0.0,
+ "control_points": [
+  {
+   "pixel": [
+    505,
+    85
+   ],
+   "note": "NW frame edge on the bridge centreline"
+  },
+  {
+   "pixel": [
+    770,
+    395
+   ],
+   "note": "barrage road junction"
+  },
+  {
+   "pixel": [
+    1195,
+    745
+   ],
+   "note": "SE frame edge"
+  }
+ ],
+ "known_length_m": 550.0,
+ "length_check_px": 990.0,
+ "residual_m": 4.5
+}

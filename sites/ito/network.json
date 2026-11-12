@@ -1,0 +1,329 @@
+{
+ "id": "ito",
+ "name": "ITO Intersection",
+ "kind": "Signalised grid junction",
+ "signal_groups": [
+  "sg_ew",
+  "sg_ns"
+ ],
+ "signal_plans": [
+  {
+   "id": "ito_2phase",
+   "cycle": 88,
+   "offset": 0,
+   "phases": [
+    {
+     "name": "EW",
+     "duration": 46,
+     "states": {
+      "sg_ew": "G",
+      "sg_ns": "R"
+     }
+    },
+    {
+     "name": "EW amber",
+     "duration": 5,
+     "states": {
+      "sg_ew": "A",
+      "sg_ns": "R"
+     }
+    },
+    {
+     "name": "NS",
+     "duration": 32,
+     "states": {
+      "sg_ew": "R",
+      "sg_ns": "G"
+     }
+    },
+    {
+     "name": "NS amber",
+     "duration": 5,
+     "states": {
+      "sg_ew": "R",
+      "sg_ns": "A"
+     }
+    }
+   ]
+  }
+ ],
+ "links": [
+  {
+   "id": "ITO_W_IN",
+   "name": "West approach (DDU Marg)",
+   "points": [
+    [
+     0.0,
+     558.0
+    ],
+    [
+     723.0,
+     563.0
+    ]
+   ],
+   "lanes": 4,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 50,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_ew",
+   "turns": [
+    {
+     "link": "ITO_E_OUT",
+     "weight": 0.7
+    },
+    {
+     "link": "ITO_N_OUT",
+     "weight": 0.15
+    },
+    {
+     "link": "ITO_S_OUT",
+     "weight": 0.15
+    }
+   ]
+  },
+  {
+   "id": "ITO_E_IN",
+   "name": "East approach (Vikas Marg)",
+   "points": [
+    [
+     1150.0,
+     575.0
+    ],
+    [
+     723.0,
+     563.0
+    ]
+   ],
+   "lanes": 4,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 50,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_ew",
+   "turns": [
+    {
+     "link": "ITO_W_OUT",
+     "weight": 0.7
+    },
+    {
+     "link": "ITO_S_OUT",
+     "weight": 0.15
+    },
+    {
+     "link": "ITO_N_OUT",
+     "weight": 0.15
+    }
+   ]
+  },
+  {
+   "id": "ITO_N_IN",
+   "name": "North approach (Minto Rd)",
+   "points": [
+    [
+     705.0,
+     0.0
+    ],
+    [
+     723.0,
+     563.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_ns",
+   "turns": [
+    {
+     "link": "ITO_S_OUT",
+     "weight": 0.65
+    },
+    {
+     "link": "ITO_W_OUT",
+     "weight": 0.2
+    },
+    {
+     "link": "ITO_E_OUT",
+     "weight": 0.15
+    }
+   ]
+  },
+  {
+   "id": "ITO_S_IN",
+   "name": "South approach (Mathura Rd)",
+   "points": [
+    [
+     860.0,
+     800.0
+    ],
+    [
+     723.0,
+     563.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_ns",
+   "turns": [
+    {
+     "link": "ITO_N_OUT",
+     "weight": 0.6
+    },
+    {
+     "link": "ITO_E_OUT",
+     "weight": 0.22
+    },
+    {
+     "link": "ITO_W_OUT",
+     "weight": 0.18
+    }
+   ]
+  },
+  {
+   "id": "ITO_W_OUT",
+   "name": "West exit",
+   "points": [
+    [
+     723.0,
+     563.0
+    ],
+    [
+     -40.0,
+     548.0
+    ]
+   ],
+   "lanes": 4,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 50,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "ITO_E_OUT",
+   "name": "East exit",
+   "points": [
+    [
+     723.0,
+     563.0
+    ],
+    [
+     1190.0,
+     565.0
+    ]
+   ],
+   "lanes": 4,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 50,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "ITO_N_OUT",
+   "name": "North exit",
+   "points": [
+    [
+     723.0,
+     563.0
+    ],
+    [
+     703.0,
+     -40.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "ITO_S_OUT",
+   "name": "South exit",
+   "points": [
+    [
+     723.0,
+     563.0
+    ],
+    [
+     878.0,
+     840.0
+    ]
+   ],
+   "lanes": 3,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 45,
+   "saturation_pcu_h": 1800.0
+  }
+ ],
+ "demand": [
+  {
+   "id": "ito_w",
+   "name": "West approach",
+   "link": "ITO_W_IN",
+   "veh_per_hour": 2100,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.34,
+    "auto": 0.12,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.05
+   }
+  },
+  {
+   "id": "ito_e",
+   "name": "East approach",
+   "link": "ITO_E_IN",
+   "veh_per_hour": 1950,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.33,
+    "auto": 0.11,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.04
+   }
+  },
+  {
+   "id": "ito_n",
+   "name": "North approach",
+   "link": "ITO_N_IN",
+   "veh_per_hour": 1450,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.36,
+    "auto": 0.13,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.03
+   }
+  },
+  {
+   "id": "ito_s",
+   "name": "South approach",
+   "link": "ITO_S_IN",
+   "veh_per_hour": 1300,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.37,
+    "auto": 0.12,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.03
+   }
+  }
+ ],
+ "notes": [
+  "Two signal groups, 88 s cycle: the long red is what makes the gridlock alert fire.",
+  "Four arms with turning shares; all movements share the stop line at the junction."
+ ],
+ "image": "section_img/ito/base.png",
+ "source_image": "section_img/ITO.png",
+ "image_size": [
+  1920,
+  1080
+ ],
+ "metres_per_pixel": 0.7
+}

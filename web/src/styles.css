@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+body { font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+
+.panel { @apply bg-panel/90 border border-hairline rounded-lg; }
+.chip { @apply px-2 py-0.5 rounded text-[11px] font-mono border border-hairline; }
+.btn { @apply px-2.5 py-1 rounded border border-hairline text-xs font-medium text-muted hover:text-ink hover:border-accent/60 transition; }
+.btn-active { @apply border-accent text-accent bg-accent/10; }
+.mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+@keyframes pulseRing {
+  0% { r: 6; opacity: 0.9; }
+  100% { r: 42; opacity: 0; }
+}
+.pulse { animation: pulseRing 1.4s ease-out infinite; }
+
+@keyframes blink { 0%,100% { opacity: 1 } 50% { opacity: 0.35 } }
+.live-dot { animation: blink 1.6s ease-in-out infinite; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #1f2f45; border-radius: 4px; }

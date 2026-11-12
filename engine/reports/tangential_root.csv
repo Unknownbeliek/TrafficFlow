@@ -1,0 +1,5 @@
+method,iterations,root,residual,converged
+newton_t0_1,18,4.99997,9.31323e-10,1
+newton_at_root,1,5,0,1
+bisection,0,0,0,0
+guarded_newton,0,10,25,0

@@ -1,0 +1,2071 @@
+{
+ "id": "connaught_place",
+ "name": "Connaught Place",
+ "kind": "Concentric rings",
+ "signal_groups": [
+  "sg_n",
+  "sg_ne",
+  "sg_e",
+  "sg_se",
+  "sg_s",
+  "sg_sw",
+  "sg_w",
+  "sg_nw"
+ ],
+ "signal_plans": [
+  {
+   "id": "cp_8phase",
+   "cycle": 96,
+   "offset": 0,
+   "phases": [
+    {
+     "name": "N",
+     "duration": 9,
+     "states": {
+      "sg_n": "G",
+      "sg_ne": "R",
+      "sg_e": "R",
+      "sg_se": "R",
+      "sg_s": "R",
+      "sg_sw": "R",
+      "sg_w": "R",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "amber",
+     "duration": 3,
+     "states": {
+      "sg_n": "A",
+      "sg_ne": "R",
+      "sg_e": "R",
+      "sg_se": "R",
+      "sg_s": "R",
+      "sg_sw": "R",
+      "sg_w": "R",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "NE",
+     "duration": 9,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "G",
+      "sg_e": "R",
+      "sg_se": "R",
+      "sg_s": "R",
+      "sg_sw": "R",
+      "sg_w": "R",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "amber",
+     "duration": 3,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "A",
+      "sg_e": "R",
+      "sg_se": "R",
+      "sg_s": "R",
+      "sg_sw": "R",
+      "sg_w": "R",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "E",
+     "duration": 9,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "R",
+      "sg_e": "G",
+      "sg_se": "R",
+      "sg_s": "R",
+      "sg_sw": "R",
+      "sg_w": "R",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "amber",
+     "duration": 3,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "R",
+      "sg_e": "A",
+      "sg_se": "R",
+      "sg_s": "R",
+      "sg_sw": "R",
+      "sg_w": "R",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "SE",
+     "duration": 9,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "R",
+      "sg_e": "R",
+      "sg_se": "G",
+      "sg_s": "R",
+      "sg_sw": "R",
+      "sg_w": "R",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "amber",
+     "duration": 3,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "R",
+      "sg_e": "R",
+      "sg_se": "A",
+      "sg_s": "R",
+      "sg_sw": "R",
+      "sg_w": "R",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "S",
+     "duration": 9,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "R",
+      "sg_e": "R",
+      "sg_se": "R",
+      "sg_s": "G",
+      "sg_sw": "R",
+      "sg_w": "R",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "amber",
+     "duration": 3,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "R",
+      "sg_e": "R",
+      "sg_se": "R",
+      "sg_s": "A",
+      "sg_sw": "R",
+      "sg_w": "R",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "SW",
+     "duration": 9,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "R",
+      "sg_e": "R",
+      "sg_se": "R",
+      "sg_s": "R",
+      "sg_sw": "G",
+      "sg_w": "R",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "amber",
+     "duration": 3,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "R",
+      "sg_e": "R",
+      "sg_se": "R",
+      "sg_s": "R",
+      "sg_sw": "A",
+      "sg_w": "R",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "W",
+     "duration": 9,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "R",
+      "sg_e": "R",
+      "sg_se": "R",
+      "sg_s": "R",
+      "sg_sw": "R",
+      "sg_w": "G",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "amber",
+     "duration": 3,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "R",
+      "sg_e": "R",
+      "sg_se": "R",
+      "sg_s": "R",
+      "sg_sw": "R",
+      "sg_w": "A",
+      "sg_nw": "R"
+     }
+    },
+    {
+     "name": "NW",
+     "duration": 9,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "R",
+      "sg_e": "R",
+      "sg_se": "R",
+      "sg_s": "R",
+      "sg_sw": "R",
+      "sg_w": "R",
+      "sg_nw": "G"
+     }
+    },
+    {
+     "name": "amber",
+     "duration": 3,
+     "states": {
+      "sg_n": "R",
+      "sg_ne": "R",
+      "sg_e": "R",
+      "sg_se": "R",
+      "sg_s": "R",
+      "sg_sw": "R",
+      "sg_w": "R",
+      "sg_nw": "A"
+     }
+    }
+   ]
+  }
+ ],
+ "links": [
+  {
+   "id": "CP_RING_0",
+   "name": "Outer Circle arc n-ne",
+   "points": [
+    [
+     1300.0,
+     528.0
+    ],
+    [
+     1299.5,
+     545.9
+    ],
+    [
+     1298.0,
+     563.8
+    ],
+    [
+     1295.5,
+     581.6
+    ],
+    [
+     1292.0,
+     599.2
+    ],
+    [
+     1287.5,
+     616.6
+    ],
+    [
+     1282.0,
+     633.7
+    ],
+    [
+     1275.6,
+     650.5
+    ],
+    [
+     1268.3,
+     666.8
+    ],
+    [
+     1260.1,
+     682.8
+    ],
+    [
+     1251.0,
+     698.3
+    ],
+    [
+     1241.0,
+     713.2
+    ],
+    [
+     1230.2,
+     727.5
+    ],
+    [
+     1218.6,
+     741.2
+    ],
+    [
+     1206.3,
+     754.3
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_RING_1",
+     "weight": 0.82
+    },
+    {
+     "link": "CP_OUT_ne",
+     "weight": 0.18
+    },
+    {
+     "link": "CP_INNER_0",
+     "weight": 0.1
+    }
+   ]
+  },
+  {
+   "id": "CP_RING_1",
+   "name": "Outer Circle arc ne-e",
+   "points": [
+    [
+     1206.3,
+     754.3
+    ],
+    [
+     1193.2,
+     766.6
+    ],
+    [
+     1179.5,
+     778.2
+    ],
+    [
+     1165.2,
+     789.0
+    ],
+    [
+     1150.3,
+     799.0
+    ],
+    [
+     1134.8,
+     808.1
+    ],
+    [
+     1118.8,
+     816.3
+    ],
+    [
+     1102.5,
+     823.6
+    ],
+    [
+     1085.7,
+     830.0
+    ],
+    [
+     1068.6,
+     835.5
+    ],
+    [
+     1051.2,
+     840.0
+    ],
+    [
+     1033.6,
+     843.5
+    ],
+    [
+     1015.8,
+     846.0
+    ],
+    [
+     997.9,
+     847.5
+    ],
+    [
+     980.0,
+     848.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_RING_2",
+     "weight": 0.82
+    },
+    {
+     "link": "CP_OUT_e",
+     "weight": 0.18
+    },
+    {
+     "link": "CP_INNER_1",
+     "weight": 0.1
+    }
+   ]
+  },
+  {
+   "id": "CP_RING_2",
+   "name": "Outer Circle arc e-se",
+   "points": [
+    [
+     980.0,
+     848.0
+    ],
+    [
+     962.1,
+     847.5
+    ],
+    [
+     944.2,
+     846.0
+    ],
+    [
+     926.4,
+     843.5
+    ],
+    [
+     908.8,
+     840.0
+    ],
+    [
+     891.4,
+     835.5
+    ],
+    [
+     874.3,
+     830.0
+    ],
+    [
+     857.5,
+     823.6
+    ],
+    [
+     841.2,
+     816.3
+    ],
+    [
+     825.2,
+     808.1
+    ],
+    [
+     809.7,
+     799.0
+    ],
+    [
+     794.8,
+     789.0
+    ],
+    [
+     780.5,
+     778.2
+    ],
+    [
+     766.8,
+     766.6
+    ],
+    [
+     753.7,
+     754.3
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_RING_3",
+     "weight": 0.82
+    },
+    {
+     "link": "CP_OUT_se",
+     "weight": 0.18
+    },
+    {
+     "link": "CP_INNER_2",
+     "weight": 0.1
+    }
+   ]
+  },
+  {
+   "id": "CP_RING_3",
+   "name": "Outer Circle arc se-s",
+   "points": [
+    [
+     753.7,
+     754.3
+    ],
+    [
+     741.4,
+     741.2
+    ],
+    [
+     729.8,
+     727.5
+    ],
+    [
+     719.0,
+     713.2
+    ],
+    [
+     709.0,
+     698.3
+    ],
+    [
+     699.9,
+     682.8
+    ],
+    [
+     691.7,
+     666.8
+    ],
+    [
+     684.4,
+     650.5
+    ],
+    [
+     678.0,
+     633.7
+    ],
+    [
+     672.5,
+     616.6
+    ],
+    [
+     668.0,
+     599.2
+    ],
+    [
+     664.5,
+     581.6
+    ],
+    [
+     662.0,
+     563.8
+    ],
+    [
+     660.5,
+     545.9
+    ],
+    [
+     660.0,
+     528.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_RING_4",
+     "weight": 0.82
+    },
+    {
+     "link": "CP_OUT_s",
+     "weight": 0.18
+    },
+    {
+     "link": "CP_INNER_3",
+     "weight": 0.1
+    }
+   ]
+  },
+  {
+   "id": "CP_RING_4",
+   "name": "Outer Circle arc s-sw",
+   "points": [
+    [
+     660.0,
+     528.0
+    ],
+    [
+     660.5,
+     510.1
+    ],
+    [
+     662.0,
+     492.2
+    ],
+    [
+     664.5,
+     474.4
+    ],
+    [
+     668.0,
+     456.8
+    ],
+    [
+     672.5,
+     439.4
+    ],
+    [
+     678.0,
+     422.3
+    ],
+    [
+     684.4,
+     405.5
+    ],
+    [
+     691.7,
+     389.2
+    ],
+    [
+     699.9,
+     373.2
+    ],
+    [
+     709.0,
+     357.7
+    ],
+    [
+     719.0,
+     342.8
+    ],
+    [
+     729.8,
+     328.5
+    ],
+    [
+     741.4,
+     314.8
+    ],
+    [
+     753.7,
+     301.7
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_RING_5",
+     "weight": 0.82
+    },
+    {
+     "link": "CP_OUT_sw",
+     "weight": 0.18
+    },
+    {
+     "link": "CP_INNER_4",
+     "weight": 0.1
+    }
+   ]
+  },
+  {
+   "id": "CP_RING_5",
+   "name": "Outer Circle arc sw-w",
+   "points": [
+    [
+     753.7,
+     301.7
+    ],
+    [
+     766.8,
+     289.4
+    ],
+    [
+     780.5,
+     277.8
+    ],
+    [
+     794.8,
+     267.0
+    ],
+    [
+     809.7,
+     257.0
+    ],
+    [
+     825.2,
+     247.9
+    ],
+    [
+     841.2,
+     239.7
+    ],
+    [
+     857.5,
+     232.4
+    ],
+    [
+     874.3,
+     226.0
+    ],
+    [
+     891.4,
+     220.5
+    ],
+    [
+     908.8,
+     216.0
+    ],
+    [
+     926.4,
+     212.5
+    ],
+    [
+     944.2,
+     210.0
+    ],
+    [
+     962.1,
+     208.5
+    ],
+    [
+     980.0,
+     208.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_RING_6",
+     "weight": 0.82
+    },
+    {
+     "link": "CP_OUT_w",
+     "weight": 0.18
+    },
+    {
+     "link": "CP_INNER_5",
+     "weight": 0.1
+    }
+   ]
+  },
+  {
+   "id": "CP_RING_6",
+   "name": "Outer Circle arc w-nw",
+   "points": [
+    [
+     980.0,
+     208.0
+    ],
+    [
+     997.9,
+     208.5
+    ],
+    [
+     1015.8,
+     210.0
+    ],
+    [
+     1033.6,
+     212.5
+    ],
+    [
+     1051.2,
+     216.0
+    ],
+    [
+     1068.6,
+     220.5
+    ],
+    [
+     1085.7,
+     226.0
+    ],
+    [
+     1102.5,
+     232.4
+    ],
+    [
+     1118.8,
+     239.7
+    ],
+    [
+     1134.8,
+     247.9
+    ],
+    [
+     1150.3,
+     257.0
+    ],
+    [
+     1165.2,
+     267.0
+    ],
+    [
+     1179.5,
+     277.8
+    ],
+    [
+     1193.2,
+     289.4
+    ],
+    [
+     1206.3,
+     301.7
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_RING_7",
+     "weight": 0.82
+    },
+    {
+     "link": "CP_OUT_nw",
+     "weight": 0.18
+    },
+    {
+     "link": "CP_INNER_6",
+     "weight": 0.1
+    }
+   ]
+  },
+  {
+   "id": "CP_RING_7",
+   "name": "Outer Circle arc nw-n",
+   "points": [
+    [
+     1206.3,
+     301.7
+    ],
+    [
+     1218.6,
+     314.8
+    ],
+    [
+     1230.2,
+     328.5
+    ],
+    [
+     1241.0,
+     342.8
+    ],
+    [
+     1251.0,
+     357.7
+    ],
+    [
+     1260.1,
+     373.2
+    ],
+    [
+     1268.3,
+     389.2
+    ],
+    [
+     1275.6,
+     405.5
+    ],
+    [
+     1282.0,
+     422.3
+    ],
+    [
+     1287.5,
+     439.4
+    ],
+    [
+     1292.0,
+     456.8
+    ],
+    [
+     1295.5,
+     474.4
+    ],
+    [
+     1298.0,
+     492.2
+    ],
+    [
+     1299.5,
+     510.1
+    ],
+    [
+     1300.0,
+     528.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_RING_0",
+     "weight": 0.82
+    },
+    {
+     "link": "CP_OUT_n",
+     "weight": 0.18
+    },
+    {
+     "link": "CP_INNER_7",
+     "weight": 0.1
+    }
+   ]
+  },
+  {
+   "id": "CP_IN_n",
+   "name": "N avenue approach",
+   "points": [
+    [
+     1740.0,
+     528.0
+    ],
+    [
+     1300.0,
+     528.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_n",
+   "turns": [
+    {
+     "link": "CP_RING_0",
+     "weight": 0.88
+    },
+    {
+     "link": "CP_INNER_0",
+     "weight": 0.12
+    }
+   ]
+  },
+  {
+   "id": "CP_OUT_n",
+   "name": "N avenue exit",
+   "points": [
+    [
+     1300.0,
+     528.0
+    ],
+    [
+     1740.0,
+     528.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "CP_IN_ne",
+   "name": "NE avenue approach",
+   "points": [
+    [
+     1517.4,
+     1065.4
+    ],
+    [
+     1206.3,
+     754.3
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_ne",
+   "turns": [
+    {
+     "link": "CP_RING_1",
+     "weight": 0.88
+    },
+    {
+     "link": "CP_INNER_1",
+     "weight": 0.12
+    }
+   ]
+  },
+  {
+   "id": "CP_OUT_ne",
+   "name": "NE avenue exit",
+   "points": [
+    [
+     1206.3,
+     754.3
+    ],
+    [
+     1517.4,
+     1065.4
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "CP_IN_e",
+   "name": "E avenue approach",
+   "points": [
+    [
+     980.0,
+     1288.0
+    ],
+    [
+     980.0,
+     848.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_e",
+   "turns": [
+    {
+     "link": "CP_RING_2",
+     "weight": 0.88
+    },
+    {
+     "link": "CP_INNER_2",
+     "weight": 0.12
+    }
+   ]
+  },
+  {
+   "id": "CP_OUT_e",
+   "name": "E avenue exit",
+   "points": [
+    [
+     980.0,
+     848.0
+    ],
+    [
+     980.0,
+     1288.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "CP_IN_se",
+   "name": "SE avenue approach",
+   "points": [
+    [
+     442.6,
+     1065.4
+    ],
+    [
+     753.7,
+     754.3
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_se",
+   "turns": [
+    {
+     "link": "CP_RING_3",
+     "weight": 0.88
+    },
+    {
+     "link": "CP_INNER_3",
+     "weight": 0.12
+    }
+   ]
+  },
+  {
+   "id": "CP_OUT_se",
+   "name": "SE avenue exit",
+   "points": [
+    [
+     753.7,
+     754.3
+    ],
+    [
+     442.6,
+     1065.4
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "CP_IN_s",
+   "name": "S avenue approach",
+   "points": [
+    [
+     220.0,
+     528.0
+    ],
+    [
+     660.0,
+     528.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_s",
+   "turns": [
+    {
+     "link": "CP_RING_4",
+     "weight": 0.88
+    },
+    {
+     "link": "CP_INNER_4",
+     "weight": 0.12
+    }
+   ]
+  },
+  {
+   "id": "CP_OUT_s",
+   "name": "S avenue exit",
+   "points": [
+    [
+     660.0,
+     528.0
+    ],
+    [
+     220.0,
+     528.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "CP_IN_sw",
+   "name": "SW avenue approach",
+   "points": [
+    [
+     442.6,
+     -9.4
+    ],
+    [
+     753.7,
+     301.7
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_sw",
+   "turns": [
+    {
+     "link": "CP_RING_5",
+     "weight": 0.88
+    },
+    {
+     "link": "CP_INNER_5",
+     "weight": 0.12
+    }
+   ]
+  },
+  {
+   "id": "CP_OUT_sw",
+   "name": "SW avenue exit",
+   "points": [
+    [
+     753.7,
+     301.7
+    ],
+    [
+     442.6,
+     -9.4
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "CP_IN_w",
+   "name": "W avenue approach",
+   "points": [
+    [
+     980.0,
+     -232.0
+    ],
+    [
+     980.0,
+     208.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_w",
+   "turns": [
+    {
+     "link": "CP_RING_6",
+     "weight": 0.88
+    },
+    {
+     "link": "CP_INNER_6",
+     "weight": 0.12
+    }
+   ]
+  },
+  {
+   "id": "CP_OUT_w",
+   "name": "W avenue exit",
+   "points": [
+    [
+     980.0,
+     208.0
+    ],
+    [
+     980.0,
+     -232.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "CP_IN_nw",
+   "name": "NW avenue approach",
+   "points": [
+    [
+     1517.4,
+     -9.4
+    ],
+    [
+     1206.3,
+     301.7
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0,
+   "signal_group": "sg_nw",
+   "turns": [
+    {
+     "link": "CP_RING_7",
+     "weight": 0.88
+    },
+    {
+     "link": "CP_INNER_7",
+     "weight": 0.12
+    }
+   ]
+  },
+  {
+   "id": "CP_OUT_nw",
+   "name": "NW avenue exit",
+   "points": [
+    [
+     1206.3,
+     301.7
+    ],
+    [
+     1517.4,
+     -9.4
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 40,
+   "saturation_pcu_h": 1800.0
+  },
+  {
+   "id": "CP_INNER_0",
+   "name": "Inner Circle arc n-ne",
+   "points": [
+    [
+     1132.0,
+     528.0
+    ],
+    [
+     1131.8,
+     536.5
+    ],
+    [
+     1131.0,
+     545.0
+    ],
+    [
+     1129.9,
+     553.5
+    ],
+    [
+     1128.2,
+     561.8
+    ],
+    [
+     1126.1,
+     570.1
+    ],
+    [
+     1123.5,
+     578.2
+    ],
+    [
+     1120.4,
+     586.2
+    ],
+    [
+     1116.9,
+     594.0
+    ],
+    [
+     1113.0,
+     601.5
+    ],
+    [
+     1108.7,
+     608.9
+    ],
+    [
+     1104.0,
+     616.0
+    ],
+    [
+     1098.8,
+     622.8
+    ],
+    [
+     1093.3,
+     629.3
+    ],
+    [
+     1087.5,
+     635.5
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 30,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_INNER_1",
+     "weight": 0.8
+    },
+    {
+     "link": "CP_OUT_ne",
+     "weight": 0.2
+    }
+   ]
+  },
+  {
+   "id": "CP_INNER_1",
+   "name": "Inner Circle arc ne-e",
+   "points": [
+    [
+     1087.5,
+     635.5
+    ],
+    [
+     1081.3,
+     641.3
+    ],
+    [
+     1074.8,
+     646.8
+    ],
+    [
+     1068.0,
+     652.0
+    ],
+    [
+     1060.9,
+     656.7
+    ],
+    [
+     1053.5,
+     661.0
+    ],
+    [
+     1046.0,
+     664.9
+    ],
+    [
+     1038.2,
+     668.4
+    ],
+    [
+     1030.2,
+     671.5
+    ],
+    [
+     1022.1,
+     674.1
+    ],
+    [
+     1013.8,
+     676.2
+    ],
+    [
+     1005.5,
+     677.9
+    ],
+    [
+     997.0,
+     679.0
+    ],
+    [
+     988.5,
+     679.8
+    ],
+    [
+     980.0,
+     680.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 30,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_INNER_2",
+     "weight": 0.8
+    },
+    {
+     "link": "CP_OUT_e",
+     "weight": 0.2
+    }
+   ]
+  },
+  {
+   "id": "CP_INNER_2",
+   "name": "Inner Circle arc e-se",
+   "points": [
+    [
+     980.0,
+     680.0
+    ],
+    [
+     971.5,
+     679.8
+    ],
+    [
+     963.0,
+     679.0
+    ],
+    [
+     954.5,
+     677.9
+    ],
+    [
+     946.2,
+     676.2
+    ],
+    [
+     937.9,
+     674.1
+    ],
+    [
+     929.8,
+     671.5
+    ],
+    [
+     921.8,
+     668.4
+    ],
+    [
+     914.0,
+     664.9
+    ],
+    [
+     906.5,
+     661.0
+    ],
+    [
+     899.1,
+     656.7
+    ],
+    [
+     892.0,
+     652.0
+    ],
+    [
+     885.2,
+     646.8
+    ],
+    [
+     878.7,
+     641.3
+    ],
+    [
+     872.5,
+     635.5
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 30,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_INNER_3",
+     "weight": 0.8
+    },
+    {
+     "link": "CP_OUT_se",
+     "weight": 0.2
+    }
+   ]
+  },
+  {
+   "id": "CP_INNER_3",
+   "name": "Inner Circle arc se-s",
+   "points": [
+    [
+     872.5,
+     635.5
+    ],
+    [
+     866.7,
+     629.3
+    ],
+    [
+     861.2,
+     622.8
+    ],
+    [
+     856.0,
+     616.0
+    ],
+    [
+     851.3,
+     608.9
+    ],
+    [
+     847.0,
+     601.5
+    ],
+    [
+     843.1,
+     594.0
+    ],
+    [
+     839.6,
+     586.2
+    ],
+    [
+     836.5,
+     578.2
+    ],
+    [
+     833.9,
+     570.1
+    ],
+    [
+     831.8,
+     561.8
+    ],
+    [
+     830.1,
+     553.5
+    ],
+    [
+     829.0,
+     545.0
+    ],
+    [
+     828.2,
+     536.5
+    ],
+    [
+     828.0,
+     528.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 30,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_INNER_4",
+     "weight": 0.8
+    },
+    {
+     "link": "CP_OUT_s",
+     "weight": 0.2
+    }
+   ]
+  },
+  {
+   "id": "CP_INNER_4",
+   "name": "Inner Circle arc s-sw",
+   "points": [
+    [
+     828.0,
+     528.0
+    ],
+    [
+     828.2,
+     519.5
+    ],
+    [
+     829.0,
+     511.0
+    ],
+    [
+     830.1,
+     502.5
+    ],
+    [
+     831.8,
+     494.2
+    ],
+    [
+     833.9,
+     485.9
+    ],
+    [
+     836.5,
+     477.8
+    ],
+    [
+     839.6,
+     469.8
+    ],
+    [
+     843.1,
+     462.0
+    ],
+    [
+     847.0,
+     454.5
+    ],
+    [
+     851.3,
+     447.1
+    ],
+    [
+     856.0,
+     440.0
+    ],
+    [
+     861.2,
+     433.2
+    ],
+    [
+     866.7,
+     426.7
+    ],
+    [
+     872.5,
+     420.5
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 30,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_INNER_5",
+     "weight": 0.8
+    },
+    {
+     "link": "CP_OUT_sw",
+     "weight": 0.2
+    }
+   ]
+  },
+  {
+   "id": "CP_INNER_5",
+   "name": "Inner Circle arc sw-w",
+   "points": [
+    [
+     872.5,
+     420.5
+    ],
+    [
+     878.7,
+     414.7
+    ],
+    [
+     885.2,
+     409.2
+    ],
+    [
+     892.0,
+     404.0
+    ],
+    [
+     899.1,
+     399.3
+    ],
+    [
+     906.5,
+     395.0
+    ],
+    [
+     914.0,
+     391.1
+    ],
+    [
+     921.8,
+     387.6
+    ],
+    [
+     929.8,
+     384.5
+    ],
+    [
+     937.9,
+     381.9
+    ],
+    [
+     946.2,
+     379.8
+    ],
+    [
+     954.5,
+     378.1
+    ],
+    [
+     963.0,
+     377.0
+    ],
+    [
+     971.5,
+     376.2
+    ],
+    [
+     980.0,
+     376.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 30,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_INNER_6",
+     "weight": 0.8
+    },
+    {
+     "link": "CP_OUT_w",
+     "weight": 0.2
+    }
+   ]
+  },
+  {
+   "id": "CP_INNER_6",
+   "name": "Inner Circle arc w-nw",
+   "points": [
+    [
+     980.0,
+     376.0
+    ],
+    [
+     988.5,
+     376.2
+    ],
+    [
+     997.0,
+     377.0
+    ],
+    [
+     1005.5,
+     378.1
+    ],
+    [
+     1013.8,
+     379.8
+    ],
+    [
+     1022.1,
+     381.9
+    ],
+    [
+     1030.2,
+     384.5
+    ],
+    [
+     1038.2,
+     387.6
+    ],
+    [
+     1046.0,
+     391.1
+    ],
+    [
+     1053.5,
+     395.0
+    ],
+    [
+     1060.9,
+     399.3
+    ],
+    [
+     1068.0,
+     404.0
+    ],
+    [
+     1074.8,
+     409.2
+    ],
+    [
+     1081.3,
+     414.7
+    ],
+    [
+     1087.5,
+     420.5
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 30,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_INNER_7",
+     "weight": 0.8
+    },
+    {
+     "link": "CP_OUT_nw",
+     "weight": 0.2
+    }
+   ]
+  },
+  {
+   "id": "CP_INNER_7",
+   "name": "Inner Circle arc nw-n",
+   "points": [
+    [
+     1087.5,
+     420.5
+    ],
+    [
+     1093.3,
+     426.7
+    ],
+    [
+     1098.8,
+     433.2
+    ],
+    [
+     1104.0,
+     440.0
+    ],
+    [
+     1108.7,
+     447.1
+    ],
+    [
+     1113.0,
+     454.5
+    ],
+    [
+     1116.9,
+     462.0
+    ],
+    [
+     1120.4,
+     469.8
+    ],
+    [
+     1123.5,
+     477.8
+    ],
+    [
+     1126.1,
+     485.9
+    ],
+    [
+     1128.2,
+     494.2
+    ],
+    [
+     1129.9,
+     502.5
+    ],
+    [
+     1131.0,
+     511.0
+    ],
+    [
+     1131.8,
+     519.5
+    ],
+    [
+     1132.0,
+     528.0
+    ]
+   ],
+   "lanes": 2,
+   "lane_width_m": 3.4,
+   "speed_limit_kmh": 30,
+   "saturation_pcu_h": 1800.0,
+   "turns": [
+    {
+     "link": "CP_INNER_0",
+     "weight": 0.8
+    },
+    {
+     "link": "CP_OUT_n",
+     "weight": 0.2
+    }
+   ]
+  }
+ ],
+ "demand": [
+  {
+   "id": "cp_n",
+   "name": "N avenue",
+   "link": "CP_IN_n",
+   "veh_per_hour": 1250,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.3,
+    "auto": 0.1,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.03
+   }
+  },
+  {
+   "id": "cp_ne",
+   "name": "NE avenue",
+   "link": "CP_IN_ne",
+   "veh_per_hour": 900,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.3,
+    "auto": 0.1,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.03
+   }
+  },
+  {
+   "id": "cp_e",
+   "name": "E avenue",
+   "link": "CP_IN_e",
+   "veh_per_hour": 1100,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.3,
+    "auto": 0.1,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.03
+   }
+  },
+  {
+   "id": "cp_se",
+   "name": "SE avenue",
+   "link": "CP_IN_se",
+   "veh_per_hour": 780,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.3,
+    "auto": 0.1,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.03
+   }
+  },
+  {
+   "id": "cp_s",
+   "name": "S avenue",
+   "link": "CP_IN_s",
+   "veh_per_hour": 1300,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.3,
+    "auto": 0.1,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.03
+   }
+  },
+  {
+   "id": "cp_sw",
+   "name": "SW avenue",
+   "link": "CP_IN_sw",
+   "veh_per_hour": 820,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.3,
+    "auto": 0.1,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.03
+   }
+  },
+  {
+   "id": "cp_w",
+   "name": "W avenue",
+   "link": "CP_IN_w",
+   "veh_per_hour": 1180,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.3,
+    "auto": 0.1,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.03
+   }
+  },
+  {
+   "id": "cp_nw",
+   "name": "NW avenue",
+   "link": "CP_IN_nw",
+   "veh_per_hour": 960,
+   "class_mix": {
+    "car": 0.42,
+    "taxi": 0.1,
+    "2w": 0.3,
+    "auto": 0.1,
+    "lcv": 0.05,
+    "truck": 0.05,
+    "bus": 0.03
+   }
+  }
+ ],
+ "notes": [
+  "Eight signalised radial entries, one per phase: each approach waits a full cycle, so queues form exactly as they do at CP.",
+  "Inner and Outer circles are separate one-way rings joined at every junction."
+ ],
+ "image": "section_img/connaught_place/base.png",
+ "source_image": "section_img/CP.png",
+ "image_size": [
+  1920,
+  1080
+ ],
+ "metres_per_pixel": 1.22
+}

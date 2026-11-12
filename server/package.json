@@ -1,0 +1,16 @@
+{
+  "name": "trackflow-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Node bridge between the C++ Trackflow engine and the browser",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  }
+}
