@@ -1,0 +1,653 @@
+# Trackflow surveyed turning-movement counts
+# site: kalindi_kunj
+# movement_hourly rows are as-counted 12-h weekday classifications rolled to
+# a 24-h profile; turn_share rows are the surveyed lane-by-lane splits.
+record_type,id,leg,movement,hour,veh_per_hour,from_link,to_link
+movement_hourly,Q001,Sector 18A link road in,through+through,0,60,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,1,40,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,2,32,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,3,32,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,4,56,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,5,127,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,6,231,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,7,337,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,8,398,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,9,432,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,10,350,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,11,300,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,12,296,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,13,305,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,14,319,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,15,363,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,16,415,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,17,428,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,18,380,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,19,292,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,20,218,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,21,157,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,22,106,JE.inN.0,JE.outS.0
+movement_hourly,Q001,Sector 18A link road in,through+through,23,77,JE.inN.0,JE.outS.0
+movement_hourly,Q002,Sector 18A link road in,left+left,0,35,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,1,23,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,2,18,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,3,17,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,4,29,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,5,66,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,6,122,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,7,185,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,8,227,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,9,250,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,10,200,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,11,167,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,12,158,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,13,159,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,14,165,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,15,192,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,16,228,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,17,244,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,18,220,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,19,167,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,20,121,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,21,84,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,22,55,JE.inN.0,M5a.2
+movement_hourly,Q002,Sector 18A link road in,left+left,23,40,JE.inN.0,M5a.2
+movement_hourly,Q003,Bindapur road in,right+right,0,31,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,1,19,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,2,15,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,3,14,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,4,24,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,5,58,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,6,111,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,7,170,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,8,205,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,9,218,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,10,169,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,11,137,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,12,131,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,13,135,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,14,146,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,15,175,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,16,210,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,17,220,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,18,192,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,19,141,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,20,100,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,21,69,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,22,47,JE.inS.0,M5a.0
+movement_hourly,Q003,Bindapur road in,right+right,23,35,JE.inS.0,M5a.0
+movement_hourly,Q004,Bindapur road in,through+through,0,89,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,1,56,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,2,44,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,3,44,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,4,78,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,5,187,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,6,350,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,7,522,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,8,609,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,9,637,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,10,493,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,11,411,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,12,405,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,13,429,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,14,467,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,15,553,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,16,642,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,17,654,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,18,560,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,19,412,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,20,299,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,21,215,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,22,150,JE.inS.0,JE.outN.0
+movement_hourly,Q004,Bindapur road in,through+through,23,113,JE.inS.0,JE.outN.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,0,28,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,1,18,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,2,14,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,3,15,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,4,26,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,5,60,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,6,110,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,7,161,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,8,187,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,9,198,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,10,157,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,11,134,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,12,133,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,13,140,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,14,150,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,15,174,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,16,199,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,17,201,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,18,174,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,19,131,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,20,97,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,21,71,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,22,49,JW.inN.0,M5b.0
+movement_hourly,Q005,Okhla Head Rd north in,right+right,23,36,JW.inN.0,M5b.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,0,84,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,1,53,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,2,40,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,3,39,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,4,66,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,5,155,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,6,292,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,7,451,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,8,550,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,9,597,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,10,467,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,11,381,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,12,360,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,13,365,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,14,387,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,15,461,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,16,555,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,17,592,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,18,525,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,19,390,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,20,277,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,21,191,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,22,127,JW.inN.0,JW.outS.0
+movement_hourly,Q006,Okhla Head Rd north in,through+through,23,94,JW.inN.0,JW.outS.0
+movement_hourly,Q007,Vijay Marg south in,through+through,0,52,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,1,34,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,2,27,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,3,28,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,4,49,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,5,113,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,6,206,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,7,300,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,8,350,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,9,375,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,10,300,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,11,257,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,12,256,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,13,268,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,14,282,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,15,324,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,16,369,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,17,376,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,18,330,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,19,251,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,20,187,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,21,136,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,22,93,JW.inS.0,JW.outN.0
+movement_hourly,Q007,Vijay Marg south in,through+through,23,69,JW.inS.0,JW.outN.0
+movement_hourly,Q008,Vijay Marg south in,left+left,0,36,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,1,23,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,2,18,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,3,17,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,4,29,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,5,67,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,6,126,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,7,193,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,8,237,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,9,259,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,10,205,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,11,168,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,12,159,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,13,160,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,14,168,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,15,199,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,16,238,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,17,255,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,18,228,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,19,171,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,20,122,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,21,84,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,22,56,JW.inS.0,M5b.2
+movement_hourly,Q008,Vijay Marg south in,left+left,23,41,JW.inS.0,M5b.2
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,0,104,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,1,68,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,2,54,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,3,55,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,4,96,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,5,225,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,6,412,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,7,601,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,8,699,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,9,744,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,10,593,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,11,507,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,12,505,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,13,531,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,14,563,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,15,649,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,16,739,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,17,752,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,18,655,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,19,496,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,20,369,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,21,269,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,22,185,M1a.0,M5a.1
+movement_hourly,Q009,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,23,137,M1a.0,M5a.1
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,0,104,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,1,67,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,2,54,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,3,55,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,4,96,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,5,225,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,6,412,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,7,603,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,8,701,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,9,744,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,10,592,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,11,506,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,12,504,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,13,530,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,14,563,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,15,650,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,16,741,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,17,753,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,18,655,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,19,495,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,20,368,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,21,268,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,22,185,M1a.0,M5a.0
+movement_hourly,Q010,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,23,137,M1a.0,M5a.0
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,0,71,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,1,45,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,2,35,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,3,35,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,4,62,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,5,149,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,6,280,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,7,416,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,8,485,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,9,507,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,10,393,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,11,328,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,12,324,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,13,343,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,14,373,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,15,441,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,16,512,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,17,521,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,18,446,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,19,328,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,20,239,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,21,172,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,22,120,M1a.1,M5a.2
+movement_hourly,Q011,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,23,91,M1a.1,M5a.2
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,0,75,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,1,48,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,2,36,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,3,35,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,4,60,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,5,140,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,6,266,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,7,410,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,8,498,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,9,537,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,10,418,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,11,340,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,12,321,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,13,328,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,14,350,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,15,420,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,16,505,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,17,536,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,18,472,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,19,349,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,20,247,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,21,171,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,22,114,M1a.1,M5a.0
+movement_hourly,Q012,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,23,85,M1a.1,M5a.0
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,0,74,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,1,47,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,2,35,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,3,35,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,4,60,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,5,142,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,6,271,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,7,416,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,8,500,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,9,532,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,10,410,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,11,333,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,12,318,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,13,329,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,14,356,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,15,428,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,16,513,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,17,538,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,18,468,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,19,342,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,20,242,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,21,169,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,22,115,M1a.1,M5a.1
+movement_hourly,Q013,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,23,86,M1a.1,M5a.1
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,0,74,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,1,48,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,2,38,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,3,37,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,4,62,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,5,141,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,6,258,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,7,390,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,8,476,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,9,526,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,10,423,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,11,354,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,12,338,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,13,339,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,14,351,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,15,407,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,16,481,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,17,513,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,18,463,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,19,354,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,20,258,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,21,179,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,22,118,M1a.2,M5a.2
+movement_hourly,Q014,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,23,85,M1a.2,M5a.2
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,0,71,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,1,45,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,2,35,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,3,35,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,4,62,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,5,149,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,6,280,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,7,416,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,8,486,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,9,508,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,10,394,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,11,328,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,12,323,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,13,343,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,14,372,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,15,441,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,16,512,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,17,522,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,18,447,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,19,329,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,20,239,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,21,172,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,22,119,M1a.2,M5a.0
+movement_hourly,Q015,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,23,90,M1a.2,M5a.0
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,0,71,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,1,45,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,2,35,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,3,35,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,4,62,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,5,149,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,6,280,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,7,416,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,8,485,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,9,507,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,10,393,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,11,328,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,12,324,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,13,343,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,14,373,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,15,441,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,16,512,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,17,521,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,18,446,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,19,328,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,20,239,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,21,172,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,22,120,M1a.2,M5a.1
+movement_hourly,Q016,Mathura Rd approach (EB),through+through+through+through+through+through+through+through,23,91,M1a.2,M5a.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,0,103,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,1,67,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,2,52,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,3,51,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,4,85,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,5,193,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,6,358,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,7,547,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,8,669,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,9,737,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,10,589,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,11,489,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,12,463,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,13,465,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,14,484,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,15,565,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,16,673,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,17,720,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,18,649,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,19,492,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,20,355,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,21,246,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,22,162,M1b.0,M5b.1
+movement_hourly,Q017,Expressway approach (WB),through+through+through+through+through+through+through+through,23,117,M1b.0,M5b.1
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,0,97,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,1,63,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,2,50,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,3,52,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,4,89,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,5,207,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,6,376,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,7,549,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,8,642,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,9,690,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,10,554,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,11,476,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,12,472,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,13,492,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,14,518,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,15,593,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,16,676,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,17,690,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,18,607,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,19,463,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,20,346,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,21,251,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,22,172,M1b.0,M5b.0
+movement_hourly,Q018,Expressway approach (WB),through+through+through+through+through+through+through+through,23,126,M1b.0,M5b.0
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,0,64,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,1,42,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,2,33,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,3,34,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,4,59,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,5,139,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,6,255,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,7,373,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,8,433,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,9,459,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,10,365,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,11,311,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,12,310,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,13,327,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,14,348,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,15,402,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,16,458,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,17,465,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,18,404,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,19,305,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,20,227,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,21,165,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,22,114,M1b.1,M5b.2
+movement_hourly,Q019,Expressway approach (WB),through+through+through+through+through+through+through+through,23,84,M1b.1,M5b.2
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,0,68,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,1,44,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,2,35,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,3,34,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,4,58,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,5,131,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,6,239,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,7,359,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,8,437,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,9,483,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,10,390,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,11,328,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,12,314,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,13,316,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,14,327,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,15,377,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,16,442,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,17,470,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,18,425,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,19,326,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,20,239,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,21,167,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,22,110,M1b.1,M5b.0
+movement_hourly,Q020,Expressway approach (WB),through+through+through+through+through+through+through+through,23,79,M1b.1,M5b.0
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,0,68,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,1,42,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,2,32,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,3,32,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,4,56,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,5,134,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,6,255,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,7,388,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,8,460,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,9,484,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,10,372,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,11,304,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,12,294,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,13,308,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,14,335,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,15,402,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,16,477,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,17,494,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,18,426,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,19,311,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,20,221,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,21,156,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,22,107,M1b.1,M5b.1
+movement_hourly,Q021,Expressway approach (WB),through+through+through+through+through+through+through+through,23,81,M1b.1,M5b.1
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,0,69,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,1,44,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,2,33,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,3,32,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,4,55,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,5,130,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,6,247,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,7,381,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,8,461,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,9,496,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,10,385,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,11,313,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,12,296,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,13,303,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,14,325,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,15,390,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,16,469,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,17,496,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,18,436,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,19,321,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,20,227,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,21,157,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,22,106,M1b.2,M5b.2
+movement_hourly,Q022,Expressway approach (WB),through+through+through+through+through+through+through+through,23,79,M1b.2,M5b.2
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,0,65,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,1,41,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,2,33,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,3,33,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,4,59,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,5,139,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,6,257,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,7,378,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,8,439,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,9,462,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,10,363,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,11,307,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,12,306,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,13,323,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,14,348,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,15,406,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,16,465,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,17,472,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,18,406,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,19,303,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,20,223,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,21,162,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,22,113,M1b.2,M5b.0
+movement_hourly,Q023,Expressway approach (WB),through+through+through+through+through+through+through+through,23,84,M1b.2,M5b.0
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,0,70,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,1,44,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,2,34,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,3,33,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,4,55,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,5,129,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,6,244,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,7,376,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,8,459,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,9,497,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,10,389,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,11,317,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,12,299,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,13,303,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,14,322,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,15,385,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,16,463,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,17,494,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,18,437,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,19,324,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,20,230,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,21,159,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,22,106,M1b.2,M5b.1
+movement_hourly,Q024,Expressway approach (WB),through+through+through+through+through+through+through+through,23,78,M1b.2,M5b.1
+turn_share,M1a.0->JW.c1,,through,,,M1a.0,JW.c1
+turn_share,JW.c1->M2a.0,,through,,,JW.c1,M2a.0
+turn_share,M1a.1->JW.c2,,through,,,M1a.1,JW.c2
+turn_share,JW.c2->M2a.1,,through,,,JW.c2,M2a.1
+turn_share,M1a.2->JW.c3,,through,,,M1a.2,JW.c3
+turn_share,JW.c3->M2a.2,,through,,,JW.c3,M2a.2
+turn_share,M4b.0->JW.c4,,through,,,M4b.0,JW.c4
+turn_share,JW.c4->M5b.0,,through,,,JW.c4,M5b.0
+turn_share,M4b.1->JW.c5,,through,,,M4b.1,JW.c5
+turn_share,JW.c5->M5b.1,,through,,,JW.c5,M5b.1
+turn_share,M4b.2->JW.c6,,through,,,M4b.2,JW.c6
+turn_share,JW.c6->M5b.2,,through,,,JW.c6,M5b.2
+turn_share,JW.inN.0->JW.c7,,through,,,JW.inN.0,JW.c7
+turn_share,JW.c7->JW.outS.0,,through,,,JW.c7,JW.outS.0
+turn_share,JW.inN.0->JW.c8,,right,,,JW.inN.0,JW.c8
+turn_share,JW.c8->M5b.0,,right,,,JW.c8,M5b.0
+turn_share,JW.inS.0->JW.c9,,left,,,JW.inS.0,JW.c9
+turn_share,JW.c9->M5b.2,,left,,,JW.c9,M5b.2
+turn_share,JW.inS.0->JW.c10,,through,,,JW.inS.0,JW.c10
+turn_share,JW.c10->JW.outN.0,,through,,,JW.c10,JW.outN.0
+turn_share,M4a.0->JE.c1,,through,,,M4a.0,JE.c1
+turn_share,JE.c1->M5a.0,,through,,,JE.c1,M5a.0
+turn_share,M4a.1->JE.c2,,through,,,M4a.1,JE.c2
+turn_share,JE.c2->M5a.1,,through,,,JE.c2,M5a.1
+turn_share,M4a.2->JE.c3,,through,,,M4a.2,JE.c3
+turn_share,JE.c3->M5a.2,,through,,,JE.c3,M5a.2
+turn_share,M1b.0->JE.c4,,through,,,M1b.0,JE.c4
+turn_share,JE.c4->M2b.0,,through,,,JE.c4,M2b.0
+turn_share,M1b.1->JE.c5,,through,,,M1b.1,JE.c5
+turn_share,JE.c5->M2b.1,,through,,,JE.c5,M2b.1
+turn_share,M1b.2->JE.c6,,through,,,M1b.2,JE.c6
+turn_share,JE.c6->M2b.2,,through,,,JE.c6,M2b.2
+turn_share,JE.inN.0->JE.c7,,left,,,JE.inN.0,JE.c7
+turn_share,JE.c7->M5a.2,,left,,,JE.c7,M5a.2
+turn_share,JE.inN.0->JE.c8,,through,,,JE.inN.0,JE.c8
+turn_share,JE.c8->JE.outS.0,,through,,,JE.c8,JE.outS.0
+turn_share,JE.inS.0->JE.c9,,through,,,JE.inS.0,JE.c9
+turn_share,JE.c9->JE.outN.0,,through,,,JE.c9,JE.outN.0
+turn_share,JE.inS.0->JE.c10,,right,,,JE.inS.0,JE.c10
+turn_share,JE.c10->M5a.0,,right,,,JE.c10,M5a.0
+turn_share,M2a.0->PW.c1,,through,,,M2a.0,PW.c1
+turn_share,PW.c1->M3a.0,,through,,,PW.c1,M3a.0
+turn_share,M2a.1->PW.c2,,through,,,M2a.1,PW.c2
+turn_share,PW.c2->M3a.1,,through,,,PW.c2,M3a.1
+turn_share,M2a.2->PW.c3,,through,,,M2a.2,PW.c3
+turn_share,PW.c3->M3a.1,,through,,,PW.c3,M3a.1
+turn_share,M3a.0->PE.c1,,through,,,M3a.0,PE.c1
+turn_share,PE.c1->M4a.0,,through,,,PE.c1,M4a.0
+turn_share,M3a.0->PE.c2,,through,,,M3a.0,PE.c2
+turn_share,PE.c2->M4a.1,,through,,,PE.c2,M4a.1
+turn_share,M3a.1->PE.c3,,through,,,M3a.1,PE.c3
+turn_share,PE.c3->M4a.1,,through,,,PE.c3,M4a.1
+turn_share,M3a.1->PE.c4,,through,,,M3a.1,PE.c4
+turn_share,PE.c4->M4a.0,,through,,,PE.c4,M4a.0
+turn_share,M3a.1->PE.c5,,through,,,M3a.1,PE.c5
+turn_share,PE.c5->M4a.2,,through,,,PE.c5,M4a.2
+turn_share,M2b.0->PE.c6,,through,,,M2b.0,PE.c6
+turn_share,PE.c6->M3b.0,,through,,,PE.c6,M3b.0
+turn_share,M2b.1->PE.c7,,through,,,M2b.1,PE.c7
+turn_share,PE.c7->M3b.1,,through,,,PE.c7,M3b.1
+turn_share,M2b.2->PE.c8,,through,,,M2b.2,PE.c8
+turn_share,PE.c8->M3b.1,,through,,,PE.c8,M3b.1
+turn_share,M3b.0->PW.c4,,through,,,M3b.0,PW.c4
+turn_share,PW.c4->M4b.0,,through,,,PW.c4,M4b.0
+turn_share,M3b.0->PW.c5,,through,,,M3b.0,PW.c5
+turn_share,PW.c5->M4b.1,,through,,,PW.c5,M4b.1
+turn_share,M3b.1->PW.c6,,through,,,M3b.1,PW.c6
+turn_share,PW.c6->M4b.1,,through,,,PW.c6,M4b.1
+turn_share,M3b.1->PW.c7,,through,,,M3b.1,PW.c7
+turn_share,PW.c7->M4b.0,,through,,,PW.c7,M4b.0
+turn_share,M3b.1->PW.c8,,through,,,M3b.1,PW.c8
+turn_share,PW.c8->M4b.2,,through,,,PW.c8,M4b.2

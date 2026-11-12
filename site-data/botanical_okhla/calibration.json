@@ -1,0 +1,308 @@
+{
+ "site": "botanical_okhla",
+ "generated_from": "tools/build_sites.py",
+ "imagery": {
+  "m_per_px": 0.55,
+  "origin_px": [
+   960,
+   530
+  ],
+  "rotation_deg": -28.0,
+  "scale_bar_m": 50,
+  "bearing_note": "local +x follows the DND mainline, which runs ~WSW-ENE in the image"
+ },
+ "display": {
+  "px_per_m": 3.0,
+  "origin_px": [
+   960,
+   540
+  ],
+  "rotation_deg": -28.0
+ },
+ "geometry_check": {
+  "tolerance_pct": 5.0,
+  "links_checked": 36,
+  "links_over_tolerance": 0,
+  "max_error_pct": 2.838,
+  "detail": [
+   {
+    "link": "Aa.in.0",
+    "drawn_m": 620.0,
+    "surveyed_m": 635.93,
+    "error_pct": 2.505
+   },
+   {
+    "link": "Aa.in.1",
+    "drawn_m": 620.0,
+    "surveyed_m": 636.0,
+    "error_pct": 2.516
+   },
+   {
+    "link": "Aa.out.0",
+    "drawn_m": 620.0,
+    "surveyed_m": 605.49,
+    "error_pct": 2.396
+   },
+   {
+    "link": "Aa.out.1",
+    "drawn_m": 620.0,
+    "surveyed_m": 605.55,
+    "error_pct": 2.386
+   },
+   {
+    "link": "Ab.in.0",
+    "drawn_m": 620.0,
+    "surveyed_m": 619.69,
+    "error_pct": 0.05
+   },
+   {
+    "link": "Ab.in.1",
+    "drawn_m": 620.0,
+    "surveyed_m": 619.75,
+    "error_pct": 0.04
+   },
+   {
+    "link": "Ab.out.0",
+    "drawn_m": 620.0,
+    "surveyed_m": 617.33,
+    "error_pct": 0.433
+   },
+   {
+    "link": "Ab.out.1",
+    "drawn_m": 620.0,
+    "surveyed_m": 617.4,
+    "error_pct": 0.421
+   },
+   {
+    "link": "Ba.in.0",
+    "drawn_m": 620.0,
+    "surveyed_m": 610.51,
+    "error_pct": 1.554
+   },
+   {
+    "link": "Ba.in.1",
+    "drawn_m": 620.0,
+    "surveyed_m": 610.58,
+    "error_pct": 1.543
+   },
+   {
+    "link": "Ba.out.0",
+    "drawn_m": 620.0,
+    "surveyed_m": 632.52,
+    "error_pct": 1.979
+   },
+   {
+    "link": "Ba.out.1",
+    "drawn_m": 620.0,
+    "surveyed_m": 632.59,
+    "error_pct": 1.99
+   },
+   {
+    "link": "Bb.in.0",
+    "drawn_m": 620.0,
+    "surveyed_m": 631.53,
+    "error_pct": 1.826
+   },
+   {
+    "link": "Bb.in.1",
+    "drawn_m": 620.0,
+    "surveyed_m": 631.59,
+    "error_pct": 1.835
+   },
+   {
+    "link": "Bb.out.0",
+    "drawn_m": 620.0,
+    "surveyed_m": 615.04,
+    "error_pct": 0.806
+   },
+   {
+    "link": "Bb.out.1",
+    "drawn_m": 620.0,
+    "surveyed_m": 615.1,
+    "error_pct": 0.797
+   },
+   {
+    "link": "R0.0",
+    "drawn_m": 119.85,
+    "surveyed_m": 120.52,
+    "error_pct": 0.56
+   },
+   {
+    "link": "R0.m.c1",
+    "drawn_m": 180.18,
+    "surveyed_m": 185.29,
+    "error_pct": 2.761
+   },
+   {
+    "link": "R1.0",
+    "drawn_m": 124.12,
+    "surveyed_m": 121.49,
+    "error_pct": 2.164
+   },
+   {
+    "link": "R1.m.c1",
+    "drawn_m": 18.0,
+    "surveyed_m": 18.04,
+    "error_pct": 0.222
+   },
+   {
+    "link": "R2.0",
+    "drawn_m": 119.85,
+    "surveyed_m": 121.3,
+    "error_pct": 1.199
+   },
+   {
+    "link": "R2.m.c1",
+    "drawn_m": 132.24,
+    "surveyed_m": 129.07,
+    "error_pct": 2.459
+   },
+   {
+    "link": "R3.0",
+    "drawn_m": 185.55,
+    "surveyed_m": 182.82,
+    "error_pct": 1.493
+   },
+   {
+    "link": "R3.m.c1",
+    "drawn_m": 47.25,
+    "surveyed_m": 47.72,
+    "error_pct": 0.985
+   },
+   {
+    "link": "R4.0",
+    "drawn_m": 179.54,
+    "surveyed_m": 182.87,
+    "error_pct": 1.823
+   },
+   {
+    "link": "R4.m.c1",
+    "drawn_m": 177.82,
+    "surveyed_m": 174.93,
+    "error_pct": 1.655
+   },
+   {
+    "link": "R5.0",
+    "drawn_m": 156.07,
+    "surveyed_m": 154.79,
+    "error_pct": 0.826
+   },
+   {
+    "link": "R5.m.c1",
+    "drawn_m": 18.0,
+    "surveyed_m": 18.32,
+    "error_pct": 1.747
+   },
+   {
+    "link": "R6.0",
+    "drawn_m": 119.85,
+    "surveyed_m": 122.85,
+    "error_pct": 2.446
+   },
+   {
+    "link": "R6.m.c1",
+    "drawn_m": 127.48,
+    "surveyed_m": 126.39,
+    "error_pct": 0.865
+   },
+   {
+    "link": "JS.inS.0",
+    "drawn_m": 171.5,
+    "surveyed_m": 176.51,
+    "error_pct": 2.838
+   },
+   {
+    "link": "JS.outS.0",
+    "drawn_m": 175.25,
+    "surveyed_m": 170.61,
+    "error_pct": 2.72
+   },
+   {
+    "link": "JS.inN.0",
+    "drawn_m": 171.5,
+    "surveyed_m": 168.57,
+    "error_pct": 1.738
+   },
+   {
+    "link": "JS.outN.0",
+    "drawn_m": 175.25,
+    "surveyed_m": 173.02,
+    "error_pct": 1.289
+   },
+   {
+    "link": "JS.c1",
+    "drawn_m": 13.25,
+    "surveyed_m": 12.94,
+    "error_pct": 2.396
+   },
+   {
+    "link": "JS.c2",
+    "drawn_m": 13.25,
+    "surveyed_m": 12.94,
+    "error_pct": 2.396
+   }
+  ]
+ },
+ "connector_endpoint_check": {
+  "tolerance_m": 1.2,
+  "note": "each turn's from-link end and to-link start must join within 1.2 m"
+ },
+ "physical_parameters": {
+  "idm": {
+   "a_max_mps2": 1.4,
+   "b_mps2": 2.6,
+   "b_comfort_mps2": 1.7,
+   "s0_m": 2.2,
+   "T_s": 1.1,
+   "lane_change": "gap acceptance at merges only"
+  },
+  "curve": {
+   "a_lat_max_mps2": 2.0,
+   "k_c": 1.0,
+   "note": "a_curve = -k_c * max(0, v^2/R - a_lat), so a driver only brakes beyond the lateral-comfort threshold"
+  },
+  "signal": {
+   "stop_line_tolerance_m": 0.5,
+   "amber_model": "kinematic b_comfort to the stop line",
+   "all_red": "clearance before the next phase"
+  },
+  "tolerances": {
+   "geh_max": 5.0,
+   "queue_pct": 20.0,
+   "travel_time_pct": 10.0,
+   "geometry_pct": 5.0
+  }
+ },
+ "targets": {
+  "peak_direction_vph_total": 17401,
+  "legs": [
+   {
+    "leg": "DND mainline in a",
+    "peak_vph": 5201
+   },
+   {
+    "leg": "DND mainline in b",
+    "peak_vph": 4800
+   },
+   {
+    "leg": "Okhla Circular Rd in a",
+    "peak_vph": 2150
+   },
+   {
+    "leg": "Okhla Circular Rd in b",
+    "peak_vph": 4100
+   },
+   {
+    "leg": "Okhla link road in",
+    "peak_vph": 1150
+   }
+  ],
+  "mean_link_free_flow_travel_time_s": 24.82,
+  "measured_queue_m_peak": {
+   "value": null,
+   "source": "stop-count survey, to be filled by engine run"
+  },
+  "note": "queue and travel-time targets are filled by `--verify`, which writes verification/calibration_<site>.csv with GEH per movement"
+ },
+ "survey": "DND / Okhla-Circular ramp counts (toll-plaza classified counts reconstruction), weekday PM peak; ramp radii from the imagery"
+}

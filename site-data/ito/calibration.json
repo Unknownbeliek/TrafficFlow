@@ -1,0 +1,396 @@
+{
+ "site": "ito",
+ "generated_from": "tools/build_sites.py",
+ "imagery": {
+  "m_per_px": 0.27,
+  "origin_px": [
+   806,
+   548
+  ],
+  "rotation_deg": 0.0,
+  "scale_bar_m": 20,
+  "bearing_note": "Ring Road runs vertically in the image"
+ },
+ "display": {
+  "px_per_m": 3.4,
+  "origin_px": [
+   960,
+   540
+  ],
+  "rotation_deg": 0.0
+ },
+ "geometry_check": {
+  "tolerance_pct": 5.0,
+  "links_checked": 50,
+  "links_over_tolerance": 0,
+  "max_error_pct": 2.837,
+  "detail": [
+   {
+    "link": "JI.inE.0",
+    "drawn_m": 284.0,
+    "surveyed_m": 282.49,
+    "error_pct": 0.535
+   },
+   {
+    "link": "JI.inE.1",
+    "drawn_m": 284.0,
+    "surveyed_m": 282.52,
+    "error_pct": 0.524
+   },
+   {
+    "link": "JI.inE.2",
+    "drawn_m": 284.0,
+    "surveyed_m": 282.55,
+    "error_pct": 0.513
+   },
+   {
+    "link": "JI.outE.0",
+    "drawn_m": 295.25,
+    "surveyed_m": 303.81,
+    "error_pct": 2.818
+   },
+   {
+    "link": "JI.outE.1",
+    "drawn_m": 295.25,
+    "surveyed_m": 303.84,
+    "error_pct": 2.827
+   },
+   {
+    "link": "JI.outE.2",
+    "drawn_m": 295.25,
+    "surveyed_m": 303.87,
+    "error_pct": 2.837
+   },
+   {
+    "link": "JI.inW.0",
+    "drawn_m": 284.0,
+    "surveyed_m": 282.04,
+    "error_pct": 0.695
+   },
+   {
+    "link": "JI.inW.1",
+    "drawn_m": 284.0,
+    "surveyed_m": 282.07,
+    "error_pct": 0.684
+   },
+   {
+    "link": "JI.inW.2",
+    "drawn_m": 284.0,
+    "surveyed_m": 282.1,
+    "error_pct": 0.674
+   },
+   {
+    "link": "JI.outW.0",
+    "drawn_m": 295.25,
+    "surveyed_m": 303.34,
+    "error_pct": 2.667
+   },
+   {
+    "link": "JI.outW.1",
+    "drawn_m": 295.25,
+    "surveyed_m": 303.37,
+    "error_pct": 2.677
+   },
+   {
+    "link": "JI.outW.2",
+    "drawn_m": 295.25,
+    "surveyed_m": 303.4,
+    "error_pct": 2.686
+   },
+   {
+    "link": "JI.inN.0",
+    "drawn_m": 264.0,
+    "surveyed_m": 262.39,
+    "error_pct": 0.614
+   },
+   {
+    "link": "JI.inN.1",
+    "drawn_m": 264.0,
+    "surveyed_m": 262.42,
+    "error_pct": 0.602
+   },
+   {
+    "link": "JI.inN.2",
+    "drawn_m": 264.0,
+    "surveyed_m": 262.44,
+    "error_pct": 0.594
+   },
+   {
+    "link": "JI.outN.0",
+    "drawn_m": 275.25,
+    "surveyed_m": 283.01,
+    "error_pct": 2.742
+   },
+   {
+    "link": "JI.outN.1",
+    "drawn_m": 275.25,
+    "surveyed_m": 283.04,
+    "error_pct": 2.752
+   },
+   {
+    "link": "JI.outN.2",
+    "drawn_m": 275.25,
+    "surveyed_m": 283.07,
+    "error_pct": 2.763
+   },
+   {
+    "link": "JI.inS.0",
+    "drawn_m": 257.5,
+    "surveyed_m": 252.38,
+    "error_pct": 2.029
+   },
+   {
+    "link": "JI.inS.1",
+    "drawn_m": 257.5,
+    "surveyed_m": 252.4,
+    "error_pct": 2.021
+   },
+   {
+    "link": "JI.outS.0",
+    "drawn_m": 265.25,
+    "surveyed_m": 269.07,
+    "error_pct": 1.42
+   },
+   {
+    "link": "JI.outS.1",
+    "drawn_m": 265.25,
+    "surveyed_m": 269.1,
+    "error_pct": 1.431
+   },
+   {
+    "link": "JI.inD.0",
+    "drawn_m": 238.0,
+    "surveyed_m": 243.12,
+    "error_pct": 2.106
+   },
+   {
+    "link": "JI.inD.1",
+    "drawn_m": 238.0,
+    "surveyed_m": 243.14,
+    "error_pct": 2.114
+   },
+   {
+    "link": "JI.outD.0",
+    "drawn_m": 245.25,
+    "surveyed_m": 244.19,
+    "error_pct": 0.434
+   },
+   {
+    "link": "JI.outD.1",
+    "drawn_m": 245.25,
+    "surveyed_m": 244.22,
+    "error_pct": 0.422
+   },
+   {
+    "link": "JI.c1",
+    "drawn_m": 38.67,
+    "surveyed_m": 38.14,
+    "error_pct": 1.391
+   },
+   {
+    "link": "JI.c2",
+    "drawn_m": 20.75,
+    "surveyed_m": 20.47,
+    "error_pct": 1.368
+   },
+   {
+    "link": "JI.c3",
+    "drawn_m": 20.75,
+    "surveyed_m": 20.47,
+    "error_pct": 1.368
+   },
+   {
+    "link": "JI.c4",
+    "drawn_m": 20.75,
+    "surveyed_m": 20.47,
+    "error_pct": 1.368
+   },
+   {
+    "link": "JI.c5",
+    "drawn_m": 41.1,
+    "surveyed_m": 40.55,
+    "error_pct": 1.344
+   },
+   {
+    "link": "JI.c6",
+    "drawn_m": 38.67,
+    "surveyed_m": 38.16,
+    "error_pct": 1.337
+   },
+   {
+    "link": "JI.c7",
+    "drawn_m": 20.75,
+    "surveyed_m": 20.48,
+    "error_pct": 1.318
+   },
+   {
+    "link": "JI.c8",
+    "drawn_m": 20.75,
+    "surveyed_m": 20.48,
+    "error_pct": 1.318
+   },
+   {
+    "link": "JI.c9",
+    "drawn_m": 20.75,
+    "surveyed_m": 20.48,
+    "error_pct": 1.318
+   },
+   {
+    "link": "JI.c10",
+    "drawn_m": 41.1,
+    "surveyed_m": 41.41,
+    "error_pct": 0.76
+   },
+   {
+    "link": "JI.c11",
+    "drawn_m": 88.76,
+    "surveyed_m": 89.45,
+    "error_pct": 0.77
+   },
+   {
+    "link": "JI.c12",
+    "drawn_m": 21.04,
+    "surveyed_m": 21.21,
+    "error_pct": 0.787
+   },
+   {
+    "link": "JI.c13",
+    "drawn_m": 20.75,
+    "surveyed_m": 20.92,
+    "error_pct": 0.813
+   },
+   {
+    "link": "JI.c14",
+    "drawn_m": 20.75,
+    "surveyed_m": 20.92,
+    "error_pct": 0.813
+   },
+   {
+    "link": "JI.c15",
+    "drawn_m": 41.1,
+    "surveyed_m": 41.43,
+    "error_pct": 0.808
+   },
+   {
+    "link": "JI.c16",
+    "drawn_m": 26.17,
+    "surveyed_m": 26.39,
+    "error_pct": 0.824
+   },
+   {
+    "link": "JI.c17",
+    "drawn_m": 17.25,
+    "surveyed_m": 17.39,
+    "error_pct": 0.805
+   },
+   {
+    "link": "JI.c18",
+    "drawn_m": 17.25,
+    "surveyed_m": 17.4,
+    "error_pct": 0.862
+   },
+   {
+    "link": "JI.c19",
+    "drawn_m": 30.23,
+    "surveyed_m": 30.49,
+    "error_pct": 0.847
+   },
+   {
+    "link": "JI.c20",
+    "drawn_m": 35.7,
+    "surveyed_m": 36.44,
+    "error_pct": 2.038
+   },
+   {
+    "link": "JI.c21",
+    "drawn_m": 27.76,
+    "surveyed_m": 28.34,
+    "error_pct": 2.062
+   },
+   {
+    "link": "OBs.0",
+    "drawn_m": 600.0,
+    "surveyed_m": 596.34,
+    "error_pct": 0.614
+   },
+   {
+    "link": "OBn.0",
+    "drawn_m": 600.0,
+    "surveyed_m": 604.62,
+    "error_pct": 0.764
+   },
+   {
+    "link": "JI.x270.c1",
+    "drawn_m": 3.5,
+    "surveyed_m": 3.56,
+    "error_pct": 1.685
+   }
+  ]
+ },
+ "connector_endpoint_check": {
+  "tolerance_m": 1.2,
+  "note": "each turn's from-link end and to-link start must join within 1.2 m"
+ },
+ "physical_parameters": {
+  "idm": {
+   "a_max_mps2": 1.4,
+   "b_mps2": 2.6,
+   "b_comfort_mps2": 1.7,
+   "s0_m": 2.2,
+   "T_s": 1.1,
+   "lane_change": "gap acceptance at merges only"
+  },
+  "curve": {
+   "a_lat_max_mps2": 2.0,
+   "k_c": 1.0,
+   "note": "a_curve = -k_c * max(0, v^2/R - a_lat), so a driver only brakes beyond the lateral-comfort threshold"
+  },
+  "signal": {
+   "stop_line_tolerance_m": 0.5,
+   "amber_model": "kinematic b_comfort to the stop line",
+   "all_red": "clearance before the next phase"
+  },
+  "tolerances": {
+   "geh_max": 5.0,
+   "queue_pct": 20.0,
+   "travel_time_pct": 10.0,
+   "geometry_pct": 5.0
+  }
+ },
+ "targets": {
+  "peak_direction_vph_total": 24901,
+  "legs": [
+   {
+    "leg": "BSZ Marg north in",
+    "peak_vph": 4701
+   },
+   {
+    "leg": "Bhairon Marg south in",
+    "peak_vph": 3600
+   },
+   {
+    "leg": "Ring Road viaduct",
+    "peak_vph": 3650
+   },
+   {
+    "leg": "Vikas Marg east in",
+    "peak_vph": 5400
+   },
+   {
+    "leg": "Vikas Marg west in",
+    "peak_vph": 5100
+   },
+   {
+    "leg": "Yamuna Marg south-east in",
+    "peak_vph": 2450
+   }
+  ],
+  "mean_link_free_flow_travel_time_s": 16.6,
+  "measured_queue_m_peak": {
+   "value": null,
+   "source": "stop-count survey, to be filled by engine run"
+  },
+  "note": "queue and travel-time targets are filled by `--verify`, which writes verification/calibration_<site>.csv with GEH per movement"
+ },
+ "survey": "Survey of India / NCT code-plate counts at ITO (5 arms), weekend mid-day + weekday AM peak, plus ITDP Delhi junction inventories"
+}

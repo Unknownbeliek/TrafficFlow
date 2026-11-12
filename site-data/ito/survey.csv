@@ -1,0 +1,625 @@
+# Trackflow surveyed turning-movement counts
+# site: ito
+# movement_hourly rows are as-counted 12-h weekday classifications rolled to
+# a 24-h profile; turn_share rows are the surveyed lane-by-lane splits.
+record_type,id,leg,movement,hour,veh_per_hour,from_link,to_link
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,0,166,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,1,109,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,2,87,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,3,89,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,4,153,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,5,350,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,6,633,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,7,927,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,8,1094,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,9,1187,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,10,960,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,11,824,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,12,813,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,13,839,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,14,875,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,15,998,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,16,1140,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,17,1176,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,18,1045,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,19,803,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,20,600,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,21,432,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,22,292,JI.inD.0,JI.outW.2
+movement_hourly,Q001,Yamuna Marg south-east in,left+left,23,212,JI.inD.0,JI.outW.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,0,176,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,1,115,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,2,89,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,3,87,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,4,145,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,5,331,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,6,612,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,7,930,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,8,1138,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,9,1255,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,10,1006,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,11,837,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,12,796,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,13,798,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,14,828,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,15,965,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,16,1145,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,17,1224,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,18,1105,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,19,840,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,20,609,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,21,422,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,22,278,JI.inD.1,JI.outE.2
+movement_hourly,Q002,Yamuna Marg south-east in,right+right,23,201,JI.inD.1,JI.outE.2
+movement_hourly,Q003,Vikas Marg east in,through+through,0,206,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,1,130,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,2,98,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,3,96,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,4,165,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,5,393,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,6,750,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,7,1151,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,8,1384,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,9,1474,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,10,1138,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,11,925,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,12,881,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,13,909,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,14,983,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,15,1183,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,16,1417,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,17,1488,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,18,1297,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,19,950,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,20,672,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,21,468,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,22,317,JI.inE.0,JI.outW.0
+movement_hourly,Q003,Vikas Marg east in,through+through,23,239,JI.inE.0,JI.outW.0
+movement_hourly,Q004,Vikas Marg east in,left+left,0,51,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,1,32,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,2,25,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,3,25,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,4,44,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,5,106,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,6,200,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,7,297,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,8,347,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,9,363,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,10,281,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,11,234,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,12,231,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,13,244,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,14,266,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,15,315,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,16,366,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,17,373,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,18,319,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,19,235,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,20,170,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,21,123,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,22,85,JI.inE.0,JI.outS.1
+movement_hourly,Q004,Vikas Marg east in,left+left,23,65,JI.inE.0,JI.outS.1
+movement_hourly,Q005,Vikas Marg east in,through+through,0,242,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,1,156,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,2,124,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,3,127,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,4,223,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,5,524,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,6,963,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,7,1411,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,8,1637,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,9,1731,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,10,1370,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,11,1167,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,12,1163,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,13,1226,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,14,1310,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,15,1518,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,16,1735,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,17,1760,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,18,1523,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,19,1145,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,20,849,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,21,618,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,22,428,JI.inE.1,JI.outW.1
+movement_hourly,Q005,Vikas Marg east in,through+through,23,318,JI.inE.1,JI.outW.1
+movement_hourly,Q006,Vikas Marg east in,right+right,0,69,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,1,44,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,2,33,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,3,32,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,4,54,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,5,127,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,6,240,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,7,370,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,8,451,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,9,490,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,10,383,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,11,313,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,12,295,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,13,299,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,14,317,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,15,379,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,16,456,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,17,486,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,18,431,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,19,320,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,20,227,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,21,157,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,22,104,JI.inE.2,JI.outN.2
+movement_hourly,Q006,Vikas Marg east in,right+right,23,77,JI.inE.2,JI.outN.2
+movement_hourly,Q007,Vikas Marg east in,through+through,0,179,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,1,116,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,2,93,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,3,95,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,4,166,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,5,385,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,6,701,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,7,1023,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,8,1194,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,9,1277,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,10,1023,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,11,877,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,12,872,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,13,912,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,14,963,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,15,1105,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,16,1258,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,17,1283,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,18,1123,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,19,855,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,20,638,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,21,464,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,22,318,JI.inE.2,JI.outW.2
+movement_hourly,Q007,Vikas Marg east in,through+through,23,234,JI.inE.2,JI.outW.2
+movement_hourly,Q008,BSZ Marg north in,through+through,0,169,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,1,109,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,2,83,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,3,81,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,4,136,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,5,313,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,6,587,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,7,901,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,8,1104,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,9,1208,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,10,955,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,11,785,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,12,741,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,13,746,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,14,783,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,15,925,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,16,1109,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,17,1187,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,18,1063,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,19,798,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,20,571,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,21,394,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,22,260,JI.inN.0,JI.outS.0
+movement_hourly,Q008,BSZ Marg north in,through+through,23,190,JI.inN.0,JI.outS.0
+movement_hourly,Q009,BSZ Marg north in,left+left,0,54,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,1,35,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,2,28,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,3,29,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,4,50,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,5,117,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,6,213,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,7,312,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,8,363,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,9,386,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,10,308,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,11,263,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,12,262,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,13,275,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,14,292,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,15,336,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,16,384,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,17,390,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,18,340,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,19,257,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,20,192,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,21,139,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,22,96,JI.inN.0,JI.outD.1
+movement_hourly,Q009,BSZ Marg north in,left+left,23,71,JI.inN.0,JI.outD.1
+movement_hourly,Q010,BSZ Marg north in,through+through,0,211,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,1,136,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,2,108,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,3,111,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,4,195,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,5,456,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,6,834,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,7,1219,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,8,1417,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,9,1505,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,10,1197,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,11,1023,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,12,1020,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,13,1072,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,14,1139,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,15,1314,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,16,1499,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,17,1522,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,18,1324,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,19,1001,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,20,745,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,21,542,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,22,374,JI.inN.1,JI.outS.0
+movement_hourly,Q010,BSZ Marg north in,through+through,23,277,JI.inN.1,JI.outS.0
+movement_hourly,Q011,BSZ Marg north in,right+right,0,59,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,1,37,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,2,29,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,3,30,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,4,52,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,5,124,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,6,233,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,7,347,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,8,404,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,9,423,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,10,328,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,11,274,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,12,270,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,13,286,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,14,311,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,15,368,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,16,427,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,17,434,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,18,372,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,19,274,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,20,199,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,21,144,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,22,100,JI.inN.2,JI.outW.2
+movement_hourly,Q011,BSZ Marg north in,right+right,23,76,JI.inN.2,JI.outW.2
+movement_hourly,Q012,BSZ Marg north in,through+through,0,165,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,1,105,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,2,79,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,3,77,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,4,131,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,5,308,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,6,584,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,7,901,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,8,1095,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,9,1180,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,10,918,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,11,747,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,12,706,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,13,720,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,14,769,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,15,922,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,16,1109,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,17,1177,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,18,1038,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,19,767,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,20,543,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,21,375,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,22,251,JI.inN.2,JI.outS.1
+movement_hourly,Q012,BSZ Marg north in,through+through,23,187,JI.inN.2,JI.outS.1
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,0,31,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,1,20,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,2,15,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,3,15,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,4,25,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,5,60,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,6,114,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,7,176,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,8,211,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,9,224,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,10,173,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,11,141,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,12,134,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,13,139,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,14,150,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,15,181,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,16,216,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,17,227,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,18,197,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,19,144,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,20,102,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,21,71,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,22,48,JI.inS.0,JI.outN.0
+movement_hourly,Q013,Bhairon Marg south in,through+through+through,23,36,JI.inS.0,JI.outN.0
+movement_hourly,Q014,Bhairon Marg south in,through+through,0,173,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,1,113,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,2,88,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,3,87,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,4,145,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,5,330,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,6,606,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,7,916,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,8,1118,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,9,1235,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,10,994,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,11,831,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,12,793,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,13,796,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,14,824,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,15,955,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,16,1128,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,17,1203,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,18,1087,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,19,830,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,20,604,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,21,421,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,22,277,JI.inS.0,JI.outN.1
+movement_hourly,Q014,Bhairon Marg south in,through+through,23,200,JI.inS.0,JI.outN.1
+movement_hourly,Q015,Bhairon Marg south in,left+left,0,51,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,1,32,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,2,25,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,3,25,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,4,44,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,5,106,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,6,200,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,7,297,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,8,347,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,9,363,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,10,281,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,11,234,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,12,231,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,13,244,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,14,266,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,15,315,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,16,366,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,17,373,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,18,319,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,19,235,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,20,170,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,21,123,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,22,85,JI.inS.0,JI.outW.2
+movement_hourly,Q015,Bhairon Marg south in,left+left,23,65,JI.inS.0,JI.outW.2
+movement_hourly,Q016,Bhairon Marg south in,right+right,0,65,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,1,41,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,2,32,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,3,32,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,4,57,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,5,136,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,6,255,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,7,379,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,8,441,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,9,462,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,10,358,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,11,299,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,12,295,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,13,313,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,14,340,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,15,402,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,16,466,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,17,474,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,18,406,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,19,299,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,20,218,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,21,157,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,22,109,JI.inS.1,JI.outD.0
+movement_hourly,Q016,Bhairon Marg south in,right+right,23,83,JI.inS.1,JI.outD.0
+movement_hourly,Q017,Bhairon Marg south in,through+through,0,191,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,1,124,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,2,96,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,3,94,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,4,157,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,5,359,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,6,664,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,7,1013,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,8,1241,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,9,1367,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,10,1092,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,11,906,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,12,859,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,13,862,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,14,896,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,15,1048,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,16,1247,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,17,1335,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,18,1203,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,19,912,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,20,658,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,21,456,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,22,300,JI.inS.1,JI.outN.2
+movement_hourly,Q017,Bhairon Marg south in,through+through,23,218,JI.inS.1,JI.outN.2
+movement_hourly,Q018,Vikas Marg west in,through+through,0,176,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,1,115,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,2,92,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,3,94,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,4,163,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,5,378,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,6,687,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,7,1002,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,8,1172,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,9,1258,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,10,1011,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,11,867,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,12,862,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,13,898,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,14,945,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,15,1082,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,16,1233,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,17,1260,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,18,1107,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,19,845,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,20,631,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,21,458,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,22,313,JI.inW.0,JI.outE.0
+movement_hourly,Q018,Vikas Marg west in,through+through,23,229,JI.inW.0,JI.outE.0
+movement_hourly,Q019,Vikas Marg west in,left+left,0,53,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,1,34,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,2,27,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,3,28,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,4,49,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,5,114,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,6,209,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,7,306,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,8,355,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,9,377,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,10,299,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,11,255,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,12,254,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,13,268,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,14,285,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,15,329,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,16,376,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,17,382,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,18,331,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,19,250,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,20,186,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,21,135,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,22,93,JI.inW.0,JI.outN.2
+movement_hourly,Q019,Vikas Marg west in,left+left,23,69,JI.inW.0,JI.outN.2
+movement_hourly,Q020,Vikas Marg west in,through+through,0,240,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,1,158,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,2,124,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,3,122,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,4,205,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,5,465,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,6,850,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,7,1278,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,8,1555,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,9,1719,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,10,1387,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,11,1167,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,12,1118,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,13,1125,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,14,1162,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,15,1340,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,16,1574,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,17,1673,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,18,1513,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,19,1160,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,20,848,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,21,594,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,22,392,JI.inW.1,JI.outE.1
+movement_hourly,Q020,Vikas Marg west in,through+through,23,282,JI.inW.1,JI.outE.1
+movement_hourly,Q021,Vikas Marg west in,right+right,0,65,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,1,40,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,2,31,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,3,31,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,4,53,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,5,128,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,6,243,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,7,370,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,8,439,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,9,462,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,10,355,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,11,290,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,12,280,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,13,293,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,14,319,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,15,384,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,16,455,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,17,472,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,18,406,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,19,297,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,20,211,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,21,149,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,22,102,JI.inW.2,JI.outS.1
+movement_hourly,Q021,Vikas Marg west in,right+right,23,78,JI.inW.2,JI.outS.1
+movement_hourly,Q022,Vikas Marg west in,through+through,0,181,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,1,114,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,2,86,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,3,84,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,4,143,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,5,338,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,6,643,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,7,991,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,8,1201,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,9,1290,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,10,1001,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,11,814,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,12,771,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,13,788,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,14,845,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,15,1015,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,16,1220,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,17,1292,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,18,1135,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,19,836,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,20,592,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,21,409,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,22,275,JI.inW.2,JI.outE.2
+movement_hourly,Q022,Vikas Marg west in,through+through,23,205,JI.inW.2,JI.outE.2
+movement_hourly,Q023,Ring Road viaduct,through,0,237,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,1,151,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,2,119,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,3,122,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,4,215,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,5,509,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,6,942,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,7,1385,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,8,1607,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,9,1690,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,10,1328,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,11,1125,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,12,1119,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,13,1184,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,14,1273,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,15,1485,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,16,1704,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,17,1727,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,18,1487,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,19,1109,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,20,818,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,21,595,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,22,413,OBn.0,OBn.0
+movement_hourly,Q023,Ring Road viaduct,through,23,309,OBn.0,OBn.0
+movement_hourly,Q024,Ring Road viaduct,through,0,277,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,1,176,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,2,134,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,3,130,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,4,219,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,5,512,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,6,970,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,7,1496,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,8,1824,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,9,1976,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,10,1544,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,11,1259,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,12,1189,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,13,1206,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,14,1282,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,15,1531,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,16,1842,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,17,1962,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,18,1739,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,19,1290,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,20,915,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,21,631,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,22,420,OBs.0,OBs.0
+movement_hourly,Q024,Ring Road viaduct,through,23,311,OBs.0,OBs.0
+turn_share,JI.inE.0->JI.c1,,left,,,JI.inE.0,JI.c1
+turn_share,JI.c1->JI.outS.1,,left,,,JI.c1,JI.outS.1
+turn_share,JI.inE.0->JI.c2,,through,,,JI.inE.0,JI.c2
+turn_share,JI.c2->JI.outW.0,,through,,,JI.c2,JI.outW.0
+turn_share,JI.inE.1->JI.c3,,through,,,JI.inE.1,JI.c3
+turn_share,JI.c3->JI.outW.1,,through,,,JI.c3,JI.outW.1
+turn_share,JI.inE.2->JI.c4,,through,,,JI.inE.2,JI.c4
+turn_share,JI.c4->JI.outW.2,,through,,,JI.c4,JI.outW.2
+turn_share,JI.inE.2->JI.c5,,right,,,JI.inE.2,JI.c5
+turn_share,JI.c5->JI.outN.2,,right,,,JI.c5,JI.outN.2
+turn_share,JI.inW.0->JI.c6,,left,,,JI.inW.0,JI.c6
+turn_share,JI.c6->JI.outN.2,,left,,,JI.c6,JI.outN.2
+turn_share,JI.inW.0->JI.c7,,through,,,JI.inW.0,JI.c7
+turn_share,JI.c7->JI.outE.0,,through,,,JI.c7,JI.outE.0
+turn_share,JI.inW.1->JI.c8,,through,,,JI.inW.1,JI.c8
+turn_share,JI.c8->JI.outE.1,,through,,,JI.c8,JI.outE.1
+turn_share,JI.inW.2->JI.c9,,through,,,JI.inW.2,JI.c9
+turn_share,JI.c9->JI.outE.2,,through,,,JI.c9,JI.outE.2
+turn_share,JI.inW.2->JI.c10,,right,,,JI.inW.2,JI.c10
+turn_share,JI.c10->JI.outS.1,,right,,,JI.c10,JI.outS.1
+turn_share,JI.inN.0->JI.c11,,left,,,JI.inN.0,JI.c11
+turn_share,JI.c11->JI.outD.1,,left,,,JI.c11,JI.outD.1
+turn_share,JI.inN.0->JI.c12,,through,,,JI.inN.0,JI.c12
+turn_share,JI.c12->JI.outS.0,,through,,,JI.c12,JI.outS.0
+turn_share,JI.inN.1->JI.c13,,through,,,JI.inN.1,JI.c13
+turn_share,JI.c13->JI.outS.0,,through,,,JI.c13,JI.outS.0
+turn_share,JI.inN.2->JI.c14,,through,,,JI.inN.2,JI.c14
+turn_share,JI.c14->JI.outS.1,,through,,,JI.c14,JI.outS.1
+turn_share,JI.inN.2->JI.c15,,right,,,JI.inN.2,JI.c15
+turn_share,JI.c15->JI.outW.2,,right,,,JI.c15,JI.outW.2
+turn_share,JI.inS.0->JI.c16,,left,,,JI.inS.0,JI.c16
+turn_share,JI.c16->JI.outW.2,,left,,,JI.c16,JI.outW.2
+turn_share,JI.inS.0->JI.c17,,through,,,JI.inS.0,JI.c17
+turn_share,JI.c17->JI.outN.1,,through,,,JI.c17,JI.outN.1
+turn_share,JI.inS.1->JI.c18,,through,,,JI.inS.1,JI.c18
+turn_share,JI.c18->JI.outN.2,,through,,,JI.c18,JI.outN.2
+turn_share,JI.inS.1->JI.c19,,right,,,JI.inS.1,JI.c19
+turn_share,JI.c19->JI.outD.0,,right,,,JI.c19,JI.outD.0
+turn_share,JI.inD.0->JI.c20,,left,,,JI.inD.0,JI.c20
+turn_share,JI.c20->JI.outW.2,,left,,,JI.c20,JI.outW.2
+turn_share,JI.inD.1->JI.c21,,right,,,JI.inD.1,JI.c21
+turn_share,JI.c21->JI.outE.2,,right,,,JI.c21,JI.outE.2
+turn_share,JI.c17->JI.x270.c1,,through,,,JI.c17,JI.x270.c1
+turn_share,JI.x270.c1->JI.outN.0,,through,,,JI.x270.c1,JI.outN.0

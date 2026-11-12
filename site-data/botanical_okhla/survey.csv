@@ -1,0 +1,400 @@
+# Trackflow surveyed turning-movement counts
+# site: botanical_okhla
+# movement_hourly rows are as-counted 12-h weekday classifications rolled to
+# a 24-h profile; turn_share rows are the surveyed lane-by-lane splits.
+record_type,id,leg,movement,hour,veh_per_hour,from_link,to_link
+movement_hourly,Q001,DND mainline in a,through,0,353,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,1,232,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,2,185,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,3,189,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,4,324,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,5,743,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,6,1344,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,7,1967,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,8,2321,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,9,2519,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,10,2038,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,11,1749,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,12,1726,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,13,1781,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,14,1857,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,15,2118,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,16,2420,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,17,2496,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,18,2218,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,19,1704,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,20,1273,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,21,917,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,22,620,Aa.in.0,Aa.out.0
+movement_hourly,Q001,DND mainline in a,through,23,451,Aa.in.0,Aa.out.0
+movement_hourly,Q002,DND mainline in a,right+through+through,0,70,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,1,46,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,2,35,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,3,35,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,4,58,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,5,132,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,6,244,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,7,370,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,8,453,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,9,500,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,10,401,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,11,333,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,12,317,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,13,318,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,14,330,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,15,384,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,16,456,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,17,488,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,18,440,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,19,335,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,20,242,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,21,168,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,22,111,Aa.in.1,Bb.out.1
+movement_hourly,Q002,DND mainline in a,right+through+through,23,80,Aa.in.1,Bb.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,0,70,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,1,44,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,2,33,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,3,33,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,4,56,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,5,134,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,6,256,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,7,392,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,8,472,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,9,503,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,10,388,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,11,315,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,12,300,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,13,310,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,14,335,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,15,403,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,16,483,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,17,508,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,18,442,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,19,324,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,20,229,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,21,160,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,22,108,Aa.in.1,Ba.out.1
+movement_hourly,Q003,DND mainline in a,left+through+through,23,81,Aa.in.1,Ba.out.1
+movement_hourly,Q004,DND mainline in a,through,0,224,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,1,141,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,2,109,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,3,111,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,4,196,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,5,468,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,6,879,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,7,1309,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,8,1527,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,9,1597,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,10,1237,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,11,1031,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,12,1016,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,13,1077,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,14,1170,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,15,1386,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,16,1611,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,17,1641,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,18,1405,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,19,1033,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,20,750,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,21,540,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,22,375,Aa.in.1,Aa.out.1
+movement_hourly,Q004,DND mainline in a,through,23,284,Aa.in.1,Aa.out.1
+movement_hourly,Q005,DND mainline in b,through,0,323,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,1,208,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,2,165,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,3,169,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,4,297,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,5,699,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,6,1285,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,7,1881,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,8,2183,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,9,2308,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,10,1826,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,11,1556,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,12,1550,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,13,1635,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,14,1747,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,15,2025,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,16,2314,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,17,2346,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,18,2031,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,19,1526,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,20,1132,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,21,824,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,22,570,Ab.in.0,Ab.out.0
+movement_hourly,Q005,DND mainline in b,through,23,424,Ab.in.0,Ab.out.0
+movement_hourly,Q006,DND mainline in b,right+through+through,0,66,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,1,42,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,2,32,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,3,31,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,4,52,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,5,121,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,6,229,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,7,353,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,8,431,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,9,468,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,10,366,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,11,299,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,12,282,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,13,286,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,14,303,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,15,362,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,16,435,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,17,464,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,18,412,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,19,306,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,20,217,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,21,150,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,22,100,Ab.in.1,Ba.out.1
+movement_hourly,Q006,DND mainline in b,right+through+through,23,74,Ab.in.1,Ba.out.1
+movement_hourly,Q007,DND mainline in b,left+through+through,0,61,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,1,39,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,2,31,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,3,32,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,4,56,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,5,130,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,6,237,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,7,346,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,8,404,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,9,432,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,10,346,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,11,297,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,12,295,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,13,309,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,14,326,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,15,374,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,16,426,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,17,434,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,18,380,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,19,289,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,20,216,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,21,157,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,22,108,Ab.in.1,Bb.out.0
+movement_hourly,Q007,DND mainline in b,left+through+through,23,79,Ab.in.1,Bb.out.0
+movement_hourly,Q008,DND mainline in b,through,0,218,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,1,140,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,2,107,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,3,104,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,4,175,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,5,403,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,6,755,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,7,1160,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,8,1421,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,9,1556,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,10,1230,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,11,1011,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,12,955,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,13,960,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,14,1008,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,15,1191,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,16,1429,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,17,1529,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,18,1369,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,19,1027,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,20,735,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,21,507,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,22,335,Ab.in.1,Ab.out.1
+movement_hourly,Q008,DND mainline in b,through,23,245,Ab.in.1,Ab.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,0,54,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,1,35,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,2,28,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,3,29,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,4,50,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,5,117,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,6,214,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,7,313,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,8,364,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,9,387,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,10,308,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,11,264,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,12,263,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,13,276,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,14,293,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,15,337,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,16,384,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,17,391,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,18,340,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,19,258,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,20,192,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,21,140,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,22,96,Ba.in.1,Aa.out.1
+movement_hourly,Q009,Okhla Circular Rd in a,right+through+through,23,71,Ba.in.1,Aa.out.1
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,0,54,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,1,35,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,2,28,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,3,29,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,4,50,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,5,117,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,6,214,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,7,313,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,8,364,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,9,387,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,10,308,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,11,263,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,12,262,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,13,276,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,14,293,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,15,338,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,16,385,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,17,392,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,18,340,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,19,257,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,20,192,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,21,139,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,22,96,Ba.in.1,Ab.out.0
+movement_hourly,Q010,Okhla Circular Rd in a,left+through+through,23,71,Ba.in.1,Ab.out.0
+movement_hourly,Q011,Okhla Circular Rd in a,through,0,185,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,1,116,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,2,91,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,3,92,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,4,162,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,5,388,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,6,727,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,7,1081,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,8,1260,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,9,1318,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,10,1022,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,11,853,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,12,842,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,13,893,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,14,969,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,15,1146,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,16,1330,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,17,1354,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,18,1159,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,19,854,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,20,621,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,21,448,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,22,311,Ba.in.1,Ba.out.1
+movement_hourly,Q011,Okhla Circular Rd in a,through,23,236,Ba.in.1,Ba.out.1
+movement_hourly,Q012,Okhla Circular Rd in b,through,0,298,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,1,189,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,2,143,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,3,139,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,4,236,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,5,555,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,6,1055,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,7,1626,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,8,1975,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,9,2129,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,10,1657,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,11,1348,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,12,1275,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,13,1299,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,14,1388,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,15,1664,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,16,2002,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,17,2125,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,18,1873,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,19,1383,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,20,980,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,21,677,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,22,453,Bb.in.0,Bb.out.0
+movement_hourly,Q012,Okhla Circular Rd in b,through,23,337,Bb.in.0,Bb.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,0,68,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,1,43,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,2,32,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,3,32,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,4,55,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,5,130,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,6,248,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,7,381,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,8,457,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,9,486,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,10,375,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,11,305,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,12,291,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,13,301,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,14,326,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,15,392,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,16,469,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,17,492,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,18,428,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,19,313,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,20,222,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,21,155,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,22,105,Bb.in.1,Aa.out.0
+movement_hourly,Q013,Okhla Circular Rd in b,left+through+through,23,79,Bb.in.1,Aa.out.0
+movement_hourly,Q014,Okhla Circular Rd in b,through,0,225,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,1,147,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,2,115,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,3,113,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,4,188,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,5,429,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,6,787,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,7,1191,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,8,1453,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,9,1606,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,10,1292,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,11,1081,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,12,1031,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,13,1035,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,14,1071,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,15,1241,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,16,1466,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,17,1564,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,18,1414,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,19,1079,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,20,786,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,21,547,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,22,361,Bb.in.1,Bb.out.1
+movement_hourly,Q014,Okhla Circular Rd in b,through,23,260,Bb.in.1,Bb.out.1
+movement_hourly,Q015,Okhla link road in,through+through,0,158,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,1,100,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,2,77,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,3,79,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,4,138,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,5,331,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,6,622,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,7,926,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,8,1081,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,9,1131,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,10,876,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,11,730,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,12,719,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,13,762,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,14,828,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,15,981,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,16,1140,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,17,1161,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,18,994,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,19,731,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,20,531,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,21,382,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,22,266,JS.inN.0,JS.outS.0
+movement_hourly,Q015,Okhla link road in,through+through,23,201,JS.inN.0,JS.outS.0
+turn_share,Aa.in.0->Aa.out.0,,through,,,Aa.in.0,Aa.out.0
+turn_share,Aa.in.1->Aa.out.1,,through,,,Aa.in.1,Aa.out.1
+turn_share,Ab.in.0->Ab.out.0,,through,,,Ab.in.0,Ab.out.0
+turn_share,Ab.in.1->Ab.out.1,,through,,,Ab.in.1,Ab.out.1
+turn_share,Ba.in.0->Ba.out.0,,through,,,Ba.in.0,Ba.out.0
+turn_share,Ba.in.1->Ba.out.1,,through,,,Ba.in.1,Ba.out.1
+turn_share,Bb.in.0->Bb.out.0,,through,,,Bb.in.0,Bb.out.0
+turn_share,Bb.in.1->Bb.out.1,,through,,,Bb.in.1,Bb.out.1
+turn_share,Aa.in.1->R0.0,,left,,,Aa.in.1,R0.0
+turn_share,R0.0->R0.m.c1,,through,,,R0.0,R0.m.c1
+turn_share,R0.m.c1->Ba.out.1,,through,,,R0.m.c1,Ba.out.1
+turn_share,Aa.in.1->R1.0,,right,,,Aa.in.1,R1.0
+turn_share,R1.0->R1.m.c1,,through,,,R1.0,R1.m.c1
+turn_share,R1.m.c1->Bb.out.1,,through,,,R1.m.c1,Bb.out.1
+turn_share,Ab.in.1->R2.0,,left,,,Ab.in.1,R2.0
+turn_share,R2.0->R2.m.c1,,through,,,R2.0,R2.m.c1
+turn_share,R2.m.c1->Bb.out.0,,through,,,R2.m.c1,Bb.out.0
+turn_share,Ab.in.1->R3.0,,right,,,Ab.in.1,R3.0
+turn_share,R3.0->R3.m.c1,,through,,,R3.0,R3.m.c1
+turn_share,R3.m.c1->Ba.out.1,,through,,,R3.m.c1,Ba.out.1
+turn_share,Ba.in.1->R4.0,,left,,,Ba.in.1,R4.0
+turn_share,R4.0->R4.m.c1,,through,,,R4.0,R4.m.c1
+turn_share,R4.m.c1->Ab.out.0,,through,,,R4.m.c1,Ab.out.0
+turn_share,Ba.in.1->R5.0,,right,,,Ba.in.1,R5.0
+turn_share,R5.0->R5.m.c1,,through,,,R5.0,R5.m.c1
+turn_share,R5.m.c1->Aa.out.1,,through,,,R5.m.c1,Aa.out.1
+turn_share,Bb.in.1->R6.0,,left,,,Bb.in.1,R6.0
+turn_share,R6.0->R6.m.c1,,through,,,R6.0,R6.m.c1
+turn_share,R6.m.c1->Aa.out.0,,through,,,R6.m.c1,Aa.out.0
+turn_share,JS.inS.0->JS.c1,,through,,,JS.inS.0,JS.c1
+turn_share,JS.c1->JS.outN.0,,through,,,JS.c1,JS.outN.0
+turn_share,JS.inN.0->JS.c2,,through,,,JS.inN.0,JS.c2
+turn_share,JS.c2->JS.outS.0,,through,,,JS.c2,JS.outS.0
+turn_share,Ba.out.0->JS.inS.0,,through,,,Ba.out.0,JS.inS.0
+turn_share,JS.outN.0->Ba.in.0,,through,,,JS.outN.0,Ba.in.0
