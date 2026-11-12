@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import zlib
 import os
 import subprocess
 import sys
@@ -53,13 +54,24 @@ CALIB = {
 }
 
 
+def _stable_seed(text):
+    """Process-independent hash.
+
+    Python's built-in `hash()` is randomised per process for str, so using it
+    made the "surveyed" hourly profile differ on every rebuild.  CRC32 is
+    stable, which keeps the committed CSVs byte-identical across runs.
+    """
+    return zlib.crc32(text.encode("utf-8"))
+
+
 def hourly_table(peak_vph, seed_str):
     """24 hourly counts from a peak-hour volume, using the surveyed profile shape."""
     f = N.HOUR_FACTORS
     pk = max(f)
+    phase = (_stable_seed(seed_str) % 97) / 97.0 * 6.283
     out = []
     for h in range(24):
-        jitter = 1.0 + 0.04 * math.sin((hash(seed_str) % 97) / 97.0 * 6.283 + h * 0.7)
+        jitter = 1.0 + 0.04 * math.sin(phase + h * 0.7)
         out.append(int(round(peak_vph * f[h] / pk * jitter)))
     return out
 
@@ -232,10 +244,15 @@ def render_overlay(net, png, image_path, size=(960, 540), step=6.0, alpha=0.85):
     sit on the roads, the imagery calibration in the builder is wrong.
     """
     w, h = size
+    im = net.imagery
+    vx, vy, vw, vh = im.get("view") or (0, 0, 1920, 1080)
     raw = None
     try:
-        raw = subprocess.run(["convert", image_path, "-resize", f"{w}x{h}!", "-depth", "8",
-                              "rgb:-"], check=True, capture_output=True).stdout
+        # crop to the clean imagery first: the captures carry the maps search bar
+        # and category chips, and CP's also has the Windows taskbar
+        raw = subprocess.run(["convert", image_path, "-crop", f"{vw}x{vh}+{vx}+{vy}",
+                              "+repage", "-resize", f"{w}x{h}!", "-depth", "8", "rgb:-"],
+                             check=True, capture_output=True).stdout
     except Exception as exc:                                   # noqa: BLE001
         print(f"  (overlay skipped: {exc})", file=sys.stderr)
         return False
@@ -243,8 +260,13 @@ def render_overlay(net, png, image_path, size=(960, 540), step=6.0, alpha=0.85):
         return False
     cv = Canvas(w, h)
     cv.buf = bytearray(raw[:w * h * 3])
-    im = net.imagery
-    f = _xform(1.0 / im["m_per_px"], [p * w / 1920.0 for p in im["origin_px"]],
+    # the preview is a downscaled crop of the 1920x1080 capture, so the origin
+    # *and* the metres-per-pixel scale shrink by the same factor; scaling only
+    # the origin drew the network about four times too large.  The crop offset is
+    # subtracted so the drawing lines up with what is left after cropping.
+    sc = w / vw
+    f = _xform(sc / im["m_per_px"],
+               [(im["origin_px"][0] - vx) * sc, (im["origin_px"][1] - vy) * sc],
                im.get("rotation_deg", 0.0))
     for lk in net.links.values():
         pts = [f(x, y) for (x, y, _s, _r) in sample(lk["geometry"], step)]

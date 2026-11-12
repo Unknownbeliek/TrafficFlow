@@ -14,22 +14,31 @@ function makeTransform(imagery, zoom, pan, size) {
   const th = (rotation_deg * Math.PI) / 180;
   const cos = Math.cos(th);
   const sin = Math.sin(th);
-  const scale = zoom / m_per_px;   // image px per metre, times the user's zoom
   const cx = size.w / 2 + pan.x;
   const cy = size.h / 2 + pan.y;
   const ox = origin_px[0];
   const oy = origin_px[1];
   return {
-    scale,
-    toScreen(x, y) {
-      // rotate into the image frame, then offset, then zoom about the centre
-      const ix = ox + (x * cos - y * sin) / m_per_px;
-      const iy = oy + (x * sin + y * cos) / m_per_px;
+    // screen px per metre (glyph sizing, scale bar)
+    pxPerM: zoom / m_per_px,
+    zoom,
+    origin_px,
+    size,
+    // local metres -> image pixels.  `rotation_deg` is the angle of the *local
+    // frame* inside the image, so this is the only place the rotation is applied.
+    toImage(x, y) {
+      return [ox + (x * cos - y * sin) / m_per_px, oy + (x * sin + y * cos) / m_per_px];
+    },
+    // image pixels -> canvas screen pixels, as an axis-aligned similarity.  The
+    // picture is never rotated: the geometry is rotated into picture space
+    // instead, so roads and imagery cannot drift apart.
+    imageToScreen(ix, iy) {
       return [cx + (ix - ox) * zoom, cy + (iy - oy) * zoom];
     },
-    // the scale factor for glyph sizes, in screen px per metre
-    get pxPerM() { return scale * zoom; },
-    imageIsLoaded: true,
+    toScreen(x, y) {
+      const [ix, iy] = this.toImage(x, y);
+      return this.imageToScreen(ix, iy);
+    },
   };
 }
 
@@ -56,13 +65,14 @@ function heatColor(v, lo, hi) {
 
 export default function Canvas({
   siteId, network, site, snap, detectors, overlay, view,
-  showSignals, showLabels, selected, onSelect, interp,
+  showSignals, showLabels, selected, onSelect, interp, imgAlpha = 0.95,
 }) {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
   const imgRef = useRef(null);
   const [size, setSize] = useState({ w: 900, h: 600 });
   const [zoom, setZoom] = useState(1);
+  const [imgTick, setImgTick] = useState(0);
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [hover, setHover] = useState(null);
   const dragRef = useRef(null);
@@ -73,8 +83,8 @@ export default function Canvas({
   useEffect(() => {
     const img = new Image();
     img.src = `/api/image/${siteId}`;
-    img.onload = () => { imgRef.current = img; };
-    img.onerror = () => { imgRef.current = null; };
+    img.onload = () => { imgRef.current = img; setImgTick((t) => t + 1); };
+    img.onerror = () => { imgRef.current = null; setImgTick((t) => t + 1); };
   }, [siteId]);
 
   // ---- size tracking -------------------------------------------------------
@@ -107,10 +117,12 @@ export default function Canvas({
     }
     const spanX = Math.max(60, maxX - minX);
     const spanY = Math.max(60, maxY - minY);
-    const fit = Math.min((size.w * 0.86) / spanX, (size.h * 0.86) / spanY);
-    // express the fit as a multiplier of the natural image scale, which the
-    // transform applies on top of the site's own m/px
-    setZoom(Math.max(0.25, Math.min(6, fit / 6.2)));
+    // zoom is "image pixels on screen per image pixel": the network spans
+    // spanX / m_per_px image pixels, so this is the zoom that fits it
+    const mpp = network.imagery?.m_per_px || 0.55;
+    const fit = Math.min((size.w * 0.88) / (spanX / mpp),
+                         (size.h * 0.88) / (spanY / mpp));
+    setZoom(Math.max(0.15, Math.min(8, fit)));
   }, [network, siteId, size.w, size.h]);
 
   // ---- draw loop -----------------------------------------------------------
@@ -133,23 +145,37 @@ export default function Canvas({
 
     const img = imgRef.current;
     if (view === 'satellite' && img) {
-      const th = ((imagery?.rotation_deg ?? 0) * Math.PI) / 180;
-      const [ox, oy] = imagery?.origin_px || [960, 540];
+      // The capture is a browser screenshot: the maps search bar and category
+      // chips are burnt into the top of it and the last screenshots carry the
+      // taskbar.  `imagery.view` is the clean imagery rectangle, so only that is
+      // drawn.  The picture itself is never rotated — the network is rotated
+      // into picture space by `toImage`.
+      const [ox, oy] = T.origin_px;
+      const vx = imagery?.view?.[0] ?? 0;
+      const vy = imagery?.view?.[1] ?? 0;
+      const vw = imagery?.view?.[2] ?? img.naturalWidth;
+      const vh = imagery?.view?.[3] ?? img.naturalHeight;
       ctx.save();
-      ctx.translate(size.w / 2 + pan.x, size.h / 2 + pan.y);
-      ctx.rotate(th);
-      ctx.scale(zoom, zoom);
-      ctx.globalAlpha = 0.72;
-      ctx.drawImage(img, -ox, -oy);
+      ctx.imageSmoothingQuality = 'high';
+      ctx.globalAlpha = imgAlpha;
+      // source rect is the clean crop; the destination keeps the capture's full
+      // coordinate space so pixel coordinates stay comparable with the site data
+      ctx.drawImage(
+        img, vx, vy, vw, vh,
+        size.w / 2 + pan.x - ox * zoom + vx * zoom,
+        size.h / 2 + pan.y - oy * zoom + vy * zoom,
+        vw * zoom,
+        vh * zoom,
+      );
       ctx.globalAlpha = 1;
       ctx.restore();
       // a vignette keeps the panel chrome readable over bright imagery
       const g = ctx.createRadialGradient(
-        size.w / 2, size.h / 2, Math.min(size.w, size.h) * 0.25,
-        size.w / 2, size.h / 2, Math.max(size.w, size.h) * 0.72,
+        size.w / 2, size.h / 2, Math.min(size.w, size.h) * 0.55,
+        size.w / 2, size.h / 2, Math.max(size.w, size.h) * 0.95,
       );
       g.addColorStop(0, 'rgba(15,23,42,0)');
-      g.addColorStop(1, 'rgba(15,23,42,0.82)');
+      g.addColorStop(1, 'rgba(15,23,42,0.45)');
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, size.w, size.h);
     } else if (view === 'schematic') {
@@ -194,7 +220,7 @@ export default function Canvas({
       if (!path || path.length < 2) continue;
       const isSel = l.id === selectedLink;
       let color = '#7dd3fc';
-      let w = Math.max(1.1, 2.4 * T.pxPerM * 0.42);
+      let w = Math.max(1.6, 2.4 * T.pxPerM * 0.42);
 
       if (overlay !== 'none') {
         const reads = det[l.id];
@@ -207,7 +233,7 @@ export default function Canvas({
         } else {
           color = overlay === 'speed' ? '#334155' : '#334155';
         }
-        w = Math.max(1.4, 3.2 * T.pxPerM * 0.5);
+        w = Math.max(2.0, 3.2 * T.pxPerM * 0.5);
       }
       if (isSel) { color = '#fbbf24'; w += 1.4; }
 
@@ -288,10 +314,23 @@ export default function Canvas({
         if (showLabels) {
           const sig = byId.get(st.id);
           const ph = sig?.phases?.[st.phase];
+          const txt = `${st.id} ${ph?.name ?? ''} ${st.remaining.toFixed(0)}s`.trim();
           ctx.font = '600 9px "JetBrains Mono", monospace';
-          ctx.fillStyle = '#cbd5e1';
           ctx.textAlign = 'left';
-          ctx.fillText(`${st.id} ${ph?.name ?? ''} ${st.remaining.toFixed(0)}s`, x + 12, y + 3);
+          // measure first: the pill is sized to the text, so long road names
+          // cannot spill out of it
+          const tw = ctx.measureText(txt).width;
+          const px = x + 13;
+          const py = y - 8;
+          ctx.fillStyle = 'rgba(10,16,26,0.88)';
+          ctx.beginPath();
+          roundRect(ctx, px - 4, py, tw + 8, 16, 4);
+          ctx.fill();
+          ctx.strokeStyle = 'rgba(148,163,184,0.28)';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+          ctx.fillStyle = '#cbd5e1';
+          ctx.fillText(txt, px, py + 11);
         }
       }
     }
@@ -306,15 +345,15 @@ export default function Canvas({
         const cls = vcMap.get(v.cls);
         const lenM = cls?.length ?? 4.3;
         const widM = cls?.width ?? 1.8;
-        const L = Math.max(3.2, lenM * T.pxPerM);
-        const Wd = Math.max(1.8, widM * T.pxPerM);
+        const L = Math.max(5.5, lenM * T.pxPerM);
+        const Wd = Math.max(3.0, widM * T.pxPerM);
         ctx.save();
         ctx.translate(x, y);
         ctx.rotate(((v.hdg ?? 0) * Math.PI) / 180);
         ctx.fillStyle = VEH_COLORS[v.cls] || '#cbd5e1';
         if (v.cls === 'two_wheeler') {
           ctx.beginPath();
-          ctx.ellipse(0, 0, Math.max(1.6, L * 0.5), Math.max(1.0, Wd * 0.5), 0, 0, Math.PI * 2);
+          ctx.ellipse(0, 0, Math.max(2.6, L * 0.5), Math.max(1.8, Wd * 0.5), 0, 0, Math.PI * 2);
           ctx.fill();
         } else if (v.cls === 'auto_rickshaw') {
           ctx.beginPath();
@@ -343,21 +382,52 @@ export default function Canvas({
     }
 
     // --- scale bar ---------------------------------------------------------
-    const barM = 50;
-    const barPx = barM * T.pxPerM;
-    ctx.strokeStyle = 'rgba(229,237,247,0.85)';
-    ctx.lineWidth = 2;
-    const bx = 18, by = size.h - 26;
-    ctx.beginPath();
-    ctx.moveTo(bx, by); ctx.lineTo(bx + barPx, by);
-    ctx.moveTo(bx, by - 4); ctx.lineTo(bx, by + 4);
-    ctx.moveTo(bx + barPx, by - 4); ctx.lineTo(bx + barPx, by + 4);
-    ctx.stroke();
-    ctx.font = '500 10px "JetBrains Mono", monospace';
-    ctx.fillStyle = 'rgba(229,237,247,0.9)';
-    ctx.textAlign = 'left';
-    ctx.fillText(`${barM} m`, bx, by - 8);
-  }, [network, site, snap, size, zoom, pan, overlay, view, showSignals, showLabels, selected, interp]);
+    // The authored geometry is schematic (Connaught Place's Outer Circle is
+    // modelled at 100 m but is about 600 m across), so image pixels are not
+    // ground metres.  When the true ground scale is known the bar is drawn from
+    // it and labelled as picture scale; otherwise it measures the schematic,
+    // which is what vehicle spacing and lane widths are drawn in.
+    const groundMpp = imagery?.ground_m_per_px;
+    if (groundMpp) {
+      const NICE_G = [10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000];
+      const maxPx = size.w * 0.30;
+      // a ground metre is 1 / groundMpp picture pixels, and the picture is
+      // currently drawn at `zoom` screen pixels per picture pixel
+      const pxPerM = zoom / groundMpp;
+      let barM = NICE_G[0];
+      for (const m of NICE_G) if (m * pxPerM <= maxPx) barM = m;
+      const barPx = barM * pxPerM;
+      ctx.strokeStyle = 'rgba(229,237,247,0.85)';
+      ctx.lineWidth = 2;
+      const bx = 18, by = size.h - 34;
+      ctx.beginPath();
+      ctx.moveTo(bx, by); ctx.lineTo(bx + barPx, by);
+      ctx.moveTo(bx, by - 4); ctx.lineTo(bx, by + 4);
+      ctx.moveTo(bx + barPx, by - 4); ctx.lineTo(bx + barPx, by + 4);
+      ctx.stroke();
+      ctx.font = '500 10px "JetBrains Mono", monospace';
+      ctx.fillStyle = 'rgba(229,237,247,0.9)';
+      ctx.textAlign = 'left';
+      ctx.fillText(`${barM} m ground`, bx, by - 8);
+    } else {
+      const NICE = [10, 20, 25, 50, 100, 200, 250, 500, 1000];
+      let barM = NICE[0];
+      for (const m of NICE) if (m * T.pxPerM <= size.w * 0.30) barM = m;
+      const barPx = barM * T.pxPerM;
+      ctx.strokeStyle = 'rgba(229,237,247,0.85)';
+      ctx.lineWidth = 2;
+      const bx = 18, by = size.h - 34;
+      ctx.beginPath();
+      ctx.moveTo(bx, by); ctx.lineTo(bx + barPx, by);
+      ctx.moveTo(bx, by - 4); ctx.lineTo(bx, by + 4);
+      ctx.moveTo(bx + barPx, by - 4); ctx.lineTo(bx + barPx, by + 4);
+      ctx.stroke();
+      ctx.font = '500 10px "JetBrains Mono", monospace';
+      ctx.fillStyle = 'rgba(229,237,247,0.9)';
+      ctx.textAlign = 'left';
+      ctx.fillText(`${barM} m (schematic)`, bx, by - 8);
+    }
+  }, [network, site, snap, size, zoom, pan, overlay, view, showSignals, showLabels, selected, interp, imgAlpha, imgTick]);
 
   // ---- interaction --------------------------------------------------------
   const onWheel = useCallback((e) => {
@@ -415,30 +485,20 @@ export default function Canvas({
         onMouseLeave={() => { dragRef.current = null; setHover(null); }}
       />
 
-      {/* legend */}
-      <div className="absolute left-3 top-3 px-2.5 py-2 rounded bg-[rgba(10,16,26,0.82)] border hairline text-[10px]">
-        <div className="label mb-1.5">
-          {overlay === 'none' ? 'lanes' : overlay === 'speed' ? 'speed (km/h)' : 'density'}
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="w-16 h-1.5 rounded" style={{
-            background: overlay === 'density'
-              ? 'linear-gradient(90deg,#10b981,#f59e0b,#ef4444)'
-              : 'linear-gradient(90deg,#10b981,#f59e0b,#ef4444)',
-          }} />
-        </div>
-        <div className="flex justify-between mt-1 text-[var(--color-muted)] font-mono">
-          <span>{overlay === 'density' ? '65' : '5'}</span>
-          <span>{overlay === 'density' ? '5' : '65'}</span>
-        </div>
-        <div className="mt-2 space-y-1">
-          {Object.entries(VEH_COLORS).map(([k, c]) => (
-            <div key={k} className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-sm" style={{ background: c }} />
-              <span className="text-[var(--color-muted)]">{k.replace('_', ' ')}</span>
-            </div>
-          ))}
-        </div>
+      {/* legend: docked under the map so it never covers the imagery */}
+      <div className="absolute left-0 right-0 bottom-0 h-7 px-3 flex items-center gap-3 border-t hairline bg-[rgba(10,16,26,0.94)] text-[10px] text-[var(--color-muted)]">
+        <span className="label">{overlay === 'none' ? 'lanes' : overlay === 'speed' ? 'speed km/h' : 'density'}</span>
+        <span className="w-16 h-1.5 rounded" style={{
+          background: 'linear-gradient(90deg,#10b981,#f59e0b,#ef4444)',
+        }} />
+        <span className="font-mono">{overlay === 'density' ? '5 → 65' : '5 → 65'}</span>
+        <span className="flex-1" />
+        {Object.entries(VEH_COLORS).map(([k, c]) => (
+          <span key={k} className="flex items-center gap-1">
+            <span className="w-2 h-2 rounded-sm" style={{ background: c }} />
+            <span>{k.replace(/_/g, ' ')}</span>
+          </span>
+        ))}
       </div>
 
       {hover && (

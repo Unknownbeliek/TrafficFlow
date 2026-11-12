@@ -2,13 +2,21 @@
  "site": "connaught_place",
  "generated_from": "tools/build_sites.py",
  "imagery": {
-  "m_per_px": 0.55,
+  "m_per_px": 0.2793,
   "origin_px": [
-   962,
-   548
+   948.0,
+   584.0
   ],
-  "rotation_deg": 0.0,
+  "rotation_deg": 20.0,
   "scale_bar_m": 50,
+  "view": [
+   0,
+   56,
+   1920,
+   991
+  ],
+  "ground_m_per_px": 1.7291,
+  "ground_note": "Outer Circle ring road measured on the capture",
   "bearing_note": "the concentric rings are centred on this pixel"
  },
  "display": {

@@ -2,14 +2,20 @@
  "site": "kalindi_kunj",
  "generated_from": "tools/build_sites.py",
  "imagery": {
-  "m_per_px": 0.55,
+  "m_per_px": 1.0,
   "origin_px": [
-   980,
-   560
+   836.0,
+   600.0
   ],
-  "rotation_deg": 41.0,
+  "rotation_deg": 30.0,
   "scale_bar_m": 50,
-  "bearing_note": "local +x runs NE toward the Noida approach"
+  "view": [
+   0,
+   56,
+   1920,
+   1024
+  ],
+  "bearing_note": "measured at the bridge junction"
  },
  "display": {
   "px_per_m": 2.35,

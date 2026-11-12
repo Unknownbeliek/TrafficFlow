@@ -2,14 +2,20 @@
  "site": "botanical_okhla",
  "generated_from": "tools/build_sites.py",
  "imagery": {
-  "m_per_px": 0.55,
+  "m_per_px": 0.8484,
   "origin_px": [
-   960,
-   530
+   1023.5,
+   562.2
   ],
-  "rotation_deg": -28.0,
+  "rotation_deg": 42.3,
   "scale_bar_m": 50,
-  "bearing_note": "local +x follows the DND mainline, which runs ~WSW-ENE in the image"
+  "view": [
+   0,
+   56,
+   1920,
+   1024
+  ],
+  "bearing_note": "local +x follows the DND mainline"
  },
  "display": {
   "px_per_m": 3.0,

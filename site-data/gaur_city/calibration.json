@@ -2,14 +2,20 @@
  "site": "gaur_city",
  "generated_from": "tools/build_sites.py",
  "imagery": {
-  "m_per_px": 0.55,
+  "m_per_px": 0.2804,
   "origin_px": [
-   930,
-   470
+   1125.6,
+   448.8
   ],
-  "rotation_deg": 0.0,
+  "rotation_deg": -16.4,
   "scale_bar_m": 50,
-  "bearing_note": "North-up capture; the island sits where the two visible links cross near the image centre"
+  "view": [
+   0,
+   56,
+   1920,
+   1021
+  ],
+  "bearing_note": "fitted to the Char Murti roundabout"
  },
  "display": {
   "px_per_m": 6.2,

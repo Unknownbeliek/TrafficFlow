@@ -68,8 +68,9 @@ tools/                  network compiler (Python)
   geo.py                metre-space geometry, exact start/end points
   network.py            schema-4 model, vehicle classes, junction wiring, validation
   rings.py              circles: entry, exit, ring-to-ring penetration
-  sites.py              the five builders
+  sites.py              the five builders + the measured imagery calibration
   build_sites.py        CLI → site-data/<id>/{network,survey,calibration,notes}
+  calibrate.py          fits each network onto its capture (overlay alignment)
         │
         ▼  site-data/<id>/network.json
 engine/                 simulation (C++17)
@@ -185,13 +186,43 @@ Output lands in `engine/verification/`:
 README.md              this file
 docs/algorithms.md     the four algorithms, flowcharts, verification tables
 section_img/           11 committed satellite captures
-tools/                 network compiler
+tools/                 network compiler + imagery calibration
 site-data/<id>/        network.json, survey.csv, calibration.json, notes.md
 engine/                C++17 engine and verification suite
 server/index.js        Node bridge
 client/                React dashboard (app.jsx, canvas.jsx, panels.jsx)
 verification/          generated CSVs (engine/verification/)
 ```
+
+## Imagery calibration
+
+The overlay's alignment is **measured, not authored**. `tools/calibrate.py` fits
+each network onto its capture and `tools/sites.py::IMAGERY` stores the result:
+
+- **`m_per_px`, `origin_px`, `rotation_deg`** place the metre-space geometry on the
+  capture. The contract is `pixel = origin + R(rotation) · (x, y) / m_per_px`,
+  implemented once on each side (`tools/build_sites.py::_xform` and
+  `client/canvas.jsx::makeTransform`).
+- **`view`** is the clean-imagery rectangle. Every capture is a browser
+  screenshot, so the maps search bar and category chips occupy the top ~56 px;
+  the Connaught Place capture also carries the Windows taskbar. Only `view` is
+  drawn, which is why the picture the user sees is pure imagery.
+- **`ground_m_per_px`** is the true ground resolution, measured where a landmark
+  allows it. The authored geometry is *schematic* — Connaught Place's Outer
+  Circle is modelled at 100 m but is about 600 m across — so the scale bar is
+  labelled `schematic` unless this figure is known.
+
+The picture is never rotated: the network is rotated into picture space, so the
+overlay and the imagery cannot drift apart. Re-fit with
+
+```bash
+python3 tools/calibrate.py --apply              # all sites, write results back
+python3 tools/calibrate.py --site CP --preview-dir /tmp/cal   # inspect first
+python3 tools/build_sites.py                    # rebuild site-data
+```
+
+`tools/sites.py` is the single source of truth for the calibration, so a rebuild
+cannot revert the overlay to a guessed scale.
 
 ## Controls reference
 

@@ -22,9 +22,9 @@ The satellite capture `../Botanical_interchange.png` is North-up with a
 50 m Google Maps scale bar. Network geometry is authored in
 metres in a local frame, then placed on the image with
 
-    m_per_px    = 0.55
-    origin_px   = [960, 530]      (local (0,0) lands on this pixel)
-    rotation    = -28.0 deg
+    m_per_px    = 0.8484
+    origin_px   = [1023.5, 562.2]      (local (0,0) lands on this pixel)
+    rotation    = 42.3 deg
 
 so `length_m × (1 / m_per_px)` is the drawn length in image pixels and every surveyed
 length in `calibration.json` is comparable to it without a second scale factor.

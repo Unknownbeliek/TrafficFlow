@@ -2,14 +2,20 @@
  "site": "ito",
  "generated_from": "tools/build_sites.py",
  "imagery": {
-  "m_per_px": 0.27,
+  "m_per_px": 0.61,
   "origin_px": [
-   806,
-   548
+   960.0,
+   536.0
   ],
   "rotation_deg": 0.0,
   "scale_bar_m": 20,
-  "bearing_note": "Ring Road runs vertically in the image"
+  "view": [
+   0,
+   56,
+   1920,
+   1024
+  ],
+  "bearing_note": "Ring Road runs horizontally in the image"
  },
  "display": {
   "px_per_m": 3.4,

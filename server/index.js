@@ -6,7 +6,7 @@ import { spawn } from 'node:child_process';
 import { createInterface } from 'node:readline';
 import path from 'node:path';
 import fs from 'node:fs';
-import os from 'node:os';
+import { execFileSync } from 'node:child_process';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const ENGINE = process.env.TRACKFLOW_ENGINE || path.join(ROOT, 'engine', 'trackflow_engine');
@@ -29,6 +29,21 @@ class Engine {
     this.start('kalindi_kunj');
   }
 
+  ensureBinary() {
+    if (fs.existsSync(ENGINE)) return true;
+    // A fresh checkout has no engine binary (build products are gitignored), so
+    // build it once instead of silently running a map with no vehicles.
+    try {
+      console.log('[bridge] engine binary missing — building with make…');
+      execFileSync('make', ['-C', path.join(ROOT, 'engine')], { stdio: 'inherit' });
+    } catch (err) {
+      this.buildError = String(err.message || err);
+      console.error('[bridge] engine build failed:', this.buildError);
+      return false;
+    }
+    return fs.existsSync(ENGINE);
+  }
+
   start(site) {
     // bump the generation so the outgoing process's exit handler cannot trigger
     // a respawn: only the current generation is allowed to restart itself
@@ -41,6 +56,17 @@ class Engine {
       this.proc = null;
     }
     this.site = site;
+    if (!this.ensureBinary()) {
+      this.alive = false;
+      this.proc = null;
+      this.broadcast({
+        type: 'engine_down',
+        reason: 'engine_missing',
+        message: 'The C++ engine is not built. Run `cd engine && make` (or install g++).',
+        detail: this.buildError || null,
+      });
+      return;
+    }
     const args = ['--stdio', '--data', DATA, '--site', site];
     this.proc = spawn(ENGINE, args, { stdio: ['pipe', 'pipe', 'pipe'] });
     this.alive = true;
@@ -74,7 +100,7 @@ class Engine {
       // restart the engine so the demo never sits on a dead process
       setTimeout(() => {
         if (gen === this.generation && !this.alive) this.start(this.site || 'kalindi_kunj');
-      }, 500);
+      }, 1500);
     });
   }
 
@@ -147,17 +173,16 @@ app.get('/api/calibration/:id', (req, res) => {
 });
 
 app.get('/api/image/:id', (req, res) => {
-  // serve the committed satellite capture for a site
-  const map = {
-    kalindi_kunj: 'KalindiKunj.png',
-    ito: 'ITO.png',
-    gaur_city: 'GaurCIty_charmurti.png',
-    connaught_place: 'CP.png',
-    botanical_okhla: 'Botanical_interchange.png',
-  };
-  const name = map[req.params.id];
-  if (!name) return res.status(404).end();
-  res.sendFile(path.join(ROOT, 'section_img', name));
+  // Serve the capture that the site data was actually calibrated against.
+  // The name is read from network.json so the two can never drift apart again.
+  const netFile = path.join(DATA, req.params.id, 'network.json');
+  if (!fs.existsSync(netFile)) return res.status(404).end();
+  const rel = JSON.parse(fs.readFileSync(netFile, 'utf8')).site?.image;
+  if (!rel) return res.status(404).end();
+  const file = path.resolve(ROOT, rel);
+  if (!file.startsWith(path.join(ROOT, 'section_img'))) return res.status(403).end();
+  res.setHeader('Cache-Control', 'public, max-age=3600');
+  res.sendFile(file);
 });
 
 // the built client (npm run build) is served from dist/; fall back to the

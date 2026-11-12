@@ -110,6 +110,11 @@ public:
     double m_per_px = 0.55;
     std::vector<double> origin_px{960.0, 540.0};
     double rotation_deg = 0.0, scale_bar_m = 50.0;
+    // clean-imagery rectangle of the capture (the screenshots carry browser
+    // chrome) and the true ground scale where it has been measured
+    std::vector<double> view{0.0, 0.0, 1920.0, 1080.0};
+    bool has_ground_scale = false;
+    double ground_m_per_px = 0.0;
     double display_px_per_m = 3.0;
     std::vector<double> display_origin_px{960.0, 540.0};
     double lane_width_m = 3.5;
