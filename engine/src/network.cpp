@@ -42,6 +42,12 @@ bool Network::load(const Value &root) {
     if (o.is_arr() && o.size() >= 2) origin_px = {o[0].n, o[1].n};
     rotation_deg = im.num("rotation_deg", 0.0);
     scale_bar_m = im.num("scale_bar_m", 50.0);
+    const Value &vw = im["view"];
+    if (vw.is_arr() && vw.size() >= 4) view = {vw[0].n, vw[1].n, vw[2].n, vw[3].n};
+    if (im["ground_m_per_px"].is_num()) {
+        ground_m_per_px = im["ground_m_per_px"].n;
+        has_ground_scale = ground_m_per_px > 0.0;
+    }
 
     const Value &dp = root["display"];
     display_px_per_m = dp.num("px_per_m", 3.0);

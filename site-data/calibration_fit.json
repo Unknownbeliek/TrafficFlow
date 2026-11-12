@@ -1,0 +1,87 @@
+[
+ {
+  "site": "kalindi_kunj",
+  "before": 0.4177,
+  "after": 0.2932,
+  "view": [
+   0,
+   56,
+   1920,
+   1024
+  ],
+  "m_per_px": 1.0,
+  "rotation_deg": 30.0,
+  "origin_px": [
+   836.0,
+   600.0
+  ]
+ },
+ {
+  "site": "ito",
+  "before": 0.4062,
+  "after": 0.2906,
+  "view": [
+   0,
+   56,
+   1920,
+   1024
+  ],
+  "m_per_px": 0.61,
+  "rotation_deg": 0.0,
+  "origin_px": [
+   960.0,
+   536.0
+  ]
+ },
+ {
+  "site": "gaur_city",
+  "before": 0.3358,
+  "after": 0.3358,
+  "view": [
+   0,
+   56,
+   1920,
+   1021
+  ],
+  "m_per_px": 0.2804,
+  "rotation_deg": -16.4,
+  "origin_px": [
+   1125.6,
+   448.8
+  ]
+ },
+ {
+  "site": "connaught_place",
+  "before": 0.455,
+  "after": 0.455,
+  "view": [
+   0,
+   56,
+   1920,
+   991
+  ],
+  "m_per_px": 0.2793,
+  "rotation_deg": 20.0,
+  "origin_px": [
+   948.0,
+   584.0
+  ]
+ },
+ {
+  "site": "botanical_okhla",
+  "before": 0.447,
+  "after": 0.447,
+  "view": [
+   0,
+   56,
+   1920,
+   1024
+  ],
+  "m_per_px": 0.8484,
+  "rotation_deg": 42.3,
+  "origin_px": [
+   1023.5,
+   562.2
+  ]
+ }
+]

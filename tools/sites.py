@@ -402,6 +402,45 @@ def heal_lane_gains(net, *, max_skip=3.6):
 
 # ==========================================================================
 # 1. Kalindi Kunj bridge  (linear bottleneck + heavy-vehicle lane blocking)
+
+# ==========================================================================
+# imagery calibration
+# ==========================================================================
+# The metre->pixel mapping is *measured*, not authored: `tools/calibrate.py`
+# fits each network onto its capture and writes the result here.  Keeping the
+# numbers in one place means a rebuild cannot silently revert the overlay to a
+# hand-guessed scale, which is exactly what put the roads off the roads before.
+# `view` is the clean-imagery rectangle of each capture: the maps search bar and
+# category chips occupy the top ~56 px of every screenshot, and the CP capture
+# also carries the Windows taskbar along the bottom.
+IMAGERY = {
+    "kalindi_kunj":    {"m_per_px": 1.0,    "origin_px": [836.0, 600.0],   "rotation_deg": 30.0,
+                        "scale_bar_m": 50, "view": [0, 56, 1920, 1024],
+                        "bearing_note": "measured at the bridge junction"},
+    "ito":             {"m_per_px": 0.61,   "origin_px": [960.0, 536.0],   "rotation_deg": 0.0,
+                        "scale_bar_m": 20, "view": [0, 56, 1920, 1024],
+                        "bearing_note": "Ring Road runs horizontally in the image"},
+    "gaur_city":       {"m_per_px": 0.2804, "origin_px": [1125.6, 448.8],  "rotation_deg": -16.4,
+                        "scale_bar_m": 50, "view": [0, 56, 1920, 1021],
+                        "bearing_note": "fitted to the Char Murti roundabout"},
+    "connaught_place": {"m_per_px": 0.2793, "origin_px": [948.0, 584.0],   "rotation_deg": 20.0,
+                        "scale_bar_m": 50, "view": [0, 56, 1920, 991],
+                        # the authored ring is a schematic; measured from the
+                        # capture's Outer Circle (347 px radius, ~600 m)
+                        "ground_m_per_px": 1.7291,
+                        "ground_note": "Outer Circle ring road measured on the capture",
+                        "bearing_note": "the concentric rings are centred on this pixel"},
+    "botanical_okhla": {"m_per_px": 0.8484, "origin_px": [1023.5, 562.2],  "rotation_deg": 42.3,
+                        "scale_bar_m": 50, "view": [0, 56, 1920, 1024],
+                        "bearing_note": "local +x follows the DND mainline"},
+}
+
+
+def _imagery(site_id):
+    """Copy of the measured calibration for a site (never shared, never mutated)."""
+    return dict(IMAGERY[site_id])
+
+
 # ==========================================================================
 def build_kalindi():
     net = Net(
@@ -413,8 +452,7 @@ def build_kalindi():
                          "portal; the kerb lane is dropped on the deck, so a slow heavy vehicle "
                          "blocks an entire approach and pushes the queue back across the "
                          "signalised junction at Okhla Head."},
-        imagery={"m_per_px": 0.55, "origin_px": [980, 560], "rotation_deg": 41.0,
-                 "scale_bar_m": 50, "bearing_note": "local +x runs NE toward the Noida approach"},
+        imagery=_imagery("kalindi_kunj"),
         display={"px_per_m": 2.35, "origin_px": [960, 540], "rotation_deg": 41.0},
     )
     # nodes
@@ -602,8 +640,7 @@ def build_ito():
                          "arterial off the old Minto Road. Six signal heads, short storage and a "
                          "pedestrian-heavy all-red: the stress case for standstill (v = 0) "
                          "detection and gridlock alerting."},
-        imagery={"m_per_px": 0.27, "origin_px": [806, 548], "rotation_deg": 0.0,
-                 "scale_bar_m": 20, "bearing_note": "Ring Road runs vertically in the image"},
+        imagery=_imagery("ito"),
         display={"px_per_m": 3.4, "origin_px": [960, 540], "rotation_deg": 0.0},
     )
     net.signal("S.ITO", "ITO main controller", [
@@ -773,9 +810,7 @@ def build_gaur_city():
                          "than pure gap acceptance, so the ring discharges in bands while queues "
                          "sit on the approaches. Channelised nearside slip lanes bypass the "
                          "signals - the left-turn streams keep moving while the arms stand still."},
-        imagery={"m_per_px": 0.55, "origin_px": [930, 470], "rotation_deg": 0.0,
-                 "scale_bar_m": 50, "bearing_note": "North-up capture; the island sits where the "
-                                                     "two visible links cross near the image centre"},
+        imagery=_imagery("gaur_city"),
         display={"px_per_m": 6.2, "origin_px": [960, 540], "rotation_deg": 0.0},
     )
     C = [0.0, 0.0]
@@ -889,8 +924,7 @@ def build_connaught_place():
                          "dominates: cars slow through the 42 m Inner Circle and re-accelerate "
                          "on the exit, while inner trips that must cross both bands and the "
                          "radial exits form queues continuously rather than in bands."},
-        imagery={"m_per_px": 0.55, "origin_px": [962, 548], "rotation_deg": 0.0,
-                 "scale_bar_m": 50, "bearing_note": "the concentric rings are centred on this pixel"},
+        imagery=_imagery("connaught_place"),
         display={"px_per_m": 3.6, "origin_px": [960, 540], "rotation_deg": 0.0},
     )
     C = [0.0, 0.0]
@@ -1040,9 +1074,7 @@ def build_botanical_okhla():
                          "and four channelised right-turn slips. Loop ramps are the curvature "
                          "stress case (v^2/R at 50 km/h on R = 19 m exceeds the 2 m/s² lateral "
                          "comfort bound, so every vehicle brakes on entry and accelerates on exit)."},
-        imagery={"m_per_px": 0.55, "origin_px": [960, 530], "rotation_deg": -28.0,
-                 "scale_bar_m": 50, "bearing_note": "local +x follows the DND mainline, "
-                                                     "which runs ~WSW-ENE in the image"},
+        imagery=_imagery("botanical_okhla"),
         display={"px_per_m": 3.0, "origin_px": [960, 540], "rotation_deg": -28.0},
     )
     MAJOR = 620.0            # half length of each mainline

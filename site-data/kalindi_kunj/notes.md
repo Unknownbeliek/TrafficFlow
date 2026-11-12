@@ -22,9 +22,9 @@ The satellite capture `../KalindiKunj.png` is North-up with a
 50 m Google Maps scale bar. Network geometry is authored in
 metres in a local frame, then placed on the image with
 
-    m_per_px    = 0.55
-    origin_px   = [980, 560]      (local (0,0) lands on this pixel)
-    rotation    = 41.0 deg
+    m_per_px    = 1.0
+    origin_px   = [836.0, 600.0]      (local (0,0) lands on this pixel)
+    rotation    = 30.0 deg
 
 so `length_m × (1 / m_per_px)` is the drawn length in image pixels and every surveyed
 length in `calibration.json` is comparable to it without a second scale factor.

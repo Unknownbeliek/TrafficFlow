@@ -22,9 +22,9 @@ The satellite capture `../GaurCIty_charmurtiG.png` is North-up with a
 50 m Google Maps scale bar. Network geometry is authored in
 metres in a local frame, then placed on the image with
 
-    m_per_px    = 0.55
-    origin_px   = [930, 470]      (local (0,0) lands on this pixel)
-    rotation    = 0.0 deg
+    m_per_px    = 0.2804
+    origin_px   = [1125.6, 448.8]      (local (0,0) lands on this pixel)
+    rotation    = -16.4 deg
 
 so `length_m × (1 / m_per_px)` is the drawn length in image pixels and every surveyed
 length in `calibration.json` is comparable to it without a second scale factor.

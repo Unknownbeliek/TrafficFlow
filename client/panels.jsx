@@ -548,13 +548,13 @@ export function AlertsPanel({ snap, onFocus }) {
   const alerts = (snap?.alerts || []).slice(0, 4);
   if (!alerts.length) {
     return (
-      <div className="absolute left-3 bottom-3 px-2.5 py-1.5 rounded bg-[rgba(10,16,26,0.85)] border hairline text-[10px] text-[var(--color-muted)]">
+      <div className="absolute left-3 bottom-10 px-2.5 py-1.5 rounded bg-[rgba(10,16,26,0.85)] border hairline text-[10px] text-[var(--color-muted)]">
         no active alerts
       </div>
     );
   }
   return (
-    <div className="absolute left-3 bottom-3 w-[340px] space-y-1">
+    <div className="absolute left-3 bottom-10 w-[340px] space-y-1">
       {alerts.map((a, i) => {
         const tone = a.severity === 'critical' ? 'red' : a.severity === 'warn' ? 'amber' : 'accent';
         return (

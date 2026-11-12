@@ -57,6 +57,7 @@ void Simulation::reset(unsigned seed) {
 }
 
 void Simulation::reset_state() {
+    step_credit_ = 0.0;
     veh_.clear();
     index_of_.clear();
     queues_.clear();
@@ -778,7 +779,13 @@ void Simulation::step() {
 }
 
 void Simulation::advance(double sim_seconds) {
-    int n = int(std::llround(sim_seconds / p_.dt));
+    if (!(sim_seconds > 0.0)) return;
+    step_credit_ += sim_seconds;
+    // whole steps only, carrying the remainder to the next call
+    int n = int(step_credit_ / p_.dt + 1e-9);
+    if (n <= 0) return;
+    if (n > 100000) n = 100000;            // guard against a bogus huge request
+    step_credit_ -= n * p_.dt;
     for (int i = 0; i < n; ++i) step();
 }
 
@@ -848,7 +855,11 @@ std::string Simulation::site_json() const {
     os << ",\"imagery\":{\"m_per_px\":" << net_.m_per_px
        << ",\"origin_px\":[" << net_.origin_px[0] << "," << net_.origin_px[1] << "]"
        << ",\"rotation_deg\":" << net_.rotation_deg
-       << ",\"scale_bar_m\":" << net_.scale_bar_m << "}";
+       << ",\"scale_bar_m\":" << net_.scale_bar_m
+       << ",\"view\":[" << net_.view[0] << "," << net_.view[1] << ","
+       << net_.view[2] << "," << net_.view[3] << "]";
+    if (net_.has_ground_scale) os << ",\"ground_m_per_px\":" << net_.ground_m_per_px;
+    os << "}";
     os << ",\"display\":{\"px_per_m\":" << net_.display_px_per_m
        << ",\"origin_px\":[" << net_.display_origin_px[0] << ","
        << net_.display_origin_px[1] << "]}";

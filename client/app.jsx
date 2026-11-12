@@ -59,7 +59,16 @@ function useTrackflow() {
     const flush = () => {
       const ws = wsRef.current;
       if (!ws || ws.readyState !== 1) return;
-      while (queueRef.current.length) ws.send(JSON.stringify(queueRef.current.shift()));
+      const q = queueRef.current;
+      if (!q.length) return;
+      // one merged tick per flush keeps simulated time in step with wall time
+      const ticks = q.filter((c) => c.cmd === 'tick');
+      if (ticks.length > 1) {
+        const total = ticks.reduce((a, c) => a + c.seconds, 0);
+        q.splice(0, q.length, ...q.filter((c) => c.cmd !== 'tick'),
+                 { cmd: 'tick', seconds: Math.min(0.25, total) });
+      }
+      for (const msg of q.splice(0, q.length)) ws.send(JSON.stringify(msg));
     };
     connect();
     timerRef.current = setInterval(flush, 40);
@@ -71,7 +80,20 @@ function useTrackflow() {
     };
   }, []);
 
-  const send = (msg) => { queueRef.current.push(msg); };
+  // `tick` is the only command that arrives once per animation frame.  Queueing
+  // each one lets the backlog grow without bound (frames are produced faster
+  // than the 40 ms flush), which makes the vehicles move in delayed bursts.  A
+  // pending tick is therefore merged: the seconds accumulate and one tick goes
+  // out per flush.
+  const send = (msg) => {
+    const q = queueRef.current;
+    if (msg.cmd === 'tick') {
+      const pending = q.find((c) => c.cmd === 'tick');
+      if (pending) { pending.seconds += msg.seconds; return; }
+    }
+    if (q.length > 64) return;   // drop non-essential commands rather than lag
+    q.push(msg);
+  };
   return { connected, site, snap, sites, send, detectors, interp, setInterp };
 }
 
@@ -92,7 +114,7 @@ function useClock(send, running, speed, paused) {
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, [running, speed, paused, send]);
+  }, [running, speed, paused]);
 }
 
 function App() {

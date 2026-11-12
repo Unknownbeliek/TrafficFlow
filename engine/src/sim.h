@@ -192,6 +192,11 @@ private:
     numerics::Integrator integrator_ = numerics::Integrator::RK4;
 
     double t_ = 0.0;
+    // sub-step residual: `advance()` is called once per animation frame with an
+    // arbitrary wall-clock interval, so whole steps alone would make playback
+    // run at a rounded rate (a 0.16 s frame becoming 0.20 s is a 25% error) and
+    // move in visible jumps.  Carrying the remainder keeps the rate exact.
+    double step_credit_ = 0.0;
     long steps_ = 0;
     double speed_k_ = 1.0;
     bool paused_ = false;
