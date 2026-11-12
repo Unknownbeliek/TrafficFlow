@@ -94,7 +94,6 @@ export default function Canvas({
   // ---- fit the network into view on first load ----------------------------
   useEffect(() => {
     if (!network || !size.w) return;
-    const xs = network.links.flatMap((l) => [l.geometry?.[0]?.a?.[0] ?? 0]);
     let minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
     for (const l of network.links) {
       for (const p of l.geometry || []) {
@@ -109,10 +108,9 @@ export default function Canvas({
     const spanX = Math.max(60, maxX - minX);
     const spanY = Math.max(60, maxY - minY);
     const fit = Math.min((size.w * 0.86) / spanX, (size.h * 0.86) / spanY);
-    // we cannot know the image scale here, so express the fit as a multiplier
-    // of the natural scale: the design view is already px_per_m-based
+    // express the fit as a multiplier of the natural image scale, which the
+    // transform applies on top of the site's own m/px
     setZoom(Math.max(0.25, Math.min(6, fit / 6.2)));
-    void xs;
   }, [network, siteId, size.w, size.h]);
 
   // ---- draw loop -----------------------------------------------------------
@@ -299,8 +297,6 @@ export default function Canvas({
     }
 
     // --- vehicles ----------------------------------------------------------
-    const classes = new Map((network.vehicle_classes ? [] : []).map((c) => [c.id, c]));
-    void classes;
     const vcIds = site?.vehicle_classes || [];
     const vcMap = new Map(vcIds.map((c) => [c.id, c]));
     if (snap?.vehicles) {
