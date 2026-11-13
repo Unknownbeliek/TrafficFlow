@@ -42,6 +42,42 @@ function makeTransform(imagery, zoom, pan, size) {
   };
 }
 
+// ---------------------------------------------------------------------------
+// Lane offsets.
+//
+// The engine tracks a vehicle's `lane` index and its arc length `s`, but sends a
+// single point per vehicle: the centre of the LINK, not of the lane.  Vehicle
+// bodies were therefore all drawn along one shared centreline, so a two-lane
+// road looked like cars overlapping each other -- the rendering complaint.
+//
+// Rather than change the wire protocol, offset each vehicle sideways from the
+// link centreline using its own heading and lane index.  Lanes are numbered
+// left-to-right when facing the direction of travel, so lane 0 sits at
+// -(n-1)/2 lane widths and the last lane at +(n-1)/2.  Both the paper width and
+// the offset come from the same lane_width_m, so lanes stay consistent.
+// ---------------------------------------------------------------------------
+const LANE_W_DEFAULT = 3.5;
+
+function laneOffsetPx(v, link, pxPerM) {
+  const lanes = Math.max(1, link?.lanes ?? 1);
+  // A single-lane slip lane ends geometrically ON the ring centreline it feeds,
+  // so drawing both on the centreline puts merging and circulating vehicles on
+  // top of each other.  Nudge every connector/slip onto the right-hand side of
+  // its own path so the merge reads as a merge.
+  if (lanes < 2) {
+    const k = link?.kind;
+    return (k === 'slip' || k === 'connector' || k === 'ramp') ? LANE_W_DEFAULT * 0.55 : 0;
+  }
+  const lw = link?.lane_width_m ?? LANE_W_DEFAULT;
+  const lane = Math.max(0, Math.min(lanes - 1, v.lane ?? 0));
+  // metres from the centreline; positive = left of the direction of travel
+  const m = (lane - (lanes - 1) / 2) * lw;
+  // the caller has already rotated into body space (x forward, y right), so
+  // "left of travel" is -y there; the value is in metres and gets scaled by
+  // pxPerM inside that rotated frame, not here
+  return -m;
+}
+
 const VEH_COLORS = {
   car: '#e2e8f0',
   taxi: '#fbbf24',
@@ -338,6 +374,7 @@ export default function Canvas({
     // --- vehicles ----------------------------------------------------------
     const vcIds = site?.vehicle_classes || [];
     const vcMap = new Map(vcIds.map((c) => [c.id, c]));
+    const linkById = new Map((network.links || []).map((l) => [l.id, l]));
     if (snap?.vehicles) {
       for (const v of snap.vehicles) {
         const [x, y] = T.toScreen(v.x, v.y);
@@ -348,8 +385,12 @@ export default function Canvas({
         const L = Math.max(5.5, lenM * T.pxPerM);
         const Wd = Math.max(3.0, widM * T.pxPerM);
         ctx.save();
+        // place the glyph on its own lane, not on the shared link centreline
+        const linkOf = linkById.get(v.link);
+        const off = laneOffsetPx(v, linkOf, T.pxPerM) * T.pxPerM;
         ctx.translate(x, y);
         ctx.rotate(((v.hdg ?? 0) * Math.PI) / 180);
+        ctx.translate(0, off);
         ctx.fillStyle = VEH_COLORS[v.cls] || '#cbd5e1';
         if (v.cls === 'two_wheeler') {
           ctx.beginPath();

@@ -67,6 +67,17 @@ struct Link {
     std::map<std::string, int> phases;  // movement -> signal phase index
     std::map<std::string, double> class_mix;
 
+    // Give-way rule at the node this link feeds.  The survey model authors
+    // these (slip lanes yielding to circulating traffic at a roundabout merge)
+    // but the simulator used to ignore them, so every vehicle on a slip lane
+    // merged into the ring as if the ring were empty -- the main source of
+    // visible vehicle-on-vehicle collisions.  An empty `type` means "no rule".
+    std::string yield_type;                   // "merge" / "stop" / "" for none
+    std::vector<std::string> conflict_links;  // links this one must give way to
+    double yield_gap_s = 1.9;                 // required time gap to merge
+    double yield_lookahead_m = 90.0;          // how far upstream to look
+    bool yields() const { return !yield_type.empty() && !conflict_links.empty(); }
+
     double v_limit_mps() const { return speed_limit_kmph / 3.6; }
     double v0_mps() const { return v0_kmph / 3.6; }
 };

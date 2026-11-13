@@ -130,7 +130,19 @@ bool Simulation::green_for(size_t link_idx, const Vehicle &) const {
     if (si == net_.signals.end()) return true;
     auto st = sig_state_.find(si->first);
     if (st == sig_state_.end()) return true;
-    if (lk.phases.empty()) return true;  // free-flowing lane at a signalised node
+    // A link with no phase map used to be treated as always-green, which let
+    // ring lanes (deliberately left unphased by the builder) drive straight
+    // through the signalised node at full speed while the arms were also
+    // released -- the cause of vehicles passing through each other inside the
+    // junction box.  A link entering a signalised node with a stop line now has
+    // to be released by a phase like anything else; a link with no stop line at
+    // all is genuinely free-flowing (a connector inside the box).
+    if (lk.phases.empty()) {
+        if (lk.stop_line_m > 0.0 && lk.stop_line_m <= lk.length_m + 1e-6) {
+            return false;  // must be released by a phase, and no phase claims it
+        }
+        return true;
+    }
     // which of this link's movements are green?
     for (auto &kv : lk.phases) {
         if (kv.second == st->second.phase) {
@@ -241,13 +253,22 @@ void Simulation::inject() {
             const VehicleClass &vc = net_.vehicle_classes[cls];
 
             int lane = std::uniform_int_distribution<int>(0, lk.lanes - 1)(rng_);
-            // admission control: is there room at the lane head?
+            // admission control: is there room at the lane head?  The new
+            // vehicle is placed with its nose at s = 0, so its body occupies
+            // [0, length].  Every existing vehicle on this lane must be far
+            // enough ahead that the new one does not materialise inside it.
             double head_s = lk.length_m + 1e9;
+            bool blocked = false;
             for (const Vehicle &o : veh_) {
                 if (!o.active || o.link != li || o.lane != lane) continue;
+                // how much clear space is there between the entry and the tail
+                // of the nearest vehicle ahead?
+                double room = o.s - vc.length;
+                if (room < p_.s0 + 1.0) { blocked = true; break; }
                 head_s = std::min(head_s, o.s);
             }
-            if (head_s < vc.length + p_.s0 + 2.0) continue;
+            if (blocked) continue;
+            (void)head_s;
 
             Vehicle v;
             v.id = int(next_id_++);
@@ -380,6 +401,25 @@ double Simulation::accel_for(const Vehicle &v, double s, double speed, double /*
         if (ndIt != net_.nodes.end() && !ndIt->second.signal.empty() &&
             d_stop > -0.5 && d_stop < 80.0) {
             bool must_stop = !green_for(v.link, v);
+            // Box clearance.  Consecutive phases overlap while the last vehicle
+            // of one clears the junction: the bus that entered on phase 10 is
+            // still inside when phase 11 releases the arm, so the two are drawn
+            // on top of each other.  A vehicle may not cross its stop line while
+            // a vehicle from a DIFFERENT approach is still inside the box.  This
+            // cannot deadlock: anything already past its own stop line never
+            // runs this check, so the box always drains.
+            if (!must_stop) {
+                for (const Vehicle &o : veh_) {
+                    if (!o.active || o.link == v.link) continue;
+                    const Link &ol = net_.links[o.link];
+                    if (ol.to != lk.to) continue;                      // same node only
+                    if (ol.stop_line_m <= 0.0) continue;               // inside-box connector
+                    if (o.s <= ol.stop_line_m + 0.5) continue;         // not in the box yet
+                    if (o.s > ol.length_m) continue;
+                    must_stop = true;
+                    break;
+                }
+            }
             if (must_stop) {
                 double need = speed * speed / (2.0 * std::max(d_stop, 0.15));
                 a_signal = -p_.b_comfort * clamp(need, 0.0, 1.0);
@@ -390,11 +430,86 @@ double Simulation::accel_for(const Vehicle &v, double s, double speed, double /*
     }
     if (a_signal_out) *a_signal_out = a_signal;
 
+    // --- give way to conflicting traffic ---------------------------------
+    // A slip lane merging into the ring must not drive through circulating
+    // vehicles.  The survey model authors the rule ({type:"merge",
+    // conflict_links:[...], gap_s, lookahead_m}); before this the engine
+    // ignored it entirely, which is why cars visibly drove through each other
+    // at the roundabout merges.  We look at the upstream end of every conflict
+    // link and, if one of them has a vehicle arriving within the required time
+    // gap, treat the approaching stop line exactly like a red light.
+    double a_yield = 0.0;
+    {
+        const Link &self = net_.links[v.link];
+        if (self.yields() && self.stop_line_m > 0.0) {
+            double d_stop = self.stop_line_m - s;
+            if (d_stop > -1.0 && d_stop < 60.0) {
+                // closest approaching vehicle on any conflict link that is
+                // heading for the same node and will get there before we clear
+                double soonest = 1e9;   // seconds until it reaches the box
+                for (const std::string &cid : self.conflict_links) {
+                    auto ci = net_.link_index.find(cid);
+                    if (ci == net_.link_index.end()) continue;
+                    size_t cidx = ci->second;
+                    const Link &cl = net_.links[cidx];
+                    for (const Vehicle &o : veh_) {
+                        if (!o.active || o.link != cidx) continue;
+                        // distance that vehicle still has to travel into the box
+                        double do_ = std::max(0.0, cl.length_m - o.s);
+                        if (do_ > self.yield_lookahead_m) continue;
+                        double t_arrive = do_ / std::max(o.v, 0.5);
+                        if (t_arrive < soonest) soonest = t_arrive;
+                    }
+                }
+                // The authored conflict_links are the lanes APPROACHING the
+                // node.  A slip lane also has to give way to traffic that has
+                // already entered the node and is occupying the lane it is
+                // merging into (one segment further round the ring), so look at
+                // the ring/through lanes leaving the same node as well.
+                for (const Link &out : net_.links) {
+                    if (out.from != self.to) continue;
+                    if (out.kind != "ring" && out.kind != "connector") continue;
+                    if (out.id == self.id) continue;
+                    for (const Vehicle &o : veh_) {
+                        if (!o.active) continue;
+                        if (net_.links[o.link].id != out.id) continue;
+                        if (o.s > 24.0) continue;      // already past our merge
+                        double do_ = std::max(0.0, o.s);  // it is ahead of us here
+                        double t_arrive = do_ / std::max(o.v, 0.5);
+                        if (t_arrive < soonest) soonest = t_arrive;
+                    }
+                }
+                // time for us to reach the box at current speed
+                double t_us = d_stop / std::max(speed, 0.5);
+                if (soonest < t_us + self.yield_gap_s) {
+                    double need = speed * speed / (2.0 * std::max(d_stop, 0.15));
+                    a_yield = -p_.b_comfort * clamp(need, 0.0, 1.0);
+                    if (d_stop < 0.6 && speed < 0.4) a_yield = -3.0 * p_.b_comfort;
+                    // immediate clearance rule: never enter the box while a
+                    // conflicting vehicle is still inside it
+                    bool box_occupied = false;
+                    for (const std::string &cid : self.conflict_links) {
+                        auto ci = net_.link_index.find(cid);
+                        if (ci == net_.link_index.end()) continue;
+                        size_t cidx = ci->second;
+                        const Link &cl = net_.links[cidx];
+                        for (const Vehicle &o : veh_) {
+                            if (!o.active || o.link != cidx) continue;
+                            if (cl.length_m - o.s < 12.0) { box_occupied = true; break; }
+                        }
+                        if (box_occupied) break;
+                    }
+                    if (box_occupied) a_yield = std::min(a_yield, -1.5 * p_.b_comfort);
+                }
+            }
+        }
+    }
+
     // --- speed-limit governor -------------------------------------------
     double a_limit = 0.0;
     if (speed > vlim) a_limit = -1.2 * (speed - vlim);
 
-    return a_idm + a_curve + a_signal + a_limit;
+    return a_idm + a_curve + a_signal + a_yield + a_limit;
 }
 
 // ---------------------------------------------------------------------------
@@ -416,13 +531,17 @@ void Simulation::integrate(double dt) {
         v.a = accel(y.s, y.v, t_);
         v.s = r.y.s;
         v.v = std::max(0.0, r.y.v);
-        // never let a vehicle pass its leader by integration error
+        // never let a vehicle pass its leader by integration error.  Clamp in
+        // the right order: cap at the leader's tail FIRST, then floor at zero.
+        // (Capping after flooring let max_s < 0 push s negative, which put a
+        // follower behind the lane entry and produced the body overlaps the
+        // collision audit found.)
         if (v.leader >= 0) {
             auto it = index_of_.find(v.leader);
             if (it != index_of_.end()) {
                 const Vehicle &ld = veh_[it->second];
                 double max_s = ld.s - ld.length - 0.5;
-                if (v.s > max_s) { v.s = std::max(v.s, 0.0); v.s = std::min(v.s, max_s); }
+                if (v.s > max_s) v.s = std::max(0.0, max_s);
             }
         }
         // delay accumulation: (1 - v/v0) dt
@@ -474,12 +593,26 @@ void Simulation::transfer() {
         // sink: the vehicle leaves the network
         auto nd = net_.nodes.find(nx.to);
         bool is_sink = nd != net_.nodes.end() && nd->second.type == "sink";
-        // is there room on the downstream lane?
+        // is there room on the downstream lane?  The vehicle lands at
+        // s = overflow, so it needs a clear body-length plus a standstill gap
+        // in front of the nearest vehicle already on that lane.
         int lane = std::min(v.lane, std::max(0, nx.lanes - 1));
         double tail = 1e9;
+        // also refuse a different lane on the same link if the target lane is
+        // full -- checking only `lane` would let us re-enter an occupied one
+        bool lane_blocked = false;
         for (const Vehicle &o : veh_) {
-            if (!o.active || o.link != next_idx || o.lane != lane) continue;
+            if (!o.active || o.link != next_idx) continue;
+            if (o.lane != lane) continue;
             tail = std::min(tail, o.s);
+            if (o.s < v.length + p_.s0 + 1.0) lane_blocked = true;
+        }
+        if (!is_sink && lane_blocked) {
+            // hold at the stop line (or at the end of the link) until the
+            // downstream lane has room
+            v.s = lk.stop_line_m > 0.0 ? std::min(lk.length_m, std::max(v.s, lk.stop_line_m))
+                                       : lk.length_m;
+            continue;
         }
         if (!is_sink && tail < v.length + p_.s0 + 1.0) {
             v.s = lk.length_m;  // hold at the stop line until the lane frees up
@@ -494,6 +627,39 @@ void Simulation::transfer() {
         v.gap = 1e9;
     }
     if (any) build_queues();
+}
+
+// ---------------------------------------------------------------------------
+// safety envelope
+// ---------------------------------------------------------------------------
+
+// After integration and after transfers, walk every lane from the head of the
+// queue backwards and push each follower back so that
+//     s_follower + length_follower <= s_leader
+// never fails.  Vehicles are only ever pushed BACKWARDS (never forwards), so
+// this cannot invent forward motion out of nothing, and speed is clamped to
+// non-negative.  It is a positional correction, not an acceleration model: the
+// IDM field does the physics, this removes the discrete-time residue.
+void Simulation::enforce_lane_separation() {
+    build_queues();  // refresh lane_order_ and leader/gap links
+    for (auto &lm : lane_order_) {
+        for (auto &ids : lm.second) {
+            // ids are ordered head-first (largest s first).  Walk backwards
+            // from the head so each vehicle is corrected against the leader's
+            // already-corrected position.
+            for (size_t k = 1; k < ids.size(); ++k) {
+                Vehicle &lead = veh_[ids[k - 1]];
+                Vehicle &follow = veh_[ids[k]];
+                double limit = lead.s - follow.length;
+                if (limit < 0.0) limit = 0.0;
+                if (follow.s > limit) {
+                    follow.s = limit;
+                    // do not let the correction create forward speed
+                    if (follow.v > lead.v) follow.v = std::max(0.0, lead.v);
+                }
+            }
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -768,6 +934,7 @@ void Simulation::step() {
     integrate(p_.dt);
     accumulate_detectors(p_.dt);
     transfer();
+    enforce_lane_separation();
     detect_alerts();
     t_ += p_.dt;
     ++steps_;
@@ -863,7 +1030,7 @@ std::string Simulation::site_json() const {
     os << ",\"display\":{\"px_per_m\":" << net_.display_px_per_m
        << ",\"origin_px\":[" << net_.display_origin_px[0] << ","
        << net_.display_origin_px[1] << "]}";
-    os << ",\"lane_width_m\":" << net_.lane_width_m;
+        os << ",\"lane_width_m\":" << net_.lane_width_m;
 
     os << ",\"vehicle_classes\":[";
     bool first = true;
@@ -907,6 +1074,8 @@ std::string Simulation::site_json() const {
         os << ",\"from\":"; json_escape(os, l.from);
         os << ",\"to\":"; json_escape(os, l.to);
         os << ",\"lanes\":" << l.lanes << ",\"lane_index\":" << l.lane_index;
+        // per-lane rendering needs the physical width, not just the lane count
+        os << ",\"lane_width_m\":" << net_.lane_width_m;
         os << ",\"length_m\":" << l.length_m;
         os << ",\"v0_kmph\":" << l.v0_kmph << ",\"speed_limit_kmph\":" << l.speed_limit_kmph;
         os << ",\"stop_line_m\":" << l.stop_line_m;
@@ -1072,12 +1241,19 @@ std::string Simulation::snapshot_json() const {
     }
     os << "]";
 
+    // The feed used to send the twelve most recent events, and the panel showed
+    // the newest four, so a saturated network replaced every card several times
+    // a second and nothing could be read.  Emit at most one alert per LINK (the
+    // most recent), newest first, so the list is stable while conditions last.
     os << ",\"alerts\":[";
     first = true;
     size_t n = 0;
-    for (auto it = alerts_.rbegin(); it != alerts_.rend() && n < 12; ++it, ++n) {
+    std::set<std::string> seen_links;
+    for (auto it = alerts_.rbegin(); it != alerts_.rend() && n < 12; ++it) {
         const Alert &a = *it;
         if (a.t < t_ - 30.0) continue;
+        if (!seen_links.insert(a.link).second) continue;
+        ++n;
         if (!first) os << ",";
         first = false;
         os << "{\"kind\":"; json_escape(os, a.kind);

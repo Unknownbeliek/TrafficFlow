@@ -303,7 +303,15 @@ def wire_ring_penetration(net, *, src_node, by_lane_src, tgt_node=None,
 
 
 def _tag_turns(net, node_id, src_lids, made, phase):
-    """Give the arm/connector links and the turns just made a signal phase."""
+    """Give the arm/connector links and the turns just made a signal phase.
+
+    Ring lanes entering a signalised node are deliberately left unphased by the
+    geometry builder, but the simulator must not treat "no phase" as "always
+    green": that let circulating traffic drive into the box at the same moment
+    the arms were released.  Any link that ends at this node with a stop line
+    gets a phase too, preferring the phase already serving its own node so the
+    ring and the arm it belongs to move together rather than fighting.
+    """
     for lid in src_lids:
         net.links[lid]["phases"] = {"through": phase}
     for _lane, cid in made.items():
@@ -313,6 +321,38 @@ def _tag_turns(net, node_id, src_lids, made, phase):
             if t["phase"] is None and (t["from"] in src_lids or (phase is not None and t["to"] in made.values())):
                 if t["from"] in src_lids or t["to"] in made.values():
                     t["phase"] = phase
+
+    # --- phase the ring mouths ------------------------------------------
+    if phase is None:
+        return
+    # which phases does this node already use?
+    node_phases = {}
+    for lk in net.links.values():
+        if lk.get("to") != node_id:
+            continue
+        ph = (lk.get("phases") or {}).get("through")
+        if ph is not None:
+            node_phases.setdefault(ph, []).append(lk["id"])
+    for lk in net.links.values():
+        if lk.get("to") != node_id or lk.get("phases"):
+            continue
+        if not (lk.get("stop_line_m") or 0.0) > 0.0:
+            continue          # no stop line -> a connector inside the box
+        if (lk.get("kind") or "") not in ("ring", "connector"):
+            continue          # only ring mouths need this treatment
+        # prefer the phase serving the approach this ring lane came from
+        src_from = lk.get("from")
+        pick = None
+        for ph, lids in node_phases.items():
+            for other in net.links.values():
+                if other.get("id") in lids and other.get("from") == src_from:
+                    pick = ph
+                    break
+            if pick is not None:
+                break
+        if pick is None:
+            pick = phase
+        lk["phases"] = {"through": pick}
 
 
 def wire_ring_entry(net, *, node_id, src_lids, by_lane, phase=None,

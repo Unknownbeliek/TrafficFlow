@@ -81,8 +81,26 @@ inline StepResult integrate_step(Integrator kind, const OdeState &y, double h,
             break;
         }
         case Integrator::RK4: {
+            // The step is shortened until it can be taken without ever asking
+            // for negative speed.  Two properties matter:
+            //
+            //  * position must stay monotone.  The stage velocities k2s/k3s are
+            //    NOT guaranteed non-negative just because the start and end are
+            //    (a car braking hard has k2s < 0 while y.v > 0), so testing them
+            //    rejected perfectly good steps and halved hh four times, ending
+            //    on a near-zero step.  Position then froze while the vehicle sat
+            //    at s = L trying to transfer, and the leader clamp below slammed
+            //    it to max(0, follower.s - L) = 0 -- vehicles teleporting to the
+            //    head of the lane, which is what "cars collide" looked like.
+            //
+            //  * a vehicle already stopped (v == 0) is never asked to move
+            //    backwards: a step that would produce negative v is rejected and
+            //    bisected away, so the fallback is "do not advance", not
+            //    "run the clock at zero".
             double hh = h;
-            for (int attempt = 0; attempt < 4; ++attempt) {
+            out.y.s = y.s;
+            out.y.v = y.v;
+            for (int attempt = 0; attempt < 12; ++attempt) {
                 double k1s = y.v, k1v = accel(y.s, y.v, t);
                 double k2s = y.v + 0.5 * hh * k1v;
                 double k2v = accel(y.s + 0.5 * hh * k1s, y.v + 0.5 * hh * k1v, t + 0.5 * hh);
@@ -91,19 +109,21 @@ inline StepResult integrate_step(Integrator kind, const OdeState &y, double h,
                 double k4s = y.v + hh * k3v;
                 double k4v = accel(y.s + hh * k3s, y.v + hh * k3v, t + hh);
                 double vnew = y.v + hh * (k1v + 2.0 * k2v + 2.0 * k3v + k4v) / 6.0;
-                if (vnew >= 0.0 && k2s >= 0.0 && k3s >= 0.0) {
+                if (vnew >= 0.0) {
                     out.y.s = y.s + hh * (k1s + 2.0 * k2s + 2.0 * k3s + k4s) / 6.0;
                     out.y.v = vnew;
                     h = hh;
                     break;
                 }
-                // Bisect down to the largest sub-step that stays non-negative:
-                // 12 halvings settles the stop instant to h/4096, far below the
-                // 0.01 s reporting resolution the PRD asks for.
+                // Bisect down to the largest sub-step that keeps v >= 0:
+                // settles the stop instant to h/4096, far below the 0.01 s
+                // reporting resolution the PRD asks for.
                 hh *= 0.5;
                 out.clipped = true;
             }
             if (out.y.v < 0.0) out.y.v = 0.0;
+            // never let a rejected step drag the vehicle backwards
+            if (out.y.s < y.s) out.y.s = y.s;
             break;
         }
     }
