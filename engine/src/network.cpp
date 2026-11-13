@@ -146,6 +146,15 @@ bool Network::load(const Value &root) {
         const Value &mx = l["class_mix"];
         for (auto it = mx.o.begin(); it != mx.o.end(); ++it)
             lk.class_mix[it->first] = it->second.n;
+        // give-way rule (optional): {type, conflict_links[], gap_s, lookahead_m}
+        const Value &yl = l["yield"];
+        if (yl.is_obj()) {
+            lk.yield_type = yl.str("type");
+            lk.yield_gap_s = yl.num("gap_s", 1.9);
+            lk.yield_lookahead_m = yl.num("lookahead_m", 90.0);
+            for (const Value &c : yl.arr("conflict_links"))
+                lk.conflict_links.push_back(c.s);
+        }
         link_index[lk.id] = links.size();
         links.push_back(std::move(lk));
     }

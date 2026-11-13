@@ -43,7 +43,7 @@ struct SimParams {
     double k_curve = 1.0;         // curvature gain
     double v_standstill = 0.05;   // m/s threshold use by the alert
     double standstill_hold_s = 3.0;
-    double alert_hysteresis_s = 2.0;
+    double alert_hysteresis_s = 8.0;   // was 2 s: the feed churned faster than it could be read
     double pcu_jam_density = 130.0;  // veh/km/lane at jam
 };
 
@@ -176,6 +176,13 @@ private:
     void ensure_turn_index();
     void compact();
     void build_queues();
+    // last line of defence against same-lane body overlap: after integration
+    // and after every lane change, clamp each follower so its bumper never
+    // passes the tail of the car ahead.  IDM plus the transfer admission test
+    // handle this in the smooth case; this catches the discrete-time corners
+    // (a vehicle injected at s=0 while another still sits near the entry, a
+    // transfer that lands on an occupied lane, a step that overshoots).
+    void enforce_lane_separation();
     void integrate(double dt);
     void transfer();
     void detect_alerts();
