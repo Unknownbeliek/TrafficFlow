@@ -423,12 +423,79 @@ export default function Canvas({
       const [sx1, sy1] = T.toScreen(pEnd[0] + nx * halfW, pEnd[1] + ny * halfW);
       const [sx2, sy2] = T.toScreen(pEnd[0] - nx * halfW, pEnd[1] - ny * halfW);
 
+      // Determine approach arm light status
+      const st = (snap?.signals || []).find((s) => s.id === targetNode.signal);
+      let armLight = 'red';
+      if (st) {
+        if (st.override === 'all_green') {
+          armLight = 'green';
+        } else if (st.override === 'all_red') {
+          armLight = 'red';
+        } else if (st.override === 'all_amber') {
+          armLight = 'amber';
+        } else if (l.phases && Object.keys(l.phases).length > 0) {
+          const matched = Object.values(l.phases).includes(st.phase);
+          armLight = matched ? (st.light || 'green') : 'red';
+        }
+      }
+
+      const stopColor = armLight === 'green' ? '#10b981' : armLight === 'amber' ? '#f59e0b' : '#ef4444';
+
+      // Luminous stop bar on pavement
+      ctx.save();
+      ctx.shadowColor = stopColor;
+      ctx.shadowBlur = armLight === 'green' ? 6 : 9;
       ctx.beginPath();
       ctx.moveTo(sx1, sy1);
       ctx.lineTo(sx2, sy2);
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 3.6; // Bold, crisp solid stop line
+      ctx.strokeStyle = stopColor;
+      ctx.lineWidth = 4.2;
       ctx.stroke();
+      ctx.restore();
+
+      // Transversal white setback line behind stop line
+      const setbackM = 0.9;
+      const ux = dx / dLen;
+      const uy = dy / dLen;
+      const [bx1, by1] = T.toScreen(pEnd[0] - ux * setbackM + nx * halfW, pEnd[1] - uy * setbackM + ny * halfW);
+      const [bx2, by2] = T.toScreen(pEnd[0] - ux * setbackM - nx * halfW, pEnd[1] - uy * setbackM - ny * halfW);
+      ctx.beginPath();
+      ctx.moveTo(bx1, by1);
+      ctx.lineTo(bx2, by2);
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+      ctx.lineWidth = 1.8;
+      ctx.stroke();
+
+      // Pavement lane directional arrows ~14m before the stop line
+      const arrowDistM = 14.0;
+      const ax0 = pEnd[0] - ux * arrowDistM;
+      const ay0 = pEnd[1] - uy * arrowDistM;
+      const lwM = l.lane_width_m || 3.5;
+      for (let laneIdx = 0; laneIdx < lanes; laneIdx++) {
+        const laneOffset = (laneIdx + 0.5 - lanes * 0.5) * lwM;
+        const laneX = ax0 + nx * laneOffset;
+        const laneY = ay0 + ny * laneOffset;
+        const [asx, asy] = T.toScreen(laneX, laneY);
+
+        ctx.save();
+        ctx.translate(asx, asy);
+        ctx.rotate(Math.atan2(dy, dx) - Math.PI / 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+        ctx.font = '700 11px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        let arrowSymbol = '↑';
+        if (l.id.includes('DELHI')) {
+          arrowSymbol = laneIdx < 3 ? '↑' : '↱';
+        } else if (l.id.includes('FARIDABAD')) {
+          arrowSymbol = laneIdx === 0 ? '↰' : '↑';
+        } else if (l.id.includes('BOTANICAL')) {
+          arrowSymbol = laneIdx === lanes - 1 ? '↱' : '↑';
+        }
+        ctx.fillText(arrowSymbol, 0, 0);
+        ctx.restore();
+      }
     }
 
     // PASS 2: Selected link or Telemetry Heatmap Overlays (only drawn if active or selected)
@@ -506,56 +573,156 @@ export default function Canvas({
       }
     }
 
-    // --- signal heads ------------------------------------------------------
+    // --- signal heads (Individual 3-Aspect Traffic Lights at Each Approach Stop Line) ---
     if (showSignals && snap?.signals) {
-      const byId = new Map((network.signals || []).map((s) => [s.id, s]));
       const nodeOf = new Map();
       for (const s of network.signals || []) {
-        // the compiler names the signal node by its id
         const n = (network.nodes || []).find((x) => x.signal === s.id);
         if (n) nodeOf.set(s.id, n);
       }
+
+      // Draw individual 3-aspect vertical traffic light posts at each approach stop line
+      for (const l of links) {
+        if (l.kind !== 'approach' || !l.stop_line_m) continue;
+        const targetNode = (network.nodes || []).find((nd) => nd.id === l.to && (nd.signal || nd.type === 'signal'));
+        if (!targetNode) continue;
+        const path = l.path || polyOf(l);
+        if (!path || path.length < 2) continue;
+        const pEnd = path[path.length - 1];
+        const pPrev = path[path.length - 2];
+        const dx = pEnd[0] - pPrev[0];
+        const dy = pEnd[1] - pPrev[1];
+        const dLen = Math.hypot(dx, dy) || 1;
+        const nx = -dy / dLen;
+        const ny = dx / dLen;
+        const lanes = Math.max(1, l.lanes || 1);
+        const halfW = (lanes * (l.lane_width_m || 3.5)) * 0.5;
+
+        const st = (snap.signals || []).find((s) => s.id === targetNode.signal);
+        let armLight = 'red';
+        if (st) {
+          if (st.override === 'all_green') {
+            armLight = 'green';
+          } else if (st.override === 'all_red') {
+            armLight = 'red';
+          } else if (st.override === 'all_amber') {
+            armLight = 'amber';
+          } else if (l.phases && Object.keys(l.phases).length > 0) {
+            const matched = Object.values(l.phases).includes(st.phase);
+            armLight = matched ? (st.light || 'green') : 'red';
+          }
+        }
+
+        // Place vertical 3-aspect traffic light head at the curb edge of the stop line
+        const curbPosM = [pEnd[0] + nx * (halfW + 3.2), pEnd[1] + ny * (halfW + 3.2)];
+        const [hx, hy] = T.toScreen(curbPosM[0], curbPosM[1]);
+
+        ctx.save();
+        ctx.translate(hx, hy);
+
+        // Mast pole / base mounting line
+        ctx.beginPath();
+        ctx.moveTo(0, 18);
+        ctx.lineTo(0, 24);
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+
+        // Signal head casing (rounded rectangle with yellow contrast frame)
+        ctx.fillStyle = '#0f172a';
+        ctx.beginPath();
+        roundRect(ctx, -7, -18, 14, 36, 3);
+        ctx.fill();
+        ctx.strokeStyle = '#eab308'; // standard Indian highway yellow signal casing
+        ctx.lineWidth = 1.4;
+        ctx.stroke();
+
+        // Top Lens: RED
+        ctx.beginPath();
+        ctx.arc(0, -11, 3.4, 0, Math.PI * 2);
+        if (armLight === 'red') {
+          ctx.shadowColor = '#ef4444';
+          ctx.shadowBlur = 10;
+          ctx.fillStyle = '#ef4444';
+        } else {
+          ctx.shadowBlur = 0;
+          ctx.fillStyle = '#450a0a';
+        }
+        ctx.fill();
+
+        // Mid Lens: AMBER
+        ctx.beginPath();
+        ctx.arc(0, 0, 3.4, 0, Math.PI * 2);
+        if (armLight === 'amber') {
+          ctx.shadowColor = '#f59e0b';
+          ctx.shadowBlur = 10;
+          ctx.fillStyle = '#f59e0b';
+        } else {
+          ctx.shadowBlur = 0;
+          ctx.fillStyle = '#451a03';
+        }
+        ctx.fill();
+
+        // Bottom Lens: GREEN
+        ctx.beginPath();
+        ctx.arc(0, 11, 3.4, 0, Math.PI * 2);
+        if (armLight === 'green') {
+          ctx.shadowColor = '#10b981';
+          ctx.shadowBlur = 10;
+          ctx.fillStyle = '#10b981';
+        } else {
+          ctx.shadowBlur = 0;
+          ctx.fillStyle = '#022c22';
+        }
+        ctx.fill();
+
+        // Status / Countdown Badge next to head
+        ctx.shadowBlur = 0;
+        let badgeText = armLight === 'green' ? `${(st?.remaining ?? 0).toFixed(0)}s` : 'RED';
+        if (st?.override === 'all_green') badgeText = 'ALL GREEN';
+        else if (st?.override === 'all_red') badgeText = 'ALL RED';
+
+        const badgeColor = armLight === 'green' ? '#34d399' : armLight === 'amber' ? '#fbbf24' : '#f87171';
+        const badgeBorder = armLight === 'green' ? 'rgba(52,211,153,0.4)' : armLight === 'amber' ? 'rgba(251,191,36,0.4)' : 'rgba(248,113,113,0.4)';
+
+        ctx.font = '700 9px "JetBrains Mono", monospace';
+        const tw = ctx.measureText(badgeText).width;
+        const bx = 10, by = -8;
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
+        ctx.beginPath();
+        roundRect(ctx, bx, by, tw + 8, 16, 3);
+        ctx.fill();
+        ctx.strokeStyle = badgeBorder;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.fillStyle = badgeColor;
+        ctx.textAlign = 'left';
+        ctx.fillText(badgeText, bx + 4, by + 11);
+
+        ctx.restore();
+      }
+
+      // Center Plaza Hub Indicator
       for (const st of snap.signals) {
         const n = nodeOf.get(st.id);
         if (!n) continue;
         const [x, y] = T.toScreen(n.x, n.y);
-        const col = st.light === 'green' ? '#10b981' : st.light === 'amber' ? '#f59e0b' : '#ef4444';
         ctx.save();
         ctx.beginPath();
-        ctx.arc(x, y, 11, 0, Math.PI * 2);
+        ctx.arc(x, y, 14, 0, Math.PI * 2);
         ctx.fillStyle = '#0f172a';
         ctx.fill();
-        ctx.shadowColor = col;
-        ctx.shadowBlur = 8;
-        ctx.strokeStyle = col;
-        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = st.override === 'all_green' ? '#10b981' : st.override === 'all_red' ? '#ef4444' : '#38bdf8';
+        ctx.lineWidth = 2.0;
         ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(x, y, 5.5, 0, Math.PI * 2);
-        ctx.fillStyle = col;
-        ctx.fill();
+
+        ctx.font = '700 8px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#94a3b8';
+        ctx.fillText(st.override === 'all_green' ? 'FREE' : st.override === 'all_red' ? 'HOLD' : 'CHOWK', x, y);
         ctx.restore();
-        if (showLabels) {
-          const sig = byId.get(st.id);
-          const ph = sig?.phases?.[st.phase];
-          const txt = `${st.id} ${ph?.name ?? ''} ${st.remaining.toFixed(0)}s`.trim();
-          ctx.font = '600 9px "JetBrains Mono", monospace';
-          ctx.textAlign = 'left';
-          // measure first: the pill is sized to the text, so long road names
-          // cannot spill out of it
-          const tw = ctx.measureText(txt).width;
-          const px = x + 13;
-          const py = y - 8;
-          ctx.fillStyle = 'rgba(10,16,26,0.88)';
-          ctx.beginPath();
-          roundRect(ctx, px - 4, py, tw + 8, 16, 4);
-          ctx.fill();
-          ctx.strokeStyle = 'rgba(148,163,184,0.28)';
-          ctx.lineWidth = 1;
-          ctx.stroke();
-          ctx.fillStyle = '#cbd5e1';
-          ctx.fillText(txt, px, py + 11);
-        }
       }
     }
 

@@ -281,6 +281,7 @@ function App() {
                 snap={snap}
                 send={send}
                 siteId={siteId}
+                network={network}
               />
             )}
             {rightTab === 'inspector' && (
@@ -288,6 +289,7 @@ function App() {
                 selected={selected}
                 network={network}
                 snap={snap}
+                send={send}
                 interp={interp}
                 onInspectLink={inspectLink}
               />

@@ -944,54 +944,876 @@
           "kind": "loop"
         }
       ]
+    },
+    {
+      "id": "CONN_DELHI_BOTANICAL",
+      "name": "Delhi to Botanical Plaza Crossing (3 Lanes)",
+      "kind": "connector",
+      "carriageway": "",
+      "from": "J_MAIN",
+      "to": "J_MAIN.out",
+      "lanes": 3,
+      "lane_index": 0,
+      "lane_width_m": 3.5,
+      "elevation_layer": 0,
+      "speed_limit_kmph": 40,
+      "stop_line_m": 0.0,
+      "phases": {},
+      "geometry": [
+        {
+          "type": "line",
+          "a": [
+            76.43,
+            -114.41
+          ],
+          "b": [
+            79.29,
+            -110.04
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            79.29,
+            -110.04
+          ],
+          "b": [
+            82.41,
+            -105.61
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            82.41,
+            -105.61
+          ],
+          "b": [
+            85.79,
+            -101.25
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            85.79,
+            -101.25
+          ],
+          "b": [
+            89.4,
+            -97.06
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            89.4,
+            -97.06
+          ],
+          "b": [
+            93.26,
+            -93.15
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            93.26,
+            -93.15
+          ],
+          "b": [
+            97.36,
+            -89.66
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            97.36,
+            -89.66
+          ],
+          "b": [
+            101.69,
+            -86.68
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            101.69,
+            -86.68
+          ],
+          "b": [
+            106.24,
+            -84.33
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            106.24,
+            -84.33
+          ],
+          "b": [
+            111.01,
+            -82.73
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            111.01,
+            -82.73
+          ],
+          "b": [
+            116.0,
+            -82.0
+          ]
+        }
+      ],
+      "length_m": 53.019,
+      "length_surveyed_m": 53.019
+    },
+    {
+      "id": "CONN_DELHI_FARIDABAD",
+      "name": "Delhi to Faridabad Plaza Crossing (3 Lanes)",
+      "kind": "connector",
+      "carriageway": "",
+      "from": "J_MAIN",
+      "to": "J_MAIN.out",
+      "lanes": 3,
+      "lane_index": 0,
+      "lane_width_m": 3.5,
+      "elevation_layer": 0,
+      "speed_limit_kmph": 40,
+      "stop_line_m": 0.0,
+      "phases": {},
+      "geometry": [
+        {
+          "type": "line",
+          "a": [
+            67.57,
+            -108.79
+          ],
+          "b": [
+            70.94,
+            -104.27
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            70.94,
+            -104.27
+          ],
+          "b": [
+            74.96,
+            -100.02
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            74.96,
+            -100.02
+          ],
+          "b": [
+            79.38,
+            -95.94
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            79.38,
+            -95.94
+          ],
+          "b": [
+            83.97,
+            -91.96
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            83.97,
+            -91.96
+          ],
+          "b": [
+            88.5,
+            -87.98
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            88.5,
+            -87.98
+          ],
+          "b": [
+            92.74,
+            -83.91
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            92.74,
+            -83.91
+          ],
+          "b": [
+            96.44,
+            -79.67
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            96.44,
+            -79.67
+          ],
+          "b": [
+            99.37,
+            -75.16
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            99.37,
+            -75.16
+          ],
+          "b": [
+            101.3,
+            -70.3
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            101.3,
+            -70.3
+          ],
+          "b": [
+            102.0,
+            -65.0
+          ]
+        }
+      ],
+      "length_m": 57.067,
+      "length_surveyed_m": 57.067
+    },
+    {
+      "id": "CONN_BOTANICAL_DELHI",
+      "name": "Botanical to Delhi Return Plaza Crossing (2 Lanes)",
+      "kind": "connector",
+      "carriageway": "",
+      "from": "J_MAIN",
+      "to": "J_MAIN.out",
+      "lanes": 2,
+      "lane_index": 0,
+      "lane_width_m": 3.5,
+      "elevation_layer": 0,
+      "speed_limit_kmph": 40,
+      "stop_line_m": 0.0,
+      "phases": {},
+      "geometry": [
+        {
+          "type": "line",
+          "a": [
+            116.0,
+            -100.0
+          ],
+          "b": [
+            111.23,
+            -99.23
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            111.23,
+            -99.23
+          ],
+          "b": [
+            106.53,
+            -98.14
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            106.53,
+            -98.14
+          ],
+          "b": [
+            101.9,
+            -96.8
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            101.9,
+            -96.8
+          ],
+          "b": [
+            97.34,
+            -95.23
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            97.34,
+            -95.23
+          ],
+          "b": [
+            92.88,
+            -93.5
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            92.88,
+            -93.5
+          ],
+          "b": [
+            88.5,
+            -91.65
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            88.5,
+            -91.65
+          ],
+          "b": [
+            84.21,
+            -89.72
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            84.21,
+            -89.72
+          ],
+          "b": [
+            80.03,
+            -87.78
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            80.03,
+            -87.78
+          ],
+          "b": [
+            75.96,
+            -85.85
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            75.96,
+            -85.85
+          ],
+          "b": [
+            72.0,
+            -84.0
+          ]
+        }
+      ],
+      "length_m": 47.025,
+      "length_surveyed_m": 47.03
+    },
+    {
+      "id": "CONN_BOTANICAL_FARIDABAD",
+      "name": "Botanical to Faridabad Plaza Crossing (3 Lanes)",
+      "kind": "connector",
+      "carriageway": "",
+      "from": "J_MAIN",
+      "to": "J_MAIN.out",
+      "lanes": 3,
+      "lane_index": 0,
+      "lane_width_m": 3.5,
+      "elevation_layer": 0,
+      "speed_limit_kmph": 40,
+      "stop_line_m": 0.0,
+      "phases": {},
+      "geometry": [
+        {
+          "type": "line",
+          "a": [
+            116.0,
+            -100.0
+          ],
+          "b": [
+            113.77,
+            -98.45
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            113.77,
+            -98.45
+          ],
+          "b": [
+            111.86,
+            -96.26
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            111.86,
+            -96.26
+          ],
+          "b": [
+            110.2,
+            -93.51
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            110.2,
+            -93.51
+          ],
+          "b": [
+            108.77,
+            -90.27
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            108.77,
+            -90.27
+          ],
+          "b": [
+            107.5,
+            -86.62
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            107.5,
+            -86.62
+          ],
+          "b": [
+            106.35,
+            -82.65
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            106.35,
+            -82.65
+          ],
+          "b": [
+            105.28,
+            -78.42
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            105.28,
+            -78.42
+          ],
+          "b": [
+            104.22,
+            -74.02
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            104.22,
+            -74.02
+          ],
+          "b": [
+            103.15,
+            -69.52
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            103.15,
+            -69.52
+          ],
+          "b": [
+            102.0,
+            -65.0
+          ]
+        }
+      ],
+      "length_m": 38.552,
+      "length_surveyed_m": 38.55
+    },
+    {
+      "id": "CONN_FARIDABAD_DELHI",
+      "name": "Faridabad to Delhi Return Plaza Crossing (2 Lanes)",
+      "kind": "connector",
+      "carriageway": "",
+      "from": "J_MAIN",
+      "to": "J_MAIN.out",
+      "lanes": 2,
+      "lane_index": 0,
+      "lane_width_m": 3.5,
+      "elevation_layer": 0,
+      "speed_limit_kmph": 40,
+      "stop_line_m": 0.0,
+      "phases": {},
+      "geometry": [
+        {
+          "type": "line",
+          "a": [
+            84.0,
+            -65.0
+          ],
+          "b": [
+            83.83,
+            -67.91
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            83.83,
+            -67.91
+          ],
+          "b": [
+            83.33,
+            -70.62
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            83.33,
+            -70.62
+          ],
+          "b": [
+            82.54,
+            -73.14
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            82.54,
+            -73.14
+          ],
+          "b": [
+            81.5,
+            -75.43
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            81.5,
+            -75.43
+          ],
+          "b": [
+            80.25,
+            -77.5
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            80.25,
+            -77.5
+          ],
+          "b": [
+            78.82,
+            -79.33
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            78.82,
+            -79.33
+          ],
+          "b": [
+            77.24,
+            -80.9
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            77.24,
+            -80.9
+          ],
+          "b": [
+            75.55,
+            -82.22
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            75.55,
+            -82.22
+          ],
+          "b": [
+            73.79,
+            -83.25
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            73.79,
+            -83.25
+          ],
+          "b": [
+            72.0,
+            -84.0
+          ]
+        }
+      ],
+      "length_m": 23.919,
+      "length_surveyed_m": 23.92
+    },
+    {
+      "id": "CONN_FARIDABAD_BOTANICAL",
+      "name": "Faridabad to Botanical Plaza Crossing (3 Lanes)",
+      "kind": "connector",
+      "carriageway": "",
+      "from": "J_MAIN",
+      "to": "J_MAIN.out",
+      "lanes": 3,
+      "lane_index": 0,
+      "lane_width_m": 3.5,
+      "elevation_layer": 0,
+      "speed_limit_kmph": 40,
+      "stop_line_m": 0.0,
+      "phases": {},
+      "geometry": [
+        {
+          "type": "line",
+          "a": [
+            84.0,
+            -65.0
+          ],
+          "b": [
+            84.95,
+            -68.69
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            84.95,
+            -68.69
+          ],
+          "b": [
+            86.56,
+            -71.95
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            86.56,
+            -71.95
+          ],
+          "b": [
+            88.77,
+            -74.78
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            88.77,
+            -74.78
+          ],
+          "b": [
+            91.52,
+            -77.18
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            91.52,
+            -77.18
+          ],
+          "b": [
+            94.75,
+            -79.12
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            94.75,
+            -79.12
+          ],
+          "b": [
+            98.4,
+            -80.62
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            98.4,
+            -80.62
+          ],
+          "b": [
+            102.41,
+            -81.67
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            102.41,
+            -81.67
+          ],
+          "b": [
+            106.72,
+            -82.25
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            106.72,
+            -82.25
+          ],
+          "b": [
+            111.27,
+            -82.36
+          ]
+        },
+        {
+          "type": "line",
+          "a": [
+            111.27,
+            -82.36
+          ],
+          "b": [
+            116.0,
+            -82.0
+          ]
+        }
+      ],
+      "length_m": 40.19,
+      "length_surveyed_m": 40.19
     }
   ],
   "turns": [
     {
       "from": "M_DELHI_EB",
-      "to": "M_BOTANICAL_EB",
+      "to": "CONN_DELHI_BOTANICAL",
       "movement": "through",
       "weight": 0.55,
-      "phase": null,
-      "notes": ""
+      "phase": 0,
+      "notes": "Delhi to Botanical"
     },
     {
       "from": "M_DELHI_EB",
-      "to": "M_FARIDABAD_SB",
-      "movement": "through",
+      "to": "CONN_DELHI_FARIDABAD",
+      "movement": "right",
       "weight": 0.45,
-      "phase": null,
-      "notes": ""
+      "phase": 0,
+      "notes": "Delhi to Faridabad"
     },
     {
-      "from": "M_BOTANICAL_WB",
-      "to": "M_DELHI_WB",
-      "movement": "through",
-      "weight": 0.65,
-      "phase": null,
-      "notes": ""
-    },
-    {
-      "from": "M_BOTANICAL_WB",
-      "to": "M_FARIDABAD_SB",
-      "movement": "through",
-      "weight": 0.35,
-      "phase": null,
-      "notes": ""
-    },
-    {
-      "from": "M_FARIDABAD_NB",
-      "to": "M_DELHI_WB",
-      "movement": "through",
-      "weight": 0.6,
-      "phase": null,
-      "notes": ""
-    },
-    {
-      "from": "M_FARIDABAD_NB",
+      "from": "CONN_DELHI_BOTANICAL",
       "to": "M_BOTANICAL_EB",
       "movement": "through",
+      "weight": 1.0,
+      "phase": null,
+      "notes": ""
+    },
+    {
+      "from": "CONN_DELHI_FARIDABAD",
+      "to": "M_FARIDABAD_SB",
+      "movement": "through",
+      "weight": 1.0,
+      "phase": null,
+      "notes": ""
+    },
+    {
+      "from": "M_BOTANICAL_WB",
+      "to": "CONN_BOTANICAL_DELHI",
+      "movement": "through",
+      "weight": 0.65,
+      "phase": 2,
+      "notes": "Botanical to Delhi"
+    },
+    {
+      "from": "M_BOTANICAL_WB",
+      "to": "CONN_BOTANICAL_FARIDABAD",
+      "movement": "left",
+      "weight": 0.35,
+      "phase": 2,
+      "notes": "Botanical to Faridabad"
+    },
+    {
+      "from": "CONN_BOTANICAL_DELHI",
+      "to": "M_DELHI_WB",
+      "movement": "through",
+      "weight": 1.0,
+      "phase": null,
+      "notes": ""
+    },
+    {
+      "from": "CONN_BOTANICAL_FARIDABAD",
+      "to": "M_FARIDABAD_SB",
+      "movement": "through",
+      "weight": 1.0,
+      "phase": null,
+      "notes": ""
+    },
+    {
+      "from": "M_FARIDABAD_NB",
+      "to": "CONN_FARIDABAD_DELHI",
+      "movement": "left",
+      "weight": 0.6,
+      "phase": 1,
+      "notes": "Faridabad to Delhi"
+    },
+    {
+      "from": "M_FARIDABAD_NB",
+      "to": "CONN_FARIDABAD_BOTANICAL",
+      "movement": "right",
       "weight": 0.4,
+      "phase": 1,
+      "notes": "Faridabad to Botanical"
+    },
+    {
+      "from": "CONN_FARIDABAD_DELHI",
+      "to": "M_DELHI_WB",
+      "movement": "through",
+      "weight": 1.0,
+      "phase": null,
+      "notes": ""
+    },
+    {
+      "from": "CONN_FARIDABAD_BOTANICAL",
+      "to": "M_BOTANICAL_EB",
+      "movement": "through",
+      "weight": 1.0,
       "phase": null,
       "notes": ""
     }
@@ -1003,6 +1825,7 @@
       "movement": "through",
       "route": [
         "M_DELHI_EB",
+        "CONN_DELHI_BOTANICAL",
         "M_BOTANICAL_EB"
       ],
       "flow_vph_peak": 4400,
@@ -1025,6 +1848,7 @@
       "movement": "right",
       "route": [
         "M_DELHI_EB",
+        "CONN_DELHI_FARIDABAD",
         "M_FARIDABAD_SB"
       ],
       "flow_vph_peak": 3200,
@@ -1047,6 +1871,7 @@
       "movement": "through",
       "route": [
         "M_BOTANICAL_WB",
+        "CONN_BOTANICAL_DELHI",
         "M_DELHI_WB"
       ],
       "flow_vph_peak": 3800,
@@ -1069,6 +1894,7 @@
       "movement": "left",
       "route": [
         "M_BOTANICAL_WB",
+        "CONN_BOTANICAL_FARIDABAD",
         "M_FARIDABAD_SB"
       ],
       "flow_vph_peak": 1200,
@@ -1091,6 +1917,7 @@
       "movement": "left",
       "route": [
         "M_FARIDABAD_NB",
+        "CONN_FARIDABAD_DELHI",
         "M_DELHI_WB"
       ],
       "flow_vph_peak": 3000,
@@ -1113,6 +1940,7 @@
       "movement": "right",
       "route": [
         "M_FARIDABAD_NB",
+        "CONN_FARIDABAD_BOTANICAL",
         "M_BOTANICAL_EB"
       ],
       "flow_vph_peak": 1600,

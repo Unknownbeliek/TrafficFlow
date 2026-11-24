@@ -209,7 +209,7 @@ int stdio_mode(const std::string &site) {
             sim.set_signal_plan(cmd.str("signal"), cmd["plan"]);
             emit(sim.snapshot_json());
         } else if (op == "set_signal_override") {
-            sim.set_signal_override(cmd.str("mode", "auto"));
+            sim.set_signal_override(cmd.str("signal"), cmd.str("mode", "auto"), int(cmd.num("phase", 0.0)));
             emit(sim.snapshot_json());
         } else if (op == "set_speed_multiplier") {
             sim.set_speed_multiplier(cmd.num("value", 1.0));

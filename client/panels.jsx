@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 
 // ---------------------------------------------------------------------------
 // shared bits
@@ -353,9 +353,211 @@ function TreeRow({ depth, children, open, onToggle, leaf, onClick, active, bold 
 }
 
 // ---------------------------------------------------------------------------
+// interactive signal controller card
+// ---------------------------------------------------------------------------
+export function SignalControllerCard({ snap, send, network }) {
+  const signal = (network?.signals || []).find((s) => s.id === 'S.K_JUNCTION') || (network?.signals || [])[0];
+  const st = (snap?.signals || []).find((s) => s.id === signal?.id) || (snap?.signals || [])[0];
+
+  const overrideMode = st?.override || 'auto';
+  const activePhase = st?.phase ?? 0;
+
+  const [timings, setTimings] = useState({
+    p0: 38,
+    p1: 26,
+    p2: 20,
+  });
+
+  useEffect(() => {
+    if (signal?.phases && signal.phases.length >= 3) {
+      setTimings({
+        p0: Math.round(signal.phases[0]?.green || 38),
+        p1: Math.round(signal.phases[1]?.green || 26),
+        p2: Math.round(signal.phases[2]?.green || 20),
+      });
+    }
+  }, [signal]);
+
+  const updateGreen = (phaseIdx, val) => {
+    const updated = { ...timings, [`p${phaseIdx}`]: Number(val) };
+    setTimings(updated);
+
+    const updatedPhases = (signal?.phases || []).map((ph, idx) => ({
+      ...ph,
+      green: updated[`p${idx}`] ?? ph.green,
+    }));
+    send?.({
+      cmd: 'set_signal_plan',
+      signal: signal?.id || 'S.K_JUNCTION',
+      plan: {
+        phases: updatedPhases,
+      },
+    });
+  };
+
+  const setOverride = (mode, phase = 0) => {
+    send?.({
+      cmd: 'set_signal_override',
+      signal: signal?.id || 'S.K_JUNCTION',
+      mode,
+      phase,
+    });
+  };
+
+  return (
+    <Section title="Traffic Signal Controller">
+      <div className="space-y-2.5">
+        {/* Signal Mode Status & Quick Toggles */}
+        <div>
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="text-[10px] text-[var(--color-muted)] font-mono">STATUS / OVERRIDE</span>
+            <span className={`px-1.5 py-0.5 rounded text-[9px] font-mono font-semibold uppercase ${
+              overrideMode === 'all_green' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' :
+              overrideMode === 'all_red' ? 'bg-red-500/20 text-red-300 border border-red-500/40' :
+              overrideMode === 'all_amber' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' :
+              overrideMode === 'hold_phase' ? 'bg-sky-500/20 text-sky-300 border border-sky-500/40' :
+              'bg-slate-500/20 text-slate-300 border border-slate-500/30'
+            }`}>
+              {overrideMode.replace('_', ' ')}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-3 gap-1">
+            <button
+              onClick={() => setOverride('auto')}
+              className={`px-2 py-1.5 rounded-sm border text-[10px] text-center font-medium ${
+                overrideMode === 'auto'
+                  ? 'border-[var(--color-accent)] text-[var(--color-accent)] bg-sky-500/10'
+                  : 'border-[var(--color-hair)] text-[var(--color-muted)] hover:bg-slate-800'
+              }`}
+            >
+              Auto Cycle
+            </button>
+            <button
+              onClick={() => setOverride('all_green')}
+              className={`px-2 py-1.5 rounded-sm border text-[10px] text-center font-medium ${
+                overrideMode === 'all_green'
+                  ? 'border-emerald-500 text-emerald-300 bg-emerald-500/20 font-bold'
+                  : 'border-[var(--color-hair)] text-[var(--color-muted)] hover:bg-emerald-950/40 hover:text-emerald-400'
+              }`}
+              title="All approaches released simultaneously into the plaza! Tests high-friction traffic conflict."
+            >
+              ⚡ ALL GREEN
+            </button>
+            <button
+              onClick={() => setOverride('all_red')}
+              className={`px-2 py-1.5 rounded-sm border text-[10px] text-center font-medium ${
+                overrideMode === 'all_red'
+                  ? 'border-red-500 text-red-300 bg-red-500/20 font-bold'
+                  : 'border-[var(--color-hair)] text-[var(--color-muted)] hover:bg-red-950/40 hover:text-red-400'
+              }`}
+            >
+              ⛔ ALL RED
+            </button>
+          </div>
+        </div>
+
+        {/* Manual Arm Holds */}
+        <div>
+          <div className="text-[10px] text-[var(--color-muted)] font-mono mb-1">MANUAL ARM GREEN HOLD</div>
+          <div className="grid grid-cols-3 gap-1">
+            <button
+              onClick={() => setOverride('hold_phase', 0)}
+              className={`px-1.5 py-1 rounded-sm border text-[9px] text-center leading-tight ${
+                overrideMode === 'hold_phase' && activePhase === 0
+                  ? 'border-emerald-500 text-emerald-300 bg-emerald-500/20 font-semibold'
+                  : 'border-[var(--color-hair)] text-[var(--color-muted)] hover:text-emerald-400'
+              }`}
+            >
+              Hold Delhi (P0)
+            </button>
+            <button
+              onClick={() => setOverride('hold_phase', 1)}
+              className={`px-1.5 py-1 rounded-sm border text-[9px] text-center leading-tight ${
+                overrideMode === 'hold_phase' && activePhase === 1
+                  ? 'border-emerald-500 text-emerald-300 bg-emerald-500/20 font-semibold'
+                  : 'border-[var(--color-hair)] text-[var(--color-muted)] hover:text-emerald-400'
+              }`}
+            >
+              Hold Faridabad (P1)
+            </button>
+            <button
+              onClick={() => setOverride('hold_phase', 2)}
+              className={`px-1.5 py-1 rounded-sm border text-[9px] text-center leading-tight ${
+                overrideMode === 'hold_phase' && activePhase === 2
+                  ? 'border-emerald-500 text-emerald-300 bg-emerald-500/20 font-semibold'
+                  : 'border-[var(--color-hair)] text-[var(--color-muted)] hover:text-emerald-400'
+              }`}
+            >
+              Hold Botanical (P2)
+            </button>
+          </div>
+        </div>
+
+        {/* Phase Duration Sliders */}
+        <div className="space-y-2 pt-2 border-t hairline">
+          <div className="text-[10px] text-[var(--color-muted)] font-mono">APPROACH GREEN TIMING CONTROLS</div>
+
+          {/* Delhi Approach Slider */}
+          <div className="space-y-0.5">
+            <div className="flex justify-between text-[10px]">
+              <span className="font-medium text-sky-200">Phase 0: Delhi Yamuna (6-Lane)</span>
+              <span className="font-mono tabular text-emerald-400 font-semibold">{timings.p0}s</span>
+            </div>
+            <input
+              type="range"
+              min="10"
+              max="75"
+              step="1"
+              value={timings.p0}
+              onChange={(e) => updateGreen(0, e.target.value)}
+              className="w-full accent-sky-400 h-1.5 cursor-pointer bg-slate-700 rounded"
+            />
+          </div>
+
+          {/* Faridabad Approach Slider */}
+          <div className="space-y-0.5">
+            <div className="flex justify-between text-[10px]">
+              <span className="font-medium text-sky-200">Phase 1: Faridabad (3-Lane)</span>
+              <span className="font-mono tabular text-emerald-400 font-semibold">{timings.p1}s</span>
+            </div>
+            <input
+              type="range"
+              min="10"
+              max="75"
+              step="1"
+              value={timings.p1}
+              onChange={(e) => updateGreen(1, e.target.value)}
+              className="w-full accent-sky-400 h-1.5 cursor-pointer bg-slate-700 rounded"
+            />
+          </div>
+
+          {/* Botanical Approach Slider */}
+          <div className="space-y-0.5">
+            <div className="flex justify-between text-[10px]">
+              <span className="font-medium text-sky-200">Phase 2: Botanical (3-Lane)</span>
+              <span className="font-mono tabular text-emerald-400 font-semibold">{timings.p2}s</span>
+            </div>
+            <input
+              type="range"
+              min="10"
+              max="75"
+              step="1"
+              value={timings.p2}
+              onChange={(e) => updateGreen(2, e.target.value)}
+              className="w-full accent-sky-400 h-1.5 cursor-pointer bg-slate-700 rounded"
+            />
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // inspector
 // ---------------------------------------------------------------------------
-export function Inspector({ selected, network, snap, interp, onInspectLink }) {
+export function Inspector({ selected, network, snap, send, interp, onInspectLink }) {
   if (!network) {
     return <div className="p-3 text-[11px] text-[var(--color-muted)]">loading network…</div>;
   }
@@ -423,6 +625,7 @@ export function Inspector({ selected, network, snap, interp, onInspectLink }) {
             </div>
           ))}
         </Section>
+        <SignalControllerCard snap={snap} send={send} network={network} />
       </div>
     );
   }
@@ -779,7 +982,7 @@ export function StatusBar({ snap, site, connected, siteMeta }) {
 // ---------------------------------------------------------------------------
 // Delhi-NCR Bottleneck PBL Panel
 // ---------------------------------------------------------------------------
-export function PBLDelhiPanel({ snap, send, siteId }) {
+export function PBLDelhiPanel({ snap, send, siteId, network }) {
   const [deckLanes, setDeckLanes] = useState(2);
   const mergeMode = snap?.merge_mode || 'direct_force';
   const truckDiscipline = snap?.truck_discipline ?? true;
@@ -801,6 +1004,8 @@ export function PBLDelhiPanel({ snap, send, siteId }) {
           <strong>Indian Road Reality:</strong> In India, expressways and flyover ramps merge <em>directly into existing active traffic lanes</em> without separate 300m acceleration lanes. Ramp traffic must force-merge directly into oncoming high-speed vehicles.
         </div>
       </Section>
+
+      <SignalControllerCard snap={snap} send={send} network={network} />
 
       <Section title="Merge Friction Model">
         <div className="grid grid-cols-2 gap-1 mb-1.5">

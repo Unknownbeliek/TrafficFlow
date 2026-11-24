@@ -31,6 +31,7 @@ struct SignalState {
     Light light = Light::GREEN;
     double remaining = 0.0;   // seconds left in this light state
     double elapsed = 0.0;     // seconds into the current phase's green
+    std::string override_mode = "auto"; // "auto", "all_green", "all_red", "hold_phase", "all_amber"
 };
 
 struct SimParams {
@@ -126,8 +127,7 @@ public:
     void set_hour(double h);
     double hour() const { return hour_; }
     void set_signal_plan(const std::string &signal_id, const Value &plan);
-    void set_signal_override(const std::string &mode) { signal_override_ = mode; }
-    const std::string &signal_override() const { return signal_override_; }
+    void set_signal_override(const std::string &signal_id, const std::string &mode, int phase = 0);
     void set_speed_limit(const std::string &prefix, double kmph);
     void set_merge_mode(const std::string &m) { merge_mode_ = m; }
     const std::string &merge_mode() const { return merge_mode_; }
@@ -219,7 +219,6 @@ private:
     std::string demand_mode_ = "surveyed";
     std::string merge_mode_ = "direct_force";  // "direct_force" (Indian reality) vs "strict_yield"
     bool truck_discipline_ = true;
-    std::string signal_override_ = "auto";  // "auto", "all_green", "all_red", "force_0", "force_1", "force_2"
 
     std::vector<Vehicle> veh_;
     std::map<int, size_t> index_of_;   // vehicle id -> slot in veh_

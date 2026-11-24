@@ -89,36 +89,25 @@ void Simulation::update_signals() {
         if (sig.phases.empty()) continue;
         SignalState &st = sig_state_[kv.first];
 
-        if (signal_override_ == "all_green") {
-            st.phase = 0;
+        if (st.override_mode == "all_green") {
             st.light = Light::GREEN;
             st.remaining = 999.0;
             st.elapsed = 999.0;
             continue;
         }
-        if (signal_override_ == "all_red") {
-            st.phase = -1;
+        if (st.override_mode == "all_red") {
             st.light = Light::RED;
             st.remaining = 999.0;
             st.elapsed = 0.0;
             continue;
         }
-        if (signal_override_ == "force_0") {
-            st.phase = 0;
-            st.light = Light::GREEN;
+        if (st.override_mode == "all_amber") {
+            st.light = Light::AMBER;
             st.remaining = 999.0;
-            st.elapsed = 999.0;
+            st.elapsed = 0.0;
             continue;
         }
-        if (signal_override_ == "force_1") {
-            st.phase = 1;
-            st.light = Light::GREEN;
-            st.remaining = 999.0;
-            st.elapsed = 999.0;
-            continue;
-        }
-        if (signal_override_ == "force_2") {
-            st.phase = 2;
+        if (st.override_mode == "hold_phase") {
             st.light = Light::GREEN;
             st.remaining = 999.0;
             st.elapsed = 999.0;
@@ -161,9 +150,6 @@ void Simulation::update_signals() {
 
 bool Simulation::green_for(size_t link_idx, const Vehicle &) const {
     const Link &lk = net_.links[link_idx];
-    if (signal_override_ == "all_green") return true;
-    if (signal_override_ == "all_red") return false;
-
     auto node = net_.nodes.find(lk.to);
     if (node == net_.nodes.end() || node->second.signal.empty()) return true;
     auto si = net_.signals.find(node->second.signal);
@@ -171,24 +157,8 @@ bool Simulation::green_for(size_t link_idx, const Vehicle &) const {
     auto st = sig_state_.find(si->first);
     if (st == sig_state_.end()) return true;
 
-    if (signal_override_ == "force_0") {
-        for (auto &kv : lk.phases) {
-            if (kv.second == 0) return true;
-        }
-        return false;
-    }
-    if (signal_override_ == "force_1") {
-        for (auto &kv : lk.phases) {
-            if (kv.second == 1) return true;
-        }
-        return false;
-    }
-    if (signal_override_ == "force_2") {
-        for (auto &kv : lk.phases) {
-            if (kv.second == 2) return true;
-        }
-        return false;
-    }
+    if (st->second.override_mode == "all_green") return true;
+    if (st->second.override_mode == "all_red" || st->second.override_mode == "all_amber") return false;
 
     // A link with no phase map used to be treated as always-green, which let
     // ring lanes (deliberately left unphased by the builder) drive straight
@@ -273,7 +243,47 @@ void Simulation::set_signal_plan(const std::string &signal_id, const Value &plan
         it->second.phases.push_back(ph);
     }
     it->second.finalise();
-    reset_state();
+    sig_state_[signal_id].override_mode = "auto";
+}
+
+void Simulation::set_signal_override(const std::string &signal_id, const std::string &mode, int phase) {
+    auto it = sig_state_.find(signal_id);
+    if (it == sig_state_.end()) {
+        for (auto &kv : sig_state_) {
+            kv.second.override_mode = mode;
+            if (mode == "all_green") {
+                kv.second.light = Light::GREEN;
+                kv.second.remaining = 999.0;
+            } else if (mode == "all_red") {
+                kv.second.light = Light::RED;
+                kv.second.remaining = 999.0;
+            } else if (mode == "all_amber") {
+                kv.second.light = Light::AMBER;
+                kv.second.remaining = 999.0;
+            } else if (mode == "hold_phase") {
+                kv.second.phase = phase;
+                kv.second.light = Light::GREEN;
+                kv.second.remaining = 999.0;
+            }
+        }
+        return;
+    }
+    SignalState &st = it->second;
+    st.override_mode = mode;
+    if (mode == "all_green") {
+        st.light = Light::GREEN;
+        st.remaining = 999.0;
+    } else if (mode == "all_red") {
+        st.light = Light::RED;
+        st.remaining = 999.0;
+    } else if (mode == "all_amber") {
+        st.light = Light::AMBER;
+        st.remaining = 999.0;
+    } else if (mode == "hold_phase") {
+        st.phase = phase;
+        st.light = Light::GREEN;
+        st.remaining = 999.0;
+    }
 }
 
 void Simulation::inject() {
@@ -359,24 +369,28 @@ void Simulation::inject() {
             }
             if (available_lanes.empty()) continue;  // all lanes at source head are full
 
-            int lane = available_lanes.front();
+            // Filter lanes for structured multi-lane corridors (e.g. 6-lane Yamuna Bridge: left 3 to Botanical, right 3 to Faridabad)
+            std::vector<int> candidate_lanes;
+            if (lk.lanes == 6 && row) {
+                bool to_botanical = false;
+                for (const auto &rs : row->route) {
+                    if (rs.find("BOTANICAL") != std::string::npos) to_botanical = true;
+                }
+                for (int l_cand : available_lanes) {
+                    if (to_botanical && l_cand < 3) candidate_lanes.push_back(l_cand);
+                    else if (!to_botanical && l_cand >= 3) candidate_lanes.push_back(l_cand);
+                }
+            }
+            if (candidate_lanes.empty()) candidate_lanes = available_lanes;
+
+            int lane = candidate_lanes.front();
             bool is_heavy = (cls == "truck" || cls == "bus" || cls == "lcv");
             if (truck_discipline_ && is_heavy) {
-                // Heavy vehicles prefer the rightmost / kerb lane (lk.lanes - 1)
-                int preferred = lk.lanes - 1;
-                bool found = false;
-                for (int l_cand : available_lanes) {
-                    if (l_cand == preferred) { lane = l_cand; found = true; break; }
-                }
-                if (!found) {
-                    int second_pref = std::max(0, lk.lanes - 2);
-                    for (int l_cand : available_lanes) {
-                        if (l_cand == second_pref) { lane = l_cand; found = true; break; }
-                    }
-                }
+                // Heavy vehicles prefer the rightmost candidate lane
+                lane = candidate_lanes.back();
             } else {
-                int idx = std::uniform_int_distribution<int>(0, int(available_lanes.size()) - 1)(rng_);
-                lane = available_lanes[idx];
+                int idx = std::uniform_int_distribution<int>(0, int(candidate_lanes.size()) - 1)(rng_);
+                lane = candidate_lanes[idx];
             }
 
             Vehicle v;
@@ -518,7 +532,15 @@ double Simulation::accel_for(const Vehicle &v, double s, double speed, double /*
             // cannot deadlock: anything already past its own stop line never
             // runs this check, so the box always drains.
             if (!must_stop) {
-                if (signal_override_ != "all_green") {
+                bool ignore_box = false;
+                auto si = net_.signals.find(ndIt->second.signal);
+                if (si != net_.signals.end()) {
+                    auto st = sig_state_.find(si->first);
+                    if (st != sig_state_.end() && st->second.override_mode == "all_green") {
+                        ignore_box = true;
+                    }
+                }
+                if (!ignore_box) {
                     for (const Vehicle &o : veh_) {
                         if (!o.active || o.link == v.link) continue;
                         const Link &ol = net_.links[o.link];
@@ -732,9 +754,12 @@ void Simulation::transfer() {
 
         // determine target lane on downstream link
         int lane = v.lane;
-        if (lk.lanes == 6 && nx.lanes == 3 && (want.find("FARIDABAD") != std::string::npos || nx.id.find("FARIDABAD") != std::string::npos)) {
+        if (lk.lanes == 6 && nx.lanes == 3 && (nx.id.find("FARIDABAD") != std::string::npos || lk.to.find("FARIDABAD") != std::string::npos)) {
             // Delhi 6-lane approach: right lanes (3, 4, 5) cleanly map to Faridabad lanes (0, 1, 2)
             lane = std::max(0, std::min(nx.lanes - 1, v.lane - 3));
+        } else if (lk.lanes == 6 && nx.lanes == 3 && (nx.id.find("BOTANICAL") != std::string::npos)) {
+            // Delhi 6-lane approach: left lanes (0, 1, 2) cleanly map to Botanical lanes (0, 1, 2)
+            lane = std::max(0, std::min(nx.lanes - 1, v.lane));
         } else if (lk.kind == "ramp" || lk.kind == "slip") {
             // Merging ramps smoothly join the outer / kerb lane rather than cutting into fast lane
             lane = std::max(0, nx.lanes - 1);
@@ -753,10 +778,11 @@ void Simulation::transfer() {
         }
 
         if (lane_blocked || tail < v.length + p_.s0 + 1.0) {
-            // Check if any other lane on nx is free
+            // Check if immediately adjacent lane on nx is free (prevent wild teleporting across lanes)
             bool found_alt = false;
-            for (int alt = 0; alt < nx.lanes; ++alt) {
-                if (alt == lane) continue;
+            int alt_candidates[2] = { lane + 1, lane - 1 };
+            for (int alt : alt_candidates) {
+                if (alt < 0 || alt >= nx.lanes) continue;
                 bool alt_blocked = false;
                 for (const Vehicle &o : veh_) {
                     if (!o.active || o.link != next_idx || o.lane != alt) continue;
@@ -1365,7 +1391,6 @@ std::string Simulation::snapshot_json() const {
        << ",\"mean_delay\":" << mean_delay();
     os << ",\"merge_mode\":"; json_escape(os, merge_mode_);
     os << ",\"truck_discipline\":" << (truck_discipline_ ? "true" : "false");
-    os << ",\"signal_override\":"; json_escape(os, signal_override_);
 
     os << ",\"signals\":[";
     bool first = true;
@@ -1376,7 +1401,9 @@ std::string Simulation::snapshot_json() const {
         os << "{\"id\":"; json_escape(os, kv.first);
         os << ",\"phase\":" << s.phase << ",\"light\":";
         json_escape(os, light_name(s.light));
-        os << ",\"remaining\":" << s.remaining << ",\"elapsed\":" << s.elapsed << "}";
+        os << ",\"remaining\":" << s.remaining << ",\"elapsed\":" << s.elapsed
+           << ",\"override\":"; json_escape(os, s.override_mode);
+        os << "}";
     }
     os << "]";
 
