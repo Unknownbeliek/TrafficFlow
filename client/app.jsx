@@ -4,7 +4,7 @@ import './styles.css';
 import Canvas from './canvas.jsx';
 import {
   TopBar, ObjectTree, Inspector, Telemetry, AlertsPanel,
-  DemandPanel, NumericsPanel, StatusBar,
+  DemandPanel, NumericsPanel, StatusBar, PBLDelhiPanel,
 } from './panels.jsx';
 
 const SITES = [
@@ -103,17 +103,14 @@ function useTrackflow() {
 function useClock(send, running, speed, paused) {
   useEffect(() => {
     if (!running || paused) return;
-    let raf = 0;
     let last = performance.now();
-    const loop = (now) => {
+    const timer = setInterval(() => {
+      const now = performance.now();
       const dtWall = Math.min(0.25, (now - last) / 1000);
       last = now;
-      // 1x = 0.1 s simulated per 0.1 s of wall time, scaled by the multiplier
       send({ cmd: 'tick', seconds: dtWall * speed });
-      raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
+    }, 50);
+    return () => clearInterval(timer);
   }, [running, speed, paused]);
 }
 
@@ -127,7 +124,7 @@ function App() {
   const [selected, setSelected] = useState(null);       // { kind, id }
   const [overlay, setOverlay] = useState('speed');      // speed | density | none
   const [view, setView] = useState('satellite');        // satellite | schematic
-  const [rightTab, setRightTab] = useState('inspector');
+  const [rightTab, setRightTab] = useState('pbl');
   const [demandMode, setDemandMode] = useState('surveyed');
   const [hour, setHour] = useState(9);
   const [demandMul, setDemandMul] = useState(1);
@@ -260,6 +257,7 @@ function App() {
         <div className="w-[330px] shrink-0 border-l hairline bg-[var(--color-panel)] flex flex-col">
           <div className="flex border-b hairline">
             {[
+              ['pbl', 'Delhi PBL'],
               ['inspector', 'Inspector'],
               ['demand', 'Demand'],
               ['numerics', 'Numerics'],
@@ -267,7 +265,7 @@ function App() {
               <button
                 key={k}
                 onClick={() => setRightTab(k)}
-                className={`flex-1 px-2 py-2 text-[11px] font-semibold tracking-wide uppercase border-b-2 ${
+                className={`flex-1 px-1.5 py-2 text-[10px] font-semibold tracking-wide uppercase border-b-2 ${
                   rightTab === k
                     ? 'border-[var(--color-accent)] text-[var(--color-accent)]'
                     : 'border-transparent text-[var(--color-muted)] hover:text-[var(--color-ink)]'
@@ -278,6 +276,13 @@ function App() {
             ))}
           </div>
           <div className="flex-1 min-h-0 overflow-y-auto thin-scroll">
+            {rightTab === 'pbl' && (
+              <PBLDelhiPanel
+                snap={snap}
+                send={send}
+                siteId={siteId}
+              />
+            )}
             {rightTab === 'inspector' && (
               <Inspector
                 selected={selected}

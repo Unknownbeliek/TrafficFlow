@@ -126,7 +126,14 @@ public:
     void set_hour(double h);
     double hour() const { return hour_; }
     void set_signal_plan(const std::string &signal_id, const Value &plan);
+    void set_signal_override(const std::string &mode) { signal_override_ = mode; }
+    const std::string &signal_override() const { return signal_override_; }
     void set_speed_limit(const std::string &prefix, double kmph);
+    void set_merge_mode(const std::string &m) { merge_mode_ = m; }
+    const std::string &merge_mode() const { return merge_mode_; }
+    void set_truck_discipline(bool enable) { truck_discipline_ = enable; }
+    bool truck_discipline() const { return truck_discipline_; }
+    void set_link_lanes(const std::string &prefix, int lanes);
 
     // -- state --
     double t() const { return t_; }
@@ -210,6 +217,9 @@ private:
     double demand_k_ = 1.0;
     double hour_ = 8.0;
     std::string demand_mode_ = "surveyed";
+    std::string merge_mode_ = "direct_force";  // "direct_force" (Indian reality) vs "strict_yield"
+    bool truck_discipline_ = true;
+    std::string signal_override_ = "auto";  // "auto", "all_green", "all_red", "force_0", "force_1", "force_2"
 
     std::vector<Vehicle> veh_;
     std::map<int, size_t> index_of_;   // vehicle id -> slot in veh_

@@ -16,18 +16,43 @@ vehicle glyphs, a network object tree and an attribute inspector.
 
 ## Quick start
 
-```bash
-# 1. build the engine (C++17, no dependencies)
-cd engine && make && cd ..
+All commands below must be run inside the project root folder: **`TrafficFlow`** (where `package.json` is located).
 
-# 2. regenerate the verification tables (optional, already committed)
-cd engine && ./trackflow_engine --verify --data ../site-data && cd ..
+### 1. Build the C++ Engine
 
-# 3. the web app
-npm install
-npm run build          # bundles client/ into dist/
-npm run dev            # http://localhost:5173
+**On Windows (PowerShell / Command Prompt):**
+You can compile directly with `g++` (no `make` needed):
+```powershell
+cd engine
+g++ -std=c++17 -O2 -Isrc -o trackflow_engine.exe src/main.cpp src/network.cpp src/sim.cpp src/verify.cpp
+cd ..
 ```
+*(Or if you have GNU Make installed: `cd engine && make && cd ..`)*
+
+**On Linux / macOS:**
+```bash
+cd engine && make && cd ..
+```
+
+### 2. (Optional) Run Engine Verification Suite
+```bash
+cd engine
+./trackflow_engine --verify --data ../site-data   # On Windows: .\trackflow_engine.exe --verify --data ..\site-data
+cd ..
+```
+
+### 3. Install Web Dependencies & Start
+
+From the **`TrafficFlow`** root directory:
+```bash
+npm install        # installs React, Express, Vite, Tailwind CSS
+npm run build      # compiles frontend into dist/
+npm run dev        # starts the bridge and web server on http://localhost:5173
+```
+
+Now open **http://localhost:5173** in your web browser!
+
+> **How it works:** `npm run dev` starts the Node bridge (`server/index.js`), which automatically spawns the C++ engine (`trackflow_engine`) in the background and relays simulation data to the React UI via WebSockets.
 
 The bridge spawns the engine itself, so nothing else needs starting. If the engine
 binary is missing, `/api/health` reports `engine_binary: false` and the UI shows

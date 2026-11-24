@@ -38,6 +38,11 @@ def arc(c, r, a0, a1):
             "a0": round(float(a0), R), "a1": round(float(a1), R)}
 
 
+def bezier(p0, p1, p2, p3):
+    """Cubic Bézier curve from p0 to p3 with control points p1 and p2."""
+    return {"type": "bezier", "p0": _p(*p0), "p1": _p(*p1), "p2": _p(*p2), "p3": _p(*p3)}
+
+
 def vec(bearing_deg):
     a = math.radians(bearing_deg)
     return [math.cos(a), math.sin(a)]
@@ -89,6 +94,18 @@ def bearing(a, b):
 def prim_length(p):
     if p["type"] == "arc":
         return p["r"] * abs(math.radians(p["a1"] - p["a0"]))
+    if p["type"] == "bezier":
+        n = 16
+        h = 1.0 / n
+        def spd(t):
+            u = 1.0 - t
+            dx = 3.0*u*u*(p["p1"][0]-p["p0"][0]) + 6.0*u*t*(p["p2"][0]-p["p1"][0]) + 3.0*t*t*(p["p3"][0]-p["p2"][0])
+            dy = 3.0*u*u*(p["p1"][1]-p["p0"][1]) + 6.0*u*t*(p["p2"][1]-p["p1"][1]) + 3.0*t*t*(p["p3"][1]-p["p2"][1])
+            return math.hypot(dx, dy)
+        s = spd(0.0) + spd(1.0)
+        for i in range(1, n):
+            s += (2.0 if i % 2 == 0 else 4.0) * spd(i * h)
+        return s * (h / 3.0)
     return dist(p["a"], p["b"])
 
 
@@ -119,6 +136,17 @@ def sample(prims, step=1.0):
                 pts.append((c[0] + r * math.cos(t), c[1] + r * math.sin(t),
                             acc + L * i / n, r if sweep > 0 else -r))
             acc += L
+        elif p["type"] == "bezier":
+            p0, p1, p2, p3 = p["p0"], p["p1"], p["p2"], p["p3"]
+            L = prim_length(p)
+            n = max(4, int(math.ceil(L / step)))
+            for i in range(n + 1):
+                t = i / float(n)
+                u = 1.0 - t
+                bx = u*u*u*p0[0] + 3*u*u*t*p1[0] + 3*u*t*t*p2[0] + t*t*t*p3[0]
+                by = u*u*u*p0[1] + 3*u*u*t*p1[1] + 3*u*t*t*p2[1] + t*t*t*p3[1]
+                pts.append((bx, by, acc + L * t, None))
+            acc += L
         else:
             L = dist(p["a"], p["b"])
             n = max(1, int(math.ceil(L / step)))
@@ -140,6 +168,8 @@ def start_pt(prims):
     if p["type"] == "arc":
         a = math.radians(p["a0"])
         return [p["c"][0] + p["r"] * math.cos(a), p["c"][1] + p["r"] * math.sin(a)]
+    if p["type"] == "bezier":
+        return list(p["p0"])
     return list(p["a"])
 
 
@@ -148,6 +178,8 @@ def end_pt(prims):
     if p["type"] == "arc":
         a = math.radians(p["a1"])
         return [p["c"][0] + p["r"] * math.cos(a), p["c"][1] + p["r"] * math.sin(a)]
+    if p["type"] == "bezier":
+        return list(p["p3"])
     return list(p["b"])
 
 
@@ -158,6 +190,8 @@ def _tangent(p, at_end):
         rad = math.radians(a)
         fwd = 1.0 if p["a1"] > p["a0"] else -1.0
         return [-math.sin(rad) * fwd, math.cos(rad) * fwd]
+    if p["type"] == "bezier":
+        return unit(p["p2"], p["p3"]) if at_end else unit(p["p0"], p["p1"])
     return unit(p["a"], p["b"])
 
 

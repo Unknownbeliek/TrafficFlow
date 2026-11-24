@@ -169,6 +169,8 @@ class Net:
             "stop_line_m": round(L if stop_line_m is None else stop_line_m, 2),
             "capacity_vph": 1800 if kind != "ramp" else 1500,
             "grade": grade, "queueable": queueable, "notes": notes,
+            "layer": 1 if grade in ("flyover", "deck") or kind == "flyover" else (-1 if grade == "underpass" else 0),
+            "lane_width_m": LANE_W_DEFAULT,
         }
         if detectors:
             lk["detectors"] = build_detectors(lid, L)

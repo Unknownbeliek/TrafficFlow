@@ -208,11 +208,23 @@ int stdio_mode(const std::string &site) {
         } else if (op == "set_signal_plan") {
             sim.set_signal_plan(cmd.str("signal"), cmd["plan"]);
             emit(sim.snapshot_json());
+        } else if (op == "set_signal_override") {
+            sim.set_signal_override(cmd.str("mode", "auto"));
+            emit(sim.snapshot_json());
         } else if (op == "set_speed_multiplier") {
             sim.set_speed_multiplier(cmd.num("value", 1.0));
             emit(sim.snapshot_json());
         } else if (op == "set_speed_limit") {
             sim.set_speed_limit(cmd.str("prefix"), cmd.num("kmph", 40.0));
+            emit(sim.snapshot_json());
+        } else if (op == "set_merge_mode") {
+            sim.set_merge_mode(cmd.str("mode", "direct_force"));
+            emit(sim.snapshot_json());
+        } else if (op == "set_truck_discipline") {
+            sim.set_truck_discipline(cmd.boolean("value", true));
+            emit(sim.snapshot_json());
+        } else if (op == "set_link_lanes") {
+            sim.set_link_lanes(cmd.str("prefix"), int(cmd.num("lanes", 2.0)));
             emit(sim.snapshot_json());
         } else if (op == "set_integrator") {
             const std::string k = cmd.str("value", "rk4");

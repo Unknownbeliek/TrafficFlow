@@ -9,14 +9,21 @@ namespace {
 
 Prim read_prim(const Value &v) {
     Prim p;
-    if (v.str("type") == "arc") {
+    std::string type = v.str("type");
+    if (type == "arc") {
         p.kind = Prim::ARC;
-        p.c = Vec2(v.num("c", 0.0), 0.0);
         const Value &c = v["c"];
         p.c = Vec2(c[0].n, c[1].n);
         p.r = v.num("r", 1.0);
         p.a0 = v.num("a0", 0.0);
         p.a1 = v.num("a1", 0.0);
+    } else if (type == "bezier") {
+        p.kind = Prim::BEZIER;
+        const Value &p0 = v["p0"], &p1 = v["p1"], &p2 = v["p2"], &p3 = v["p3"];
+        p.a = Vec2(p0[0].n, p0[1].n);
+        p.p1 = Vec2(p1[0].n, p1[1].n);
+        p.p2 = Vec2(p2[0].n, p2[1].n);
+        p.b = Vec2(p3[0].n, p3[1].n);
     } else {
         p.kind = Prim::LINE;
         const Value &a = v["a"], &b = v["b"];
@@ -117,6 +124,13 @@ bool Network::load(const Value &root) {
         lk.notes = l.str("notes");
         lk.lanes = int(l.num("lanes", 1));
         lk.lane_index = int(l.num("lane_index", 0));
+        lk.lane_width_m = l.num("lane_width_m", lane_width_m);
+        std::string gr = l.str("grade", "at_grade");
+        if (l["layer"].is_num()) {
+            lk.elevation_layer = int(l.num("layer"));
+        } else {
+            lk.elevation_layer = (gr == "flyover" || gr == "deck" || lk.kind == "flyover") ? 1 : (gr == "underpass" ? -1 : 0);
+        }
         lk.length_m = l.num("length_m");
         lk.length_surveyed_m = l.num("length_surveyed_m", lk.length_m);
         lk.v0_kmph = l.num("v0_kmph", 60.0);

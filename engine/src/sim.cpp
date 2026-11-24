@@ -88,6 +88,43 @@ void Simulation::update_signals() {
         const Signal &sig = kv.second;
         if (sig.phases.empty()) continue;
         SignalState &st = sig_state_[kv.first];
+
+        if (signal_override_ == "all_green") {
+            st.phase = 0;
+            st.light = Light::GREEN;
+            st.remaining = 999.0;
+            st.elapsed = 999.0;
+            continue;
+        }
+        if (signal_override_ == "all_red") {
+            st.phase = -1;
+            st.light = Light::RED;
+            st.remaining = 999.0;
+            st.elapsed = 0.0;
+            continue;
+        }
+        if (signal_override_ == "force_0") {
+            st.phase = 0;
+            st.light = Light::GREEN;
+            st.remaining = 999.0;
+            st.elapsed = 999.0;
+            continue;
+        }
+        if (signal_override_ == "force_1") {
+            st.phase = 1;
+            st.light = Light::GREEN;
+            st.remaining = 999.0;
+            st.elapsed = 999.0;
+            continue;
+        }
+        if (signal_override_ == "force_2") {
+            st.phase = 2;
+            st.light = Light::GREEN;
+            st.remaining = 999.0;
+            st.elapsed = 999.0;
+            continue;
+        }
+
         // time into the cycle, respecting the site's offset so coordinated
         // signals feed the deck in bands rather than all turning green together
         double tt = std::fmod(t_ + sig.offset_s, sig.cycle_s);
@@ -124,12 +161,35 @@ void Simulation::update_signals() {
 
 bool Simulation::green_for(size_t link_idx, const Vehicle &) const {
     const Link &lk = net_.links[link_idx];
+    if (signal_override_ == "all_green") return true;
+    if (signal_override_ == "all_red") return false;
+
     auto node = net_.nodes.find(lk.to);
     if (node == net_.nodes.end() || node->second.signal.empty()) return true;
     auto si = net_.signals.find(node->second.signal);
     if (si == net_.signals.end()) return true;
     auto st = sig_state_.find(si->first);
     if (st == sig_state_.end()) return true;
+
+    if (signal_override_ == "force_0") {
+        for (auto &kv : lk.phases) {
+            if (kv.second == 0) return true;
+        }
+        return false;
+    }
+    if (signal_override_ == "force_1") {
+        for (auto &kv : lk.phases) {
+            if (kv.second == 1) return true;
+        }
+        return false;
+    }
+    if (signal_override_ == "force_2") {
+        for (auto &kv : lk.phases) {
+            if (kv.second == 2) return true;
+        }
+        return false;
+    }
+
     // A link with no phase map used to be treated as always-green, which let
     // ring lanes (deliberately left unphased by the builder) drive straight
     // through the signalised node at full speed while the arms were also
@@ -180,6 +240,15 @@ void Simulation::set_speed_limit(const std::string &prefix, double kmph) {
     }
 }
 
+void Simulation::set_link_lanes(const std::string &prefix, int lanes) {
+    if (lanes < 1) lanes = 1;
+    for (auto &l : net_.links) {
+        if (l.id.rfind(prefix, 0) == 0 || l.carriageway.rfind(prefix, 0) == 0) {
+            l.lanes = lanes;
+        }
+    }
+}
+
 void Simulation::set_signal_plan(const std::string &signal_id, const Value &plan) {
     auto it = net_.signals.find(signal_id);
     if (it == net_.signals.end()) return;
@@ -216,31 +285,52 @@ void Simulation::inject() {
     double scale = hf * demand_k_ * speed_k_;
     if (demand_mode_ == "manual") scale = hf * demand_k_;
 
-    // Precompute per-source-lane arrival rate (veh/s).
+    // Precompute arrival rate (veh/s) per source link, sampling demand rows
+    // proportionally and distributing vehicles across available lanes.
     for (size_t li : net_.source_links()) {
         Link &lk = net_.links[li];
         if (lk.lanes <= 0) continue;
-        // find the demand rows that start on this link
-        double vph = 0.0;
-        const DemandRow *row = nullptr;
-        double best = 0.0;
-        for (const DemandRow &d : net_.demand) {
+
+        struct RouteChoice {
+            size_t demand_idx;
+            const DemandRow *row;
+            double weight;
+        };
+        std::vector<RouteChoice> choices;
+        double total_vph = 0.0;
+
+        for (size_t di = 0; di < net_.demand.size(); ++di) {
+            const DemandRow &d = net_.demand[di];
             if (d.route.empty() || d.route.front() != lk.id) continue;
             double appr = 1.0;
             for (const Approach &a : net_.approaches) {
                 if (a.id == d.approach || a.name == d.approach) { appr = a.demand_scale; break; }
             }
-            vph += d.flow_vph_peak * appr;
-            if (d.flow_vph_peak > best) { best = d.flow_vph_peak; row = &d; }
+            double eff = d.flow_vph_peak * appr;
+            if (eff > 0.0) {
+                choices.push_back({di, &d, eff});
+                total_vph += eff;
+            }
         }
-        if (!row) continue;
-        if (vph <= 0.0) continue;
-        double rate = vph * scale / 3600.0;  // veh per sim-second for the whole link
-        // Poisson arrivals per lane
-        std::poisson_distribution<int> poisson(rate * p_.dt / std::max(1, lk.lanes));
+        if (choices.empty() || total_vph <= 0.0) continue;
+
+        double rate = total_vph * scale / 3600.0;  // veh per sim-second for the whole link
+        // Total Poisson arrivals for this link during timestep dt
+        std::poisson_distribution<int> poisson(rate * p_.dt);
         int n = poisson(rng_);
         for (int k = 0; k < n; ++k) {
-            // pick the class from the row's mix
+            // Pick route choice proportionally to flow
+            double u_r = std::uniform_real_distribution<double>(0.0, total_vph)(rng_);
+            const RouteChoice *chosen = &choices.front();
+            double acc_r = 0.0;
+            for (const auto &c : choices) {
+                acc_r += c.weight;
+                if (u_r <= acc_r) { chosen = &c; break; }
+            }
+            const DemandRow *row = chosen->row;
+            size_t row_idx = chosen->demand_idx;
+
+            // Pick class from chosen row's mix
             double u = std::uniform_real_distribution<double>(0.0, 1.0)(rng_);
             std::string cls = "car";
             double acc = 0.0;
@@ -252,23 +342,42 @@ void Simulation::inject() {
             if (vcit == net_.vehicle_classes.end()) cls = "car";
             const VehicleClass &vc = net_.vehicle_classes[cls];
 
-            int lane = std::uniform_int_distribution<int>(0, lk.lanes - 1)(rng_);
-            // admission control: is there room at the lane head?  The new
-            // vehicle is placed with its nose at s = 0, so its body occupies
-            // [0, length].  Every existing vehicle on this lane must be far
-            // enough ahead that the new one does not materialise inside it.
-            double head_s = lk.length_m + 1e9;
-            bool blocked = false;
-            for (const Vehicle &o : veh_) {
-                if (!o.active || o.link != li || o.lane != lane) continue;
-                // how much clear space is there between the entry and the tail
-                // of the nearest vehicle ahead?
-                double room = o.s - vc.length;
-                if (room < p_.s0 + 1.0) { blocked = true; break; }
-                head_s = std::min(head_s, o.s);
+            // Determine lane availability at entrance (s = 0)
+            // A lane is available if the nearest vehicle on it has clear room >= vc.length + p_.s0 + 1.0
+            std::vector<int> available_lanes;
+            for (int lane_i = 0; lane_i < lk.lanes; ++lane_i) {
+                bool lane_clear = true;
+                for (const Vehicle &o : veh_) {
+                    if (!o.active || o.link != li || o.lane != lane_i) continue;
+                    double room = o.s - o.length;
+                    if (room < p_.s0 + 1.0 || o.s < vc.length + p_.s0 + 1.0) {
+                        lane_clear = false;
+                        break;
+                    }
+                }
+                if (lane_clear) available_lanes.push_back(lane_i);
             }
-            if (blocked) continue;
-            (void)head_s;
+            if (available_lanes.empty()) continue;  // all lanes at source head are full
+
+            int lane = available_lanes.front();
+            bool is_heavy = (cls == "truck" || cls == "bus" || cls == "lcv");
+            if (truck_discipline_ && is_heavy) {
+                // Heavy vehicles prefer the rightmost / kerb lane (lk.lanes - 1)
+                int preferred = lk.lanes - 1;
+                bool found = false;
+                for (int l_cand : available_lanes) {
+                    if (l_cand == preferred) { lane = l_cand; found = true; break; }
+                }
+                if (!found) {
+                    int second_pref = std::max(0, lk.lanes - 2);
+                    for (int l_cand : available_lanes) {
+                        if (l_cand == second_pref) { lane = l_cand; found = true; break; }
+                    }
+                }
+            } else {
+                int idx = std::uniform_int_distribution<int>(0, int(available_lanes.size()) - 1)(rng_);
+                lane = available_lanes[idx];
+            }
 
             Vehicle v;
             v.id = int(next_id_++);
@@ -286,7 +395,7 @@ void Simulation::inject() {
             v.desired_v = std::min(v.desired_v, lk.v0_mps() * 1.05);
             v.desired_v = std::min(v.desired_v, lk.v_limit_mps() * 1.12);
             v.enter_time = t_;
-            v.demand_row = int(row - &net_.demand[0]);
+            v.demand_row = int(row_idx);
             v.route_step = 0;
             // the route must start on this link
             if (row->route.empty() || row->route.front() != lk.id) continue;
@@ -409,15 +518,17 @@ double Simulation::accel_for(const Vehicle &v, double s, double speed, double /*
             // cannot deadlock: anything already past its own stop line never
             // runs this check, so the box always drains.
             if (!must_stop) {
-                for (const Vehicle &o : veh_) {
-                    if (!o.active || o.link == v.link) continue;
-                    const Link &ol = net_.links[o.link];
-                    if (ol.to != lk.to) continue;                      // same node only
-                    if (ol.stop_line_m <= 0.0) continue;               // inside-box connector
-                    if (o.s <= ol.stop_line_m + 0.5) continue;         // not in the box yet
-                    if (o.s > ol.length_m) continue;
-                    must_stop = true;
-                    break;
+                if (signal_override_ != "all_green") {
+                    for (const Vehicle &o : veh_) {
+                        if (!o.active || o.link == v.link) continue;
+                        const Link &ol = net_.links[o.link];
+                        if (ol.to != lk.to) continue;                      // same node only
+                        if (ol.stop_line_m <= 0.0) continue;               // inside-box connector
+                        if (o.s <= ol.stop_line_m + 0.5) continue;         // not in the box yet
+                        if (o.s > ol.length_m) continue;
+                        must_stop = true;
+                        break;
+                    }
                 }
             }
             if (must_stop) {
@@ -480,11 +591,18 @@ double Simulation::accel_for(const Vehicle &v, double s, double speed, double /*
                     }
                 }
                 // time for us to reach the box at current speed
+                double gap_req = self.yield_gap_s;
+                if (merge_mode_ == "direct_force") {
+                    // Indian traffic reality: no auxiliary lanes, merging directly into active traffic
+                    gap_req = std::max(0.7, self.yield_gap_s * 0.45);
+                }
                 double t_us = d_stop / std::max(speed, 0.5);
-                if (soonest < t_us + self.yield_gap_s) {
+                if (soonest < t_us + gap_req) {
                     double need = speed * speed / (2.0 * std::max(d_stop, 0.15));
                     a_yield = -p_.b_comfort * clamp(need, 0.0, 1.0);
-                    if (d_stop < 0.6 && speed < 0.4) a_yield = -3.0 * p_.b_comfort;
+                    if (d_stop < 0.6 && speed < 0.4) {
+                        a_yield = (merge_mode_ == "direct_force") ? 0.2 : (-3.0 * p_.b_comfort);
+                    }
                     // immediate clearance rule: never enter the box while a
                     // conflicting vehicle is still inside it
                     bool box_occupied = false;
@@ -493,6 +611,8 @@ double Simulation::accel_for(const Vehicle &v, double s, double speed, double /*
                         if (ci == net_.link_index.end()) continue;
                         size_t cidx = ci->second;
                         const Link &cl = net_.links[cidx];
+                        // Physically isolate non-intersecting vertical elevation layers
+                        if (self.elevation_layer != cl.elevation_layer && self.kind != "ramp" && cl.kind != "ramp") continue;
                         for (const Vehicle &o : veh_) {
                             if (!o.active || o.link != cidx) continue;
                             if (cl.length_m - o.s < 12.0) { box_occupied = true; break; }
@@ -531,6 +651,17 @@ void Simulation::integrate(double dt) {
         v.a = accel(y.s, y.v, t_);
         v.s = r.y.s;
         v.v = std::max(0.0, r.y.v);
+        // Hold at stop line when entering a signalised node on RED
+        const Link &lk_v = net_.links[v.link];
+        if (lk_v.stop_line_m > 0.0 && lk_v.stop_line_m <= lk_v.length_m + 1e-6) {
+            auto ndIt = net_.nodes.find(lk_v.to);
+            if (ndIt != net_.nodes.end() && !ndIt->second.signal.empty()) {
+                if (!green_for(v.link, v) && v.s > lk_v.stop_line_m) {
+                    v.s = lk_v.stop_line_m;
+                    v.v = 0.0;
+                }
+            }
+        }
         // never let a vehicle pass its leader by integration error.  Clamp in
         // the right order: cap at the leader's tail FIRST, then floor at zero.
         // (Capping after flooring let max_s < 0 push s negative, which put a
@@ -565,6 +696,14 @@ void Simulation::transfer() {
         const Link &lk = net_.links[v.link];
         if (v.s < lk.length_m) continue;
         any = true;
+
+        // Signal check: hold at stop line on RED when entering a signalized junction
+        if (lk.stop_line_m > 0.0 && !green_for(v.link, v)) {
+            v.s = std::min(v.s, lk.stop_line_m);
+            v.v = 0.0;
+            continue;
+        }
+
         // find this vehicle's demand row and step along its route
         const DemandRow *row = v.demand_row >= 0 && v.demand_row < int(net_.demand.size())
                                    ? &net_.demand[v.demand_row] : nullptr;
@@ -590,16 +729,21 @@ void Simulation::transfer() {
         }
         if (next_idx == size_t(-1)) { arrive(v); continue; }
         const Link &nx = net_.links[next_idx];
-        // sink: the vehicle leaves the network
-        auto nd = net_.nodes.find(nx.to);
-        bool is_sink = nd != net_.nodes.end() && nd->second.type == "sink";
-        // is there room on the downstream lane?  The vehicle lands at
-        // s = overflow, so it needs a clear body-length plus a standstill gap
-        // in front of the nearest vehicle already on that lane.
-        int lane = std::min(v.lane, std::max(0, nx.lanes - 1));
+
+        // determine target lane on downstream link
+        int lane = v.lane;
+        if (lk.lanes == 6 && nx.lanes == 3 && (want.find("FARIDABAD") != std::string::npos || nx.id.find("FARIDABAD") != std::string::npos)) {
+            // Delhi 6-lane approach: right lanes (3, 4, 5) cleanly map to Faridabad lanes (0, 1, 2)
+            lane = std::max(0, std::min(nx.lanes - 1, v.lane - 3));
+        } else if (lk.kind == "ramp" || lk.kind == "slip") {
+            // Merging ramps smoothly join the outer / kerb lane rather than cutting into fast lane
+            lane = std::max(0, nx.lanes - 1);
+        } else {
+            lane = std::min(v.lane, std::max(0, nx.lanes - 1));
+        }
+
+        // check if target lane or any alternate lane on nx has room
         double tail = 1e9;
-        // also refuse a different lane on the same link if the target lane is
-        // full -- checking only `lane` would let us re-enter an occupied one
         bool lane_blocked = false;
         for (const Vehicle &o : veh_) {
             if (!o.active || o.link != next_idx) continue;
@@ -607,18 +751,31 @@ void Simulation::transfer() {
             tail = std::min(tail, o.s);
             if (o.s < v.length + p_.s0 + 1.0) lane_blocked = true;
         }
-        if (!is_sink && lane_blocked) {
-            // hold at the stop line (or at the end of the link) until the
-            // downstream lane has room
-            v.s = lk.stop_line_m > 0.0 ? std::min(lk.length_m, std::max(v.s, lk.stop_line_m))
-                                       : lk.length_m;
-            continue;
+
+        if (lane_blocked || tail < v.length + p_.s0 + 1.0) {
+            // Check if any other lane on nx is free
+            bool found_alt = false;
+            for (int alt = 0; alt < nx.lanes; ++alt) {
+                if (alt == lane) continue;
+                bool alt_blocked = false;
+                for (const Vehicle &o : veh_) {
+                    if (!o.active || o.link != next_idx || o.lane != alt) continue;
+                    if (o.s < v.length + p_.s0 + 1.0) { alt_blocked = true; break; }
+                }
+                if (!alt_blocked) {
+                    lane = alt;
+                    found_alt = true;
+                    break;
+                }
+            }
+            if (!found_alt) {
+                // hold at the stop line (or at the end of the link) until the downstream lane has room
+                v.s = lk.stop_line_m > 0.0 ? std::min(lk.length_m, std::max(v.s, lk.stop_line_m))
+                                           : lk.length_m;
+                continue;
+            }
         }
-        if (!is_sink && tail < v.length + p_.s0 + 1.0) {
-            v.s = lk.length_m;  // hold at the stop line until the lane frees up
-            continue;
-        }
-        if (is_sink) { arrive(v); continue; }
+
         double overflow = v.s - lk.length_m;
         v.link = next_idx;
         v.lane = lane;
@@ -1206,6 +1363,9 @@ std::string Simulation::snapshot_json() const {
        << ",\"departed\":" << departed_
        << ",\"arrived\":" << arrived_
        << ",\"mean_delay\":" << mean_delay();
+    os << ",\"merge_mode\":"; json_escape(os, merge_mode_);
+    os << ",\"truck_discipline\":" << (truck_discipline_ ? "true" : "false");
+    os << ",\"signal_override\":"; json_escape(os, signal_override_);
 
     os << ",\"signals\":[";
     bool first = true;
@@ -1225,18 +1385,21 @@ std::string Simulation::snapshot_json() const {
     for (const Vehicle &v : veh_) {
         if (!v.active) continue;
         const Link &lk = net_.links[v.link];
-        Vec2 p, d;
-        lk.geom.sample(v.s, &p, &d);
+        Vec2 d;
+        Vec2 p = lk.geom.sample_lane(v.s, v.lane, lk.lanes, lk.lane_width_m, &d);
+        if (std::isnan(p.x) || std::isnan(p.y)) continue;
+        double hdg = (std::isnan(d.x) || std::isnan(d.y)) ? 0.0 : std::atan2(d.y, d.x) * 180.0 / M_PI;
         if (!first) os << ",";
         first = false;
         os << "{\"id\":" << v.id << ",\"cls\":";
         json_escape(os, v.cls);
         os << ",\"link\":"; json_escape(os, lk.id);
         os << ",\"lane\":" << v.lane;
+        os << ",\"layer\":" << lk.elevation_layer;
         os << ",\"s\":" << v.s << ",\"v\":" << v.v << ",\"a\":" << v.a;
         os << ",\"gap\":" << (v.gap > 1e6 ? -1.0 : v.gap);
         os << ",\"x\":" << p.x << ",\"y\":" << p.y
-           << ",\"hdg\":" << std::atan2(d.y, d.x) * 180.0 / M_PI;
+           << ",\"hdg\":" << hdg;
         os << "}";
     }
     os << "]";

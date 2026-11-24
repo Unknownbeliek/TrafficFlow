@@ -57,6 +57,8 @@ struct Approach {
 struct Link {
     std::string id, name, kind, carriageway, from, to, approach, heat_group, notes;
     int lanes = 1, lane_index = 0;
+    double lane_width_m = 3.5;
+    int elevation_layer = 0;  // -1: underpass, 0: at-grade, 1: flyover / elevated ramp
     double length_m = 0.0, length_surveyed_m = 0.0;
     double v0_kmph = 60.0, speed_limit_kmph = 60.0;
     double stop_line_m = 0.0, capacity_vph = 1800.0;

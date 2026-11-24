@@ -4,6 +4,12 @@
 //   ./trackflow_engine --verify
 // writes verification/*.csv and prints a summary table.
 #include <cmath>
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+#ifdef _WIN32
+#include <direct.h>
+#endif
 #include <cstdio>
 #include <fstream>
 #include <functional>

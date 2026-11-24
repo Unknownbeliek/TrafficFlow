@@ -22,9 +22,9 @@ The satellite capture `../ITO.png` is North-up with a
 20 m Google Maps scale bar. Network geometry is authored in
 metres in a local frame, then placed on the image with
 
-    m_per_px    = 0.61
-    origin_px   = [960.0, 536.0]      (local (0,0) lands on this pixel)
-    rotation    = 0.0 deg
+    m_per_px    = 0.62
+    origin_px   = [1047.5, 542.5]      (local (0,0) lands on this pixel)
+    rotation    = 12.0 deg
 
 so `length_m × (1 / m_per_px)` is the drawn length in image pixels and every surveyed
 length in `calibration.json` is comparable to it without a second scale factor.

@@ -775,3 +775,138 @@ export function StatusBar({ snap, site, connected, siteMeta }) {
     </div>
   );
 }
+
+// ---------------------------------------------------------------------------
+// Delhi-NCR Bottleneck PBL Panel
+// ---------------------------------------------------------------------------
+export function PBLDelhiPanel({ snap, send, siteId }) {
+  const [deckLanes, setDeckLanes] = useState(2);
+  const mergeMode = snap?.merge_mode || 'direct_force';
+  const truckDiscipline = snap?.truck_discipline ?? true;
+
+  const setMerge = (mode) => send({ cmd: 'set_merge_mode', mode });
+  const setTrucks = (val) => send({ cmd: 'set_truck_discipline', value: val });
+  const toggleDeck = (n) => {
+    setDeckLanes(n);
+    send({ cmd: 'set_link_lanes', prefix: 'M3', lanes: n });
+  };
+
+  const vph = snap?.arrived != null && snap?.t > 1 ? ((snap.arrived / snap.t) * 3600).toFixed(0) : '—';
+  const standstills = (snap?.alerts || []).filter((a) => a.kind === 'standstill').length;
+
+  return (
+    <div className="space-y-1">
+      <Section title="Delhi Traffic Engineering Context">
+        <div className="p-2 rounded bg-sky-500/10 border border-sky-500/20 text-[10px] text-sky-200 leading-relaxed mb-2">
+          <strong>Indian Road Reality:</strong> In India, expressways and flyover ramps merge <em>directly into existing active traffic lanes</em> without separate 300m acceleration lanes. Ramp traffic must force-merge directly into oncoming high-speed vehicles.
+        </div>
+      </Section>
+
+      <Section title="Merge Friction Model">
+        <div className="grid grid-cols-2 gap-1 mb-1.5">
+          <button
+            onClick={() => setMerge('direct_force')}
+            className={`px-2 py-1.5 rounded-sm border text-[10px] text-left leading-tight ${
+              mergeMode === 'direct_force'
+                ? 'border-[var(--color-accent)] text-[var(--color-accent)] bg-sky-500/10'
+                : 'border-[var(--color-hair)] text-[var(--color-muted)]'
+            }`}
+          >
+            <div className="font-semibold">Direct Force Merge</div>
+            <div className="text-[9px] opacity-75 mt-0.5">Indian Reality (Aggressive nose-in)</div>
+          </button>
+          <button
+            onClick={() => setMerge('strict_yield')}
+            className={`px-2 py-1.5 rounded-sm border text-[10px] text-left leading-tight ${
+              mergeMode === 'strict_yield'
+                ? 'border-[var(--color-accent)] text-[var(--color-accent)] bg-sky-500/10'
+                : 'border-[var(--color-hair)] text-[var(--color-muted)]'
+            }`}
+          >
+            <div className="font-semibold">Polite Gap Yield</div>
+            <div className="text-[9px] opacity-75 mt-0.5">Idealized (Waits for wide gap)</div>
+          </button>
+        </div>
+        <div className="text-[9px] text-[var(--color-muted)] leading-snug">
+          {mergeMode === 'direct_force'
+            ? 'Merging vehicles push into the ongoing stream, forcing mainline traffic behind to brake and propagating backward shockwaves.'
+            : 'Vehicles remain stopped at ramp noses until large headways appear on the mainline.'}
+        </div>
+      </Section>
+
+      <Section title="Heavy Vehicle (Truck/Bus) Discipline">
+        <div className="grid grid-cols-2 gap-1 mb-1.5">
+          <button
+            onClick={() => setTrucks(true)}
+            className={`px-2 py-1.5 rounded-sm border text-[10px] text-left leading-tight ${
+              truckDiscipline
+                ? 'border-emerald-500/50 text-emerald-300 bg-emerald-500/10'
+                : 'border-[var(--color-hair)] text-[var(--color-muted)]'
+            }`}
+          >
+            <div className="font-semibold">Kerb Lane Enforced</div>
+            <div className="text-[9px] opacity-75 mt-0.5">IRC Heavy Vehicle Rule</div>
+          </button>
+          <button
+            onClick={() => setTrucks(false)}
+            className={`px-2 py-1.5 rounded-sm border text-[10px] text-left leading-tight ${
+              !truckDiscipline
+                ? 'border-amber-500/50 text-amber-300 bg-amber-500/10'
+                : 'border-[var(--color-hair)] text-[var(--color-muted)]'
+            }`}
+          >
+            <div className="font-semibold">Mixed Lane Straddling</div>
+            <div className="text-[9px] opacity-75 mt-0.5">Chaotic Multi-Lane Entry</div>
+          </button>
+        </div>
+        <div className="text-[9px] text-[var(--color-muted)] leading-snug">
+          {truckDiscipline
+            ? 'Slow commercial vehicles (3.0 PCU) keep to the slow outer lane, keeping overtaking lanes free for passenger cars.'
+            : 'Slow trucks spawn across all lanes, blocking fast passenger traffic and triggering multi-lane capacity drops.'}
+        </div>
+      </Section>
+
+      {siteId === 'kalindi_kunj' && (
+        <Section title="What-If Experiment: Bridge Deck Widening">
+          <div className="grid grid-cols-2 gap-1 mb-1.5">
+            <button
+              onClick={() => toggleDeck(2)}
+              className={`px-2 py-1.5 rounded-sm border text-[10px] text-left leading-tight ${
+                deckLanes === 2
+                  ? 'border-red-500/50 text-red-300 bg-red-500/10'
+                  : 'border-[var(--color-hair)] text-[var(--color-muted)]'
+              }`}
+            >
+              <div className="font-semibold">2-Lane Bridge</div>
+              <div className="text-[9px] opacity-75 mt-0.5">Existing Bottleneck Deck</div>
+            </button>
+            <button
+              onClick={() => toggleDeck(3)}
+              className={`px-2 py-1.5 rounded-sm border text-[10px] text-left leading-tight ${
+                deckLanes === 3
+                  ? 'border-emerald-500/50 text-emerald-300 bg-emerald-500/10'
+                  : 'border-[var(--color-hair)] text-[var(--color-muted)]'
+              }`}
+            >
+              <div className="font-semibold">3-Lane Widening</div>
+              <div className="text-[9px] opacity-75 mt-0.5">+50% Bridge Capacity</div>
+            </button>
+          </div>
+          <div className="text-[9px] text-[var(--color-muted)] leading-snug">
+            {deckLanes === 2
+              ? '3-to-2 lane demerging compression causes queue spillback to the Okhla Head junction.'
+              : 'Adds a 3rd active lane on the Yamuna deck links, matching the 3 approach lanes.'}
+          </div>
+        </Section>
+      )}
+
+      <Section title="Live PBL Bottleneck Metrics">
+        <Row k="Mean Delay per Vehicle" v={`${fmt(snap?.mean_delay, 2)} s`} tone={snap?.mean_delay > 15 ? '#ef4444' : '#34d399'} />
+        <Row k="Corridor Throughput" v={`${vph} veh/h`} />
+        <Row k="Standstill Gridlock Events" v={standstills} tone={standstills > 0 ? '#f59e0b' : '#38bdf8'} />
+        <Row k="Active Network Inflow" v={`${snap?.active ?? 0} veh`} />
+        <Row k="Departed (Completed Journeys)" v={(snap?.arrived ?? 0).toLocaleString()} />
+      </Section>
+    </div>
+  );
+}

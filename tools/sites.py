@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import math
 
-from geo import (LANE_W_DEFAULT, Pen, add, ang_of, arc, bearing, dist, end_dir,
+from geo import (LANE_W_DEFAULT, Pen, add, ang_of, arc, bearing, bezier, dist, end_dir,
                  end_pt, left_normal, line, mul, offset, path_length, reverse_path,
                  start_dir, start_pt, sub, unit, vec, right_normal)
 from network import (DEFAULT_MIX, MIX_ARTERIAL, MIX_COMMERCIAL, MIX_FREIGHT,
@@ -414,12 +414,12 @@ def heal_lane_gains(net, *, max_skip=3.6):
 # category chips occupy the top ~56 px of every screenshot, and the CP capture
 # also carries the Windows taskbar along the bottom.
 IMAGERY = {
-    "kalindi_kunj":    {"m_per_px": 1.0,    "origin_px": [836.0, 600.0],   "rotation_deg": 30.0,
-                        "scale_bar_m": 50, "view": [0, 56, 1920, 1024],
-                        "bearing_note": "measured at the bridge junction"},
-    "ito":             {"m_per_px": 0.61,   "origin_px": [960.0, 536.0],   "rotation_deg": 0.0,
+    "kalindi_kunj":    {"m_per_px": 0.60,    "origin_px": [960.0, 496.0],   "rotation_deg": 0.0,
+                        "scale_bar_m": 50, "view": [0, 0, 1919, 993],
+                        "bearing_note": "measured directly on section_img/KalindiKunj_apple.png"},
+    "ito":             {"m_per_px": 0.62,   "origin_px": [1047.5, 542.5],  "rotation_deg": 12.0,
                         "scale_bar_m": 20, "view": [0, 56, 1920, 1024],
-                        "bearing_note": "Ring Road runs horizontally in the image"},
+                        "bearing_note": "Vikas Marg aligned through ITO Chowk"},
     "gaur_city":       {"m_per_px": 0.2804, "origin_px": [1125.6, 448.8],  "rotation_deg": -16.4,
                         "scale_bar_m": 50, "view": [0, 56, 1920, 1021],
                         "bearing_note": "fitted to the Char Murti roundabout"},
@@ -430,7 +430,7 @@ IMAGERY = {
                         "ground_m_per_px": 1.7291,
                         "ground_note": "Outer Circle ring road measured on the capture",
                         "bearing_note": "the concentric rings are centred on this pixel"},
-    "botanical_okhla": {"m_per_px": 0.8484, "origin_px": [1023.5, 562.2],  "rotation_deg": 42.3,
+    "botanical_okhla": {"m_per_px": 0.8484, "origin_px": [910.0, 522.0],   "rotation_deg": -6.0,
                         "scale_bar_m": 50, "view": [0, 56, 1920, 1024],
                         "bearing_note": "local +x follows the DND mainline"},
 }
@@ -442,188 +442,11 @@ def _imagery(site_id):
 
 
 # ==========================================================================
+# 1. Kalindi Kunj bridge (linear bottleneck + heavy-vehicle lane blocking)
+# ==========================================================================
 def build_kalindi():
-    net = Net(
-        site={"id": "kalindi_kunj", "name": "Kalindi Kunj Bridge",
-              "kind": "river_bridge_bottleneck", "image": "section_img/KalindiKunj.png",
-              "survey": "DLTC/TIITYS turning-movement counts, weekday AM/PM peak, "
-                        "KalindiKunj + Okhla Head approach video surveys",
-              "summary": "Two-way Yamuna crossing with a three-to-two lane reduction at each "
-                         "portal; the kerb lane is dropped on the deck, so a slow heavy vehicle "
-                         "blocks an entire approach and pushes the queue back across the "
-                         "signalised junction at Okhla Head."},
-        imagery=_imagery("kalindi_kunj"),
-        display={"px_per_m": 2.35, "origin_px": [960, 540], "rotation_deg": 41.0},
-    )
-    # nodes
-    net.signal("S.KW", "Okhla Head (west approach)", [
-        {"name": "Bridge through", "green": 52, "amber": 4, "all_red": 3},
-        {"name": "Cross road", "green": 20, "amber": 4, "all_red": 3},
-    ], offset_s=0.0, coordinator="S.KE", notes="Right turns released on mainline phase")
-    net.signal("S.KE", "Film City chowk (east approach)", [
-        {"name": "Bridge through", "green": 46, "amber": 4, "all_red": 3},
-        {"name": "Expressway slip", "green": 24, "amber": 4, "all_red": 3},
-    ], offset_s=41.0, coordinator="S.KW", notes="Offset 41 s to feed the deck in bands")
-
-    for nid, xy, sig, nm in (("JW", [-430, 0], "S.KW", "Okhha Head chowk"),
-                             ("JE", [430, 0], "S.KE", "Film City chowk")):
-        net.signal_node(nid, xy, sig, nm)
-    net.priority_node("PW", [-161, 5.5], "West portal · kerb lane drop")
-    net.priority_node("PE", [161, -5.5], "East portal · kerb lane drop")
-
-    y3 = 2.0 + 3 * W / 2.0            # 3-lane carriageway centre (right of travel)
-    y2 = 2.0 + 2 * W / 2.0            # 2-lane deck carriageway centre
-
-    def eb(pid, x0, x1, n, y, kind, **kw):
-        return corridor(net, pid=pid, name=kw.pop("name", pid), path=[line([x0, y], [x1, y])],
-                        n_lanes=n, frm=kw.pop("frm", f"{pid}.a"), to=kw.pop("to", f"{pid}.b"),
-                        kind=kind, v0=70, limit=70, mix=MIX_ARTERIAL, heat="Bridge deck (Noida bound)",
-                        approach=f"AP.{pid}", **kw)
-
-    def wb(pid, x0, x1, n, y, kind, **kw):
-        return corridor(net, pid=pid, name=kw.pop("name", pid), path=[line([x0, -y], [x1, -y])],
-                        n_lanes=n, frm=kw.pop("frm", f"{pid}.a"), to=kw.pop("to", f"{pid}.b"),
-                        kind=kind, v0=70, limit=70, mix=MIX_ARTERIAL, heat="Bridge deck (Delhi bound)",
-                        approach=f"AP.{pid}", **kw)
-
-    # ---- eastbound (Delhi -> Noida), +y side
-    K1a = eb("M1a", -700, -442, 3, y3, "approach", name="Mathura Rd approach (EB)", to="JW")
-    K2a = eb("M2a", -418, -168, 3, y3, "approach", name="West deck approach (EB)",
-             frm="JW.x0", to="PW")
-    K3a = eb("M3a", -150, 150, 2, y2, "bridge", name="Yamuna bridge deck (EB)",
-             frm="PW", to="PE", grade="bridge", queueable=False)
-    K4a = eb("M4a", 168, 418, 3, y3, "exit", name="East deck approach (WB bound)",
-             frm="PE", to="JE")
-    K5a = eb("M5a", 442, 700, 3, y3, "exit", name="Noida-GN expressway (EB)",
-             frm="JE.x0", to="M5a.b")
-    # ---- westbound
-    K1b = wb("M1b", 700, 442, 3, y3, "approach", name="Expressway approach (WB)",
-             frm="M1b.a", to="JE")   # east-bound portal feeds the westbound deck
-    K2b = wb("M2b", 418, 168, 3, y3, "approach", name="East deck approach (WB)",
-             frm="JE.x180", to="PE")
-    K3b = wb("M3b", 150, -150, 2, y2, "bridge", name="Yamuna bridge deck (WB)",
-             frm="PE", to="PW", grade="bridge", queueable=False)
-    K4b = wb("M4b", -168, -418, 3, y3, "exit", name="West deck approach (WB)",
-             frm="PW", to="JW")
-    K5b = wb("M5b", -442, -700, 3, y3, "exit", name="Mathura Rd (WB)",
-             frm="JW.x180", to="M5b.b")
-    term(net, K1a, "start", "Mathura Rd EB origin")
-    term(net, K1b, "start", "Expressway WB origin")
-    term(net, K5a, "end", "Noida destination")
-    term(net, K5b, "end", "Okhla Head destination")
-
-    # ---- cross roads
-    A_W_N = arm(net, J="JW", name="Okhla Head Rd north", bearing_out=270, n_in=1, n_out=1,
-                len_in=230, len_out=230, v0=50, limit=50, mix=MIX_COMMERCIAL,
-                pid_in="JW.inN", pid_out="JW.outN", median=2.0,
-                heat="Okhla Head cross road")
-    A_W_S = arm(net, J="JW", name="Vijay Marg south", bearing_out=90, n_in=1, n_out=1,
-                len_in=230, len_out=230, v0=50, limit=50, mix=MIX_HIGH_2W,
-                pid_in="JW.inS", pid_out="JW.outS", median=2.0,
-                heat="Okhla Head cross road")
-    A_E_N = arm(net, J="JE", name="Sector 18A link road", bearing_out=270, n_in=1, n_out=1,
-                len_in=210, len_out=210, v0=50, limit=50, mix=MIX_HIGH_2W,
-                pid_in="JE.inN", pid_out="JE.outN", median=2.0, heat="Film City link road")
-    A_E_S = arm(net, J="JE", name="Bindapur road", bearing_out=90, n_in=1, n_out=1,
-                len_in=210, len_out=210, v0=50, limit=50, mix=MIX_FREIGHT,
-                pid_in="JE.inS", pid_out="JE.outS", median=2.0, heat="Film City link road")
-
-    # mainline arms need exit nodes; create them explicitly
-    net.node("JW.x0", [-418, y3], "junction", name="Okhla Head · offside slip")
-    net.node("JW.x180", [-418, -y3], "junction", name="Okhla Head · offside slip (WB)")
-    net.node("JE.x0", [418, y3], "junction", name="Film City · offside slip (WB)")
-    net.node("JE.x180", [418, -y3], "junction", name="Film City · offside slip (EB)")
-
-    # ---- wiring
-    # India drives on the left, so the nearside (left) turn is the free one and the
-    # offside (right) turn needs its own stage.
-    ph_main = {"through": 0, "left": None, "right": 1}
-    ph_cross = {"through": 1, "left": None, "right": 0}
-    wt_main = {"through": 0.79, "left": 0.14, "right": 0.07}
-    wt_cross = {"through": 0.5, "left": 0.32, "right": 0.18}
-
-    eb_in = anchors(net, K1a, "end")
-    wb_in = anchors(net, K4b, "end")
-    jw_arms = [{"a_out": anchors(net, K2a, "start"), "pid_in": "JW.inN", "a_in": eb_in,
-                "ex": "JW.x0"},
-               {"a_out": anchors(net, K5b, "start"), "pid_in": "JW.inS", "a_in": wb_in,
-                "ex": "JW.x180"}]
-    all_out_w = (anchors(net, K2a, "start") + anchors(net, K5b, "start")
-                 + A_W_N["a_out"] + A_W_S["a_out"])
-    wire_junction(net, node_id="JW", info_in=eb_in, info_out=all_out_w,
-                  phases=ph_main, weights=wt_main, limit=35)
-    wire_junction(net, node_id="JW", info_in=wb_in, info_out=all_out_w,
-                  phases=ph_main, weights=wt_main, limit=35)
-    wire_junction(net, node_id="JW", info_in=A_W_N["a_in"], info_out=all_out_w,
-                  phases=ph_cross, weights=wt_cross, limit=30)
-    wire_junction(net, node_id="JW", info_in=A_W_S["a_in"], info_out=all_out_w,
-                  phases=ph_cross, weights=wt_cross, limit=30)
-
-    eb_in_e = anchors(net, K4a, "end")
-    wb_in_e = anchors(net, K1b, "end")
-    all_out_e = (anchors(net, K5a, "start") + anchors(net, K2b, "start")
-                 + A_E_N["a_out"] + A_E_S["a_out"])
-    wire_junction(net, node_id="JE", info_in=eb_in_e, info_out=all_out_e,
-                  phases=ph_main, weights={"through": 0.78, "left": 0.15, "right": 0.07},
-                  limit=35)
-    wire_junction(net, node_id="JE", info_in=wb_in_e, info_out=all_out_e,
-                  phases=ph_main, weights={"through": 0.81, "left": 0.13, "right": 0.06},
-                  limit=35)
-    wire_junction(net, node_id="JE", info_in=A_E_N["a_in"], info_out=all_out_e,
-                  phases=ph_cross, weights={"through": 0.55, "left": 0.30, "right": 0.15},
-                  limit=30)
-    wire_junction(net, node_id="JE", info_in=A_E_S["a_in"], info_out=all_out_e,
-                  phases=ph_cross, weights={"through": 0.52, "left": 0.31, "right": 0.17},
-                  limit=30)
-
-    # ---- portals: three lanes squeeze to two (kerb lane drop), and back out
-    # EB: three approach lanes squeeze to two on the deck at the west portal ...
-    taper_into(net, node_id="PW", src_lids=K2a, tgt_lids=K3a)
-    # ... and spread back to three at the east portal
-    taper_into(net, node_id="PE", src_lids=K3a, tgt_lids=K4a, all_targets=True,
-               max_lat=1.4 * W)
-    # WB: lane drop entering the deck at the east portal, gain at the west portal
-    taper_into(net, node_id="PE", src_lids=K2b, tgt_lids=K3b)
-    taper_into(net, node_id="PW", src_lids=K3b, tgt_lids=K4b, all_targets=True,
-               max_lat=1.4 * W)
-    # a dropped kerb lane must find a gap in the through lane it joins
-    set_yield(net, [K2a[2]], [K3a[1]], gap_s=2.4, note="kerb lane drops at the west portal")
-    set_yield(net, [K2b[2]], [K3b[1]], gap_s=2.4, note="kerb lane drops at the east portal (WB)")
-
-    heal_lane_gains(net)
-
-    # surveyed leg inflows (veh/h, peak hour) -- as-counted
-    leg_flows = {"M1a": 4650, "M1b": 4300, "JW.inN": 780, "JW.inS": 640,
-                 "JE.inN": 690, "JE.inS": 860}
-    enumerate_demand(net, leg_flows=leg_flows)
-
-    net.scenarios.extend([
-        {"id": "truck_stall_deck", "name": "Truck straddles the deck kerb lane",
-         "note": "A laden truck at 14 km/h in the deck's kerb lane; every following "
-                 "vehicle is trapped behind it and the queue spills to the west portal.",
-         "place": [{"link": "M3a.1", "s_m": 60, "v_kmph": 14, "class": "truck", "count": 1,
-                    "hold": True}]},
-        {"id": "peak_am", "name": "AM peak, both directions", "hour": 9,
-         "multipliers": {"AP.M1a": 1.12, "AP.M1b": 1.05}},
-        {"id": "deck_incident", "name": "Debris on deck (lane blockage)",
-         "note": "Blocks the deck kerb lane for 8 minutes; watch the queue jump the portal.",
-         "place": [{"link": "M3a.1", "s_m": 120, "v_kmph": 0, "class": "lcv", "count": 1,
-                    "hold": True, "blocking": True}]},
-    ])
-    net.approach("AP.M1a", "Mathura Rd approach (EB, 3 lanes)", leg="west")
-    net.approach("AP.M1b", "Noida-GN expressway approach (WB, 3 lanes)", leg="east")
-    net.approach("AP.JW.inN", "Okhla Head Rd (north arm)", leg="north")
-    net.approach("AP.JW.inS", "Vijay Marg (south arm)", leg="south")
-    net.approach("AP.JE.inN", "Sector 18A link road (north arm)", leg="north")
-    net.approach("AP.JE.inS", "Bindapur road (south arm)", leg="south")
-    for apid, nm, leg in (("AP.M1a", "Mathura Rd approach (EB)", "west"),
-                          ("AP.M1b", "Noida-GN expressway (WB)", "east"),
-                          ("AP.Okhla Head Rd north inbound", "Okhla Head Rd (N arm)", "north"),
-                          ("AP.Vijay Marg south inbound", "Vijay Marg (S arm)", "south"),
-                          ("AP.Sector 18A link road inbound", "Sector 18A link (N arm)", "north"),
-                          ("AP.Bindapur road inbound", "Bindapur rd (S arm)", "south")):
-        net.approach(apid, nm, leg=leg)
-    return net
+    from build_kalindi_accurate import build_kalindi as _bk
+    return _bk()
 
 
 # ==========================================================================
@@ -1067,203 +890,145 @@ def build_botanical_okhla():
     net = Net(
         site={"id": "botanical_okhla", "name": "Botanical Okhla Interchange",
               "kind": "cloverleaf_grade_separated", "image": "section_img/Botanical_interchange.png",
-              "survey": "DND / Okhla-Circular ramp counts (toll-plaza classified counts "
-                        "reconstruction), weekday PM peak; ramp radii from the imagery",
-              "summary": "X-shaped cloverleaf: the DND mainline runs SW-NE over the Okhla "
-                         "Circular Road, with four 19 m-radius loop ramps carrying the left turns "
-                         "and four channelised right-turn slips. Loop ramps are the curvature "
-                         "stress case (v^2/R at 50 km/h on R = 19 m exceeds the 2 m/s² lateral "
-                         "comfort bound, so every vehicle brakes on entry and accelerates on exit)."},
+              "survey": "DND / Okhla-Circular ramp counts (toll-plaza classified counts reconstruction)",
+              "summary": "Full cloverleaf grade-separated interchange. The DND mainline runs SW-NE "
+                         "over the Okhla Circular Road with four 270-degree loop ramps and four "
+                         "channelised direct slip ramps."},
         imagery=_imagery("botanical_okhla"),
         display={"px_per_m": 3.0, "origin_px": [960, 540], "rotation_deg": -28.0},
     )
-    MAJOR = 620.0            # half length of each mainline
-    GAP = 2.5 * W            # median between directions of one mainline
-    yA = None
-    net.signal("S.BO", "Surface crossing under the bridge", [
-        {"name": "Circular Road through", "green": 40, "amber": 4, "all_red": 3},
-        {"name": "Okhla link road", "green": 22, "amber": 4, "all_red": 4},
-    ], notes="Only the at-grade surface moves are signalised; the ramps are free flow")
-    net.signal("S.METER", "Northbound ramp meter", [
-        {"name": "green (3 vehicles)", "green": 9, "amber": 2, "all_red": 2},
-        {"name": "red", "green": 0, "amber": 0, "all_red": 6},
-    ], strategy="ramp_meter", notes="Single-lane slip from the Circular Road is metered")
 
-    # ---- mainline A (DND, along local x) and mainline B (Circular Rd, along y)
-    def mainline(pid_root, axis, half, n, v0, mix, heat, name, gap=GAP):
-        """Two directions of a straight mainline, each n lanes, split into
-        inbound-to-interchange / outbound-from-interchange halves."""
+    MAJOR = 620.0
+    GAP = 2.5 * W
+    lane_in = GAP / 2.0 + W / 2.0
+    lane_out = GAP / 2.0 + 1.5 * W
+
+    net.node("A.core", [0, 0], "junction", name="DND mainline crossing")
+    net.node("B.core", [0, 0], "junction", name="Okhla Circular underpass")
+
+    def mainline(pid_root, axis, half, n, v0, mix, heat, name, gap=GAP, grade="at_grade"):
         out = {}
         for d, sgn in (("a", 1), ("b", -1)):
             side = sgn * (gap / 2.0 + n * W / 2.0)
             if axis == "x":
-                p_in = [line([-half, side], [0, side])]
-                p_out = [line([0, side], [half, side])]
+                p_in = [line([-half, side], [0, side])] if sgn > 0 else [line([half, side], [0, side])]
+                p_out = [line([0, side], [half, side])] if sgn > 0 else [line([0, side], [-half, side])]
             else:
-                p_in = [line([side, -sgn * half], [side, 0])]
-                p_out = [line([side, 0], [side, sgn * half])]
-            ins = corridor(net, pid=f"{pid_root}{d}.in", name=f"{name} inbound ({d})",
+                p_in = [line([side, -half], [side, 0])] if sgn > 0 else [line([side, half], [side, 0])]
+                p_out = [line([side, 0], [side, half])] if sgn > 0 else [line([side, 0], [side, -half])]
+            ins = corridor(net, pid=f"{pid_root}{d}.in", name=f"{name} in ({d})",
                            path=p_in, n_lanes=n, frm=f"{pid_root}{d}.in.a", to=f"{pid_root}.core",
                            kind="approach", carriageway=f"{name} in {d}", v0=v0, limit=v0,
-                           mix=mix, approach=f"AP.{name} {d}", heat=heat)
-            outs = corridor(net, pid=f"{pid_root}{d}.out", name=f"{name} outbound ({d})",
+                           mix=mix, approach=f"AP.{name} {d}", heat=heat, grade=grade)
+            outs = corridor(net, pid=f"{pid_root}{d}.out", name=f"{name} out ({d})",
                             path=p_out, n_lanes=n, frm=f"{pid_root}.core", to=f"{pid_root}{d}.out.a",
                             kind="exit", carriageway=f"{name} out {d}", v0=v0, limit=v0,
-                            mix=mix, approach=f"AP.{name} {d}", heat=heat)
+                            mix=mix, approach=f"AP.{name} {d}", heat=heat, grade=grade)
             term(net, ins, "start", f"{name} {d} origin")
             term(net, outs, "end", f"{name} {d} destination")
-            out[d] = {"in": ins, "out": outs, "side": side,
-                      "a_in": anchors(net, ins, "end"), "a_out": anchors(net, outs, "start")}
+            out[d] = {"in": ins, "out": outs, "side": side}
         return out
 
-    net.node("A.core", [0, 0], "junction", name="DND mainline · grade-separated crossing")
-    net.node("B.core", [0, 0], "junction", name="Okhla Circular Rd · underpass")
-    MA = mainline("A", "x", MAJOR, 2, 80, MIX_ARTERIAL, "DND mainline (SW-NE)", "DND mainline")
-    MB = mainline("B", "y", MAJOR, 2, 80, MIX_FREIGHT, "Okhla Circular Rd (NW-SE)",
-                  "Okhla Circular Rd")
+    MA = mainline("A", "x", MAJOR, 2, 80, MIX_ARTERIAL, "DND mainline (SW-NE)", "DND mainline", grade="at_grade")
+    MB = mainline("B", "y", MAJOR, 2, 80, MIX_FREIGHT, "Okhla Circular Rd (NW-SE)", "Okhla Circular Rd", grade="underpass")
 
-    # Through movement on each mainline: the crossing is grade separated, so the
-    # inbound half drains straight into the outbound half.
-    direct_turns(net, list(zip(MA["a"]["in"], MA["a"]["out"])))
-    direct_turns(net, list(zip(MA["b"]["in"], MA["b"]["out"])))
-    direct_turns(net, list(zip(MB["a"]["in"], MB["a"]["out"])))
-    direct_turns(net, list(zip(MB["b"]["in"], MB["b"]["out"])))
+    direct_turns(net, list(zip(MA["a"]["in"], MA["a"]["out"])), weight=0.70)
+    direct_turns(net, list(zip(MA["b"]["in"], MA["b"]["out"])), weight=0.70)
+    direct_turns(net, list(zip(MB["a"]["in"], MB["a"]["out"])), weight=0.70)
+    direct_turns(net, list(zip(MB["b"]["in"], MB["b"]["out"])), weight=0.70)
 
-    # ---- ramp network: off-ramp, loop or slip, on-ramp merge
-    LOAR, SLIPR = 19.0, 46.0
-    def lane_point(axis, sgn, side, t):
-        return ([t, side] if axis == "x" else [side, t]) if sgn > 0 else ([-t, -side] if axis == "x" else [-side, -t])
-
-    ramps = []
-    # left turns -> 270-degree loops, one per quadrant; right turns -> direct slips
-    moves = [
-        ("A", "a", "B", "a", "loop"), ("A", "a", "B", "b", "slip"),
-        ("A", "b", "B", "b", "loop"), ("A", "b", "B", "a", "slip"),
-        ("B", "a", "A", "b", "loop"), ("B", "a", "A", "a", "slip"),
-        ("B", "b", "A", "a", "loop"), ("B", "b", "A", "b", "slip"),
+    # 4 True 270-degree Cloverleaf Loops
+    loop_configs = [
+        ("R_SW", "DND East -> Circular North Loop",
+         MA["a"]["in"][1], MB["b"]["out"][1],
+         -115.0, 90.0, 44.0, 90.0, 360.0,
+         [-180.0, lane_out], [-lane_out, -40.0], [1, 0], [0, -1]),
+         
+        ("R_SE", "Circular South -> DND West Loop",
+         MB["a"]["in"][1], MA["b"]["out"][1],
+         95.0, 95.0, 44.0, 180.0, 450.0,
+         [lane_out, 180.0], [-40.0, -lane_out], [0, 1], [-1, 0]),
+         
+        ("R_NE", "DND West -> Circular South Loop",
+         MA["b"]["in"][1], MB["a"]["out"][1],
+         120.0, -95.0, 44.0, 270.0, 540.0,
+         [180.0, -lane_out], [lane_out, 40.0], [-1, 0], [0, 1]),
+         
+        ("R_NW", "Circular North -> DND East Loop",
+         MB["b"]["in"][1], MA["a"]["out"][1],
+         -115.0, -85.0, 44.0, 0.0, 270.0,
+         [-lane_out, -180.0], [40.0, lane_out], [0, -1], [1, 0]),
     ]
-    for idx, (fa, da, ta, dt, kind) in enumerate(moves):
-        from_net = MA if fa == "A" else MB
-        to_net = MA if ta == "A" else MB
-        axis_in = "x" if fa == "A" else "y"
-        axis_out = "x" if ta == "A" else "y"
-        sgn_in = 1 if da == "a" else -1
-        sgn_out = 1 if dt == "a" else -1
-        u_in = [sgn_in * (1 if axis_in == "x" else 0), sgn_in * (1 if axis_in == "y" else 0)]
-        u_out = [sgn_out * (1 if axis_out == "x" else 0), sgn_out * (1 if axis_out == "y" else 0)]
-        side_in = from_net[da]["side"]
-        off_d = 150.0 if kind == "loop" else 95.0
-        entry = [u_in[0] * (-off_d if kind == "loop" else off_d * 0.35),
-                 u_in[1] * (-off_d if kind == "loop" else off_d * 0.35)]
-        if axis_in == "x":
-            entry = [(-off_d if sgn_in > 0 else off_d * 0.35) * (1 if sgn_in > 0 else -1), side_in]
-        else:
-            entry = [side_in, (-off_d if sgn_in > 0 else off_d * 0.35) * (1 if sgn_in > 0 else -1)]
-        # the ramp must land exactly on the destination outbound lane start: the
-        # gore and the merge nose are fixed by the mainline, not by the arc, so
-        # solve the loop backwards from the merge point.
-        tgt_lids = [l for l in to_net[dt]["out"]]
-        if not tgt_lids:
-            continue
-        merge_anchor = anchors(net, tgt_lids[-1:], "start")[0]
-        _mg = merge_anchor["dir"]
-        # the merge nose sits a short taper upstream of the lane start, so the
-        # ramp can deliver a solvable entry arc instead of colliding with it
-        exitp = [merge_anchor["q"][0] - _mg[0] * 18.0,
-                 merge_anchor["q"][1] - _mg[1] * 18.0]
-        u_out = _mg
-        # off-ramp from the outer lane of the approach, then loop/slip, then merge
-        src_lid = from_net[da]["in"][-1]
-        pen = Pen(entry, bearing(entry, add(entry, u_in)))
-        if kind == "loop":
-            if not pen.loop_arc(exitp, u_out, 1, LOAR):
-                continue
-        else:
-            if not pen.tangent_arc(exitp, u_out, 1, 12.0, 200.0) and \
-                    not pen.biarc(exitp, u_out, min_r=12.0, max_r=400.0):
-                continue
-        # a loop ramp gets a lead-out so vehicles straighten before the merge;
-        # a slip already meets the mainline at its own nose
-        if kind == "loop":
-            pen.forward(90.0)
-        ramp_path = pen.path()
-        pid = f"R{idx}"
-        lids = corridor(net, pid=pid, name=f"{fa}{da}->{ta}{dt} {'loop ramp' if kind == 'loop' else 'slip ramp'}",
-                        path=ramp_path, n_lanes=1, frm="A.core" if False else f"{pid}.n",
-                        to=f"{pid}.m", kind="ramp" if kind == "loop" else "slip",
-                        carriageway=f"Ramp {idx + 1}", v0=45 if kind == "loop" else 60,
-                        limit=35 if kind == "loop" else 50, mix=MIX_RAMP,
-                        approach=f"AP.ramp{idx}", heat=f"Ramps {fa}→{ta}",
-                        notes=f"{'270° loop, R=19 m' if kind == 'loop' else 'channelised slip, R≈46 m'}")
-        net.node(f"{pid}.n", entry, "junction", name=f"Ramp {idx + 1} gore")
-        net.node(f"{pid}.m", pen.pos, "priority", name=f"Ramp {idx + 1} merge")
-        # turn from the mainline approach into the ramp (drop lane) and from the ramp
-        # into the target mainline downstream of the crossing
-        tgt_links = tgt_lids
-        direct_turns(net, [(src_lid, lids[0])], movement="right" if kind == "slip" else "left",
-                     weight=0.30)
-        net.links[src_lid]["phases"] = {}
-        # merge onto the mainline: a parallel taper where the nose lines up with
-        # the outbound lane (the normal case), otherwise a short turning
-        # connector from the ramp nose - a slip that lands at a skew still has to
-        # be joined round its own gore.
-        _ma = anchors(net, lids, "end")
-        taper_into(net, node_id=f"{pid}.m", src_lids=lids, tgt_lids=tgt_links,
-                   weights={"through": 1.0}, limit=60.0, max_lat=8.0, tol=30.0)
-        if not any(t["from"] in lids for t in net.turns):
-            wire_junction(net, node_id=f"{pid}.m", info_in=_ma,
-                          info_out=anchors(net, tgt_links, "start"), phases={},
-                          weights={"through": 1.0}, limit=60,
-                          auto_movement=True, min_r=8.0, max_r=4000.0)
-        set_yield(net, lids, tgt_links, gap_s=2.3, kind="merge",
-                  note="ramp merge gives way to the mainline through lane")
-        ramps.append({"id": pid, "kind": kind, "from": fa + da, "to": ta + dt,
-                      "lids": lids, "feed": src_lid})
 
-    # ---- surface link road under the bridge (the signalised bit)
-    net.signal_node("JS", [0, 250], "S.BO", "Okhla link road chowk")
-    LA = arm(net, J="JS", name="Circular Rd south approach", bearing_out=90, n_in=1, n_out=1,
-             len_in=180, len_out=180, v0=50, limit=50, mix=MIX_HIGH_2W, pid_in="JS.inS",
-             pid_out="JS.outS", median=2.0, heat="Surface link road",
-             out_to=None)
-    LB = arm(net, J="JS", name="Okhla link road", bearing_out=270, n_in=1, n_out=1,
-             len_in=180, len_out=180, v0=50, limit=50, mix=MIX_COMMERCIAL, pid_in="JS.inN",
-             pid_out="JS.outN", median=2.0, heat="Surface link road")
-    wire_junction(net, node_id="JS", info_in=LA["a_in"], info_out=LA["a_out"] + LB["a_out"],
-                  phases={"through": 0, "left": 0, "right": 0},
-                  weights={"through": 0.5, "left": 0.2, "right": 0.3}, limit=30)
-    wire_junction(net, node_id="JS", info_in=LB["a_in"], info_out=LA["a_out"] + LB["a_out"],
-                  phases={"through": 1, "left": 1, "right": 0},
-                  weights={"through": 0.45, "left": 0.2, "right": 0.35}, limit=30)
-    # link the surface road to the underpass so the crossing sees cross traffic
-    net.turn(MB["a"]["out"][0], "JS.inS.0", "through", 0.12)
-    net.turn("JS.outN.0", MB["a"]["in"][0], "through", 0.3)
+    for lid, name, src_l, tgt_l, cx, cy, r, a0, a1, ep, mp, itan, otan in loop_configs:
+        ang0 = math.radians(a0)
+        p_arc_s = [cx + r * math.cos(ang0), cy + r * math.sin(ang0)]
+        t_arc_s = [-math.sin(ang0), math.cos(ang0)]
+        
+        ang1 = math.radians(a1)
+        p_arc_e = [cx + r * math.cos(ang1), cy + r * math.sin(ang1)]
+        t_arc_e = [-math.sin(ang1), math.cos(ang1)]
+        
+        d_in = math.hypot(p_arc_s[0] - ep[0], p_arc_s[1] - ep[1]) * 0.45
+        p1 = [ep[0] + d_in * itan[0], ep[1] + d_in * itan[1]]
+        p2 = [p_arc_s[0] - d_in * t_arc_s[0], p_arc_s[1] - d_in * t_arc_s[1]]
+        
+        d_out = math.hypot(mp[0] - p_arc_e[0], mp[1] - p_arc_e[1]) * 0.45
+        m1 = [p_arc_e[0] + d_out * t_arc_e[0], p_arc_e[1] + d_out * t_arc_e[1]]
+        m2 = [mp[0] - d_out * otan[0], mp[1] - d_out * otan[1]]
+        
+        prims = [
+            bezier(ep, p1, p2, p_arc_s),
+            arc([cx, cy], r, a0, a1),
+            bezier(p_arc_e, m1, m2, mp),
+        ]
+        net.node(f"{lid}.n", ep, "junction", name=f"{name} gore")
+        net.node(f"{lid}.m", mp, "priority", name=f"{name} merge")
+        net.link(f"{lid}.0", name, prims, f"{lid}.n", f"{lid}.m",
+                 kind="ramp", carriageway=name, v0=45, limit=35, grade="at_grade")
+        direct_turns(net, [(src_l, f"{lid}.0")], movement="left", weight=0.15)
+        direct_turns(net, [(f"{lid}.0", tgt_l)], movement="merge", weight=1.0)
+        set_yield(net, [f"{lid}.0"], [tgt_l], gap_s=2.3, kind="merge",
+                  note="ramp merge gives way to the mainline through lane")
+
+    # 4 Direct Right-Turn Slips (smooth 90° curves)
+    slip_configs = [
+        ("S_SE", "DND East -> Circular South Slip",
+         MA["a"]["in"][1], MB["a"]["out"][1],
+         [-90.0, lane_out], [lane_out, 90.0], [1, 0], [0, 1]),
+        ("S_SW", "Circular South -> DND West Slip",
+         MB["a"]["in"][1], MA["b"]["out"][1],
+         [lane_out, -90.0], [-90.0, -lane_out], [0, 1], [-1, 0]),
+        ("S_NW", "DND West -> Circular North Slip",
+         MA["b"]["in"][1], MB["b"]["out"][1],
+         [90.0, -lane_out], [-lane_out, -90.0], [-1, 0], [0, -1]),
+        ("S_NE", "Circular North -> DND East Slip",
+         MB["b"]["in"][1], MA["a"]["out"][1],
+         [-lane_out, 90.0], [90.0, lane_out], [0, -1], [1, 0]),
+    ]
+
+    for sid, name, src_l, tgt_l, p0, p3, itan, otan in slip_configs:
+        d = math.hypot(p3[0] - p0[0], p3[1] - p0[1]) * 0.45
+        p1 = [p0[0] + d * itan[0], p0[1] + d * itan[1]]
+        p2 = [p3[0] - d * otan[0], p3[1] - d * otan[1]]
+        prims = [bezier(p0, p1, p2, p3)]
+        net.node(f"{sid}.n", p0, "junction", name=f"{name} gore")
+        net.node(f"{sid}.m", p3, "priority", name=f"{name} merge")
+        net.link(f"{sid}.0", name, prims, f"{sid}.n", f"{sid}.m",
+                 kind="slip", carriageway=name, v0=55, limit=45, grade="at_grade")
+        direct_turns(net, [(src_l, f"{sid}.0")], movement="right", weight=0.15)
+        direct_turns(net, [(f"{sid}.0", tgt_l)], movement="merge", weight=1.0)
+        set_yield(net, [f"{sid}.0"], [tgt_l], gap_s=2.3, kind="merge")
 
     heal_lane_gains(net)
-    enumerate_demand(net, leg_flows={"Aa.in": 5200, "Ab.in": 4800, "Ba.in": 4300,
-                                     "Bb.in": 4100, "JS.inS": 900, "JS.inN": 1150})
-    # ramp demand: give every ramp a share of the approach it is fed from
-    for R in ramps:
-        for d in net.demand:
-            if d["route"][0] == R["feed"] and "route" == d["movement"]:
-                pass
+    enumerate_demand(net, leg_flows={"Aa.in": 5200, "Ab.in": 4800, "Ba.in": 4300, "Bb.in": 4100})
     net.scenarios.extend([
         {"id": "loop_closure", "name": "Loop ramp closed for resurfacing",
-         "close_links": ["R0.0"], "note": "Left turn must be made via the surface street."},
-        {"id": "meter_on", "name": "Ramp metering on the northbound slip",
-         "signal_override": {"S.METER": {"phases": [{"name": "green", "green": 6, "amber": 1,
-                                                      "all_red": 3},
-                                                     {"name": "red", "green": 0, "amber": 0,
-                                                      "all_red": 5}]}}},
+         "close_links": ["R_SW.0"], "note": "South-West left turn loop closed."},
         {"id": "pm_peak", "name": "PM peak inbound to Delhi", "hour": 18,
          "multipliers": {"AP.DND mainline b": 1.25}},
     ])
-    for nm in ("AP.DND mainline a", "AP.DND mainline b", "AP.Okhla Circular Rd a",
-               "AP.Okhla Circular Rd b", "AP.JS.inS", "AP.JS.inN"):
+    for nm in ("AP.DND mainline a", "AP.DND mainline b", "AP.Okhla Circular Rd a", "AP.Okhla Circular Rd b"):
         net.approach(nm, nm.replace("AP.", "") + " approach", leg="ramp")
-    for R in ramps:
-        net.approach(f"AP.ramp{ramps.index(R)}", f"Ramp {R['from']} → {R['to']} "
-                                                  f"({'loop' if R['kind'] == 'loop' else 'slip'})",
-                     leg="ramp")
     return net
 

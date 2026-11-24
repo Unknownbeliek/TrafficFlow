@@ -9,6 +9,30 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 // The canvas draws the image first, then everything else through the same
 // transform, so lanes, vehicles and the picture can never drift apart.
 // ---------------------------------------------------------------------------
+function offsetPolyline(pts, offsetPx) {
+  if (!pts || pts.length < 2) return pts;
+  const out = [];
+  for (let i = 0; i < pts.length; i++) {
+    let dx, dy;
+    if (i === 0) {
+      dx = pts[1][0] - pts[0][0];
+      dy = pts[1][1] - pts[0][1];
+    } else if (i === pts.length - 1) {
+      dx = pts[i][0] - pts[i - 1][0];
+      dy = pts[i][1] - pts[i - 1][1];
+    } else {
+      dx = pts[i + 1][0] - pts[i - 1][0];
+      dy = pts[i + 1][1] - pts[i - 1][1];
+    }
+    const len = Math.hypot(dx, dy) || 1;
+    // normal perpendicular to travel direction (pointing right)
+    const nx = -dy / len;
+    const ny = dx / len;
+    out.push([pts[i][0] + nx * offsetPx, pts[i][1] + ny * offsetPx]);
+  }
+  return out;
+}
+
 function makeTransform(imagery, zoom, pan, size) {
   const { m_per_px = 0.55, origin_px = [960, 540], rotation_deg = 0 } = imagery || {};
   const th = (rotation_deg * Math.PI) / 180;
@@ -156,9 +180,12 @@ export default function Canvas({
     // zoom is "image pixels on screen per image pixel": the network spans
     // spanX / m_per_px image pixels, so this is the zoom that fits it
     const mpp = network.imagery?.m_per_px || 0.55;
-    const fit = Math.min((size.w * 0.88) / (spanX / mpp),
-                         (size.h * 0.88) / (spanY / mpp));
-    setZoom(Math.max(0.15, Math.min(8, fit)));
+    const imgW = imgRef.current?.naturalWidth || 1920;
+    const imgH = imgRef.current?.naturalHeight || 1080;
+    const fitImage = Math.min(size.w / imgW, size.h / imgH);
+    const fitNet = Math.min((size.w * 0.95) / (spanX / mpp), (size.h * 0.95) / (spanY / mpp));
+    const fit = Math.min(fitNet, fitImage);
+    setZoom(Math.max(0.35, Math.min(4.0, fit)));
   }, [network, siteId, size.w, size.h]);
 
   // ---- draw loop -----------------------------------------------------------
@@ -176,48 +203,43 @@ export default function Canvas({
     const T = makeTransform(imagery, zoom, pan, size);
 
     // --- background: satellite image (or the schematic grid) --------------
-    ctx.fillStyle = view === 'schematic' ? '#0b1220' : '#0a1424';
+    ctx.fillStyle = view === 'schematic' ? '#142a1e' : '#0a1424';
     ctx.fillRect(0, 0, size.w, size.h);
 
     const img = imgRef.current;
+    let clipBounds = null;
     if (view === 'satellite' && img) {
-      // The capture is a browser screenshot: the maps search bar and category
-      // chips are burnt into the top of it and the last screenshots carry the
-      // taskbar.  `imagery.view` is the clean imagery rectangle, so only that is
-      // drawn.  The picture itself is never rotated — the network is rotated
-      // into picture space by `toImage`.
       const [ox, oy] = T.origin_px;
       const vx = imagery?.view?.[0] ?? 0;
       const vy = imagery?.view?.[1] ?? 0;
       const vw = imagery?.view?.[2] ?? img.naturalWidth;
       const vh = imagery?.view?.[3] ?? img.naturalHeight;
+      const sx = size.w / 2 + pan.x - ox * zoom + vx * zoom;
+      const sy = size.h / 2 + pan.y - oy * zoom + vy * zoom;
+      const sw = vw * zoom;
+      const sh = vh * zoom;
+      clipBounds = { sx, sy, sw, sh };
+
       ctx.save();
       ctx.imageSmoothingQuality = 'high';
       ctx.globalAlpha = imgAlpha;
-      // source rect is the clean crop; the destination keeps the capture's full
-      // coordinate space so pixel coordinates stay comparable with the site data
-      ctx.drawImage(
-        img, vx, vy, vw, vh,
-        size.w / 2 + pan.x - ox * zoom + vx * zoom,
-        size.h / 2 + pan.y - oy * zoom + vy * zoom,
-        vw * zoom,
-        vh * zoom,
-      );
-      ctx.globalAlpha = 1;
+      ctx.drawImage(img, vx, vy, vw, vh, sx, sy, sw, sh);
       ctx.restore();
-      // a vignette keeps the panel chrome readable over bright imagery
+
+      // Subtle vignette over outer edges of the capture
       const g = ctx.createRadialGradient(
         size.w / 2, size.h / 2, Math.min(size.w, size.h) * 0.55,
         size.w / 2, size.h / 2, Math.max(size.w, size.h) * 0.95,
       );
       g.addColorStop(0, 'rgba(15,23,42,0)');
-      g.addColorStop(1, 'rgba(15,23,42,0.45)');
+      g.addColorStop(1, 'rgba(15,23,42,0.40)');
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, size.w, size.h);
     } else if (view === 'schematic') {
-      ctx.strokeStyle = '#12253c';
+      // Clean landscape terrain (Image 3 reference style): subtle terrain grid
+      ctx.strokeStyle = 'rgba(34, 197, 94, 0.08)';
       ctx.lineWidth = 1;
-      const step = 50 * T.pxPerM;
+      const step = 60 * T.pxPerM;
       for (let x = (size.w / 2) % step; x < size.w; x += step) {
         ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, size.h); ctx.stroke();
       }
@@ -228,37 +250,201 @@ export default function Canvas({
 
     if (!network) return;
 
+    // In satellite mode, clip road rendering strictly to the satellite capture rectangle
+    // so roads NEVER overflow outside the satellite image borders
+    if (clipBounds) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(clipBounds.sx, clipBounds.sy, clipBounds.sw, clipBounds.sh);
+      ctx.clip();
+    }
+
     // --- lane network -----------------------------------------------------
     const det = detRef.current || {};
-    const links = network.links;
-    ctx.lineCap = 'round';
+    const links = [...(network.links || [])].sort((a, b) => {
+      const la = a.layer ?? (a.grade === 'flyover' || a.kind === 'flyover' ? 1 : a.grade === 'underpass' ? -1 : 0);
+      const lb = b.layer ?? (b.grade === 'flyover' || b.kind === 'flyover' ? 1 : b.grade === 'underpass' ? -1 : 0);
+      return la - lb;
+    });
+
+    // Use crisp butt caps (no liquid glassy medicine-capsule bubbles)
+    ctx.lineCap = 'butt';
     ctx.lineJoin = 'round';
 
-    // pass 1: carriageway casing, so lane lines read against the imagery
+    // PASS 1: Realistic Asphalt Road Surface (matching Image 3 specification)
     for (const l of links) {
       const path = l.path || polyOf(l);
       if (!path || path.length < 2) continue;
-      ctx.beginPath();
-      const [x0, y0] = T.toScreen(path[0][0], path[0][1]);
-      ctx.moveTo(x0, y0);
-      for (let i = 1; i < path.length; i++) {
-        const [x, y] = T.toScreen(path[i][0], path[i][1]);
-        ctx.lineTo(x, y);
+      const isElevated = (l.layer ?? 0) > 0 || l.grade === 'flyover' || l.grade === 'bridge' || l.kind === 'flyover';
+      const lanes = Math.max(1, l.lanes || 1);
+      const isRamp = l.kind === 'ramp' || l.kind === 'slip' || l.kind === 'connector';
+      const lwM = l.lane_width_m || 3.5;
+      const lwPx = lwM * T.pxPerM;
+      const carriagewayPx = lanes * lwPx;
+      const shoulderPx = Math.max(1.8, (isRamp ? 0.6 : 1.2) * T.pxPerM);
+      const totalWidthPx = carriagewayPx + 2 * shoulderPx;
+
+      // Elevated Flyover / Bridge structure (crisp concrete deck casing + directional contact shadow)
+      if (isElevated) {
+        // 1. Crisp contact shadow under the bridge
+        ctx.beginPath();
+        const [sx0, sy0] = T.toScreen(path[0][0], path[0][1]);
+        const shadowOffset = Math.max(2, 3.5 * Math.min(2, T.pxPerM));
+        ctx.moveTo(sx0 + shadowOffset * 0.7, sy0 + shadowOffset);
+        for (let i = 1; i < path.length; i++) {
+          const [sx, sy] = T.toScreen(path[i][0], path[i][1]);
+          ctx.lineTo(sx + shadowOffset * 0.7, sy + shadowOffset);
+        }
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.40)';
+        ctx.lineWidth = totalWidthPx + 4.0;
+        ctx.stroke();
+
+        // 2. Concrete parapet / deck border (light concrete grey casing)
+        ctx.beginPath();
+        ctx.moveTo(sx0, sy0);
+        for (let i = 1; i < path.length; i++) {
+          const [sx, sy] = T.toScreen(path[i][0], path[i][1]);
+          ctx.lineTo(sx, sy);
+        }
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = totalWidthPx + 3.0;
+        ctx.stroke();
+
+        // 3. Smooth asphalt deck surface
+        ctx.strokeStyle = '#1e293b';
+        ctx.lineWidth = totalWidthPx;
+        ctx.stroke();
+      } else {
+        // Surface highway / approach
+        // 1. Concrete curb / roadbed edge
+        ctx.beginPath();
+        const [x0, y0] = T.toScreen(path[0][0], path[0][1]);
+        ctx.moveTo(x0, y0);
+        for (let i = 1; i < path.length; i++) {
+          const [x, y] = T.toScreen(path[i][0], path[i][1]);
+          ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = totalWidthPx + 2.0;
+        ctx.stroke();
+
+        // 2. Dark asphalt roadbed
+        ctx.strokeStyle = '#0f172a';
+        ctx.lineWidth = totalWidthPx;
+        ctx.stroke();
       }
-      ctx.strokeStyle = 'rgba(9,15,26,0.55)';
-      ctx.lineWidth = Math.max(2.2, 4.4 * T.pxPerM * 0.82);
+    }
+
+    // PASS 1A: Open Asphalt Intersection Plazas (Empty asphalt area with NO lines inside, matching real Indian chowks)
+    for (const n of network.nodes || []) {
+      if (n.signal || n.is_plaza || n.type === 'signal') {
+        const [jx, jy] = T.toScreen(n.x, n.y);
+        const r = Math.max(28, (n.radius_m || 54) * T.pxPerM);
+        // Concrete curb casing around the junction plaza
+        ctx.beginPath();
+        ctx.arc(jx, jy, r + 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#475569';
+        ctx.fill();
+        // Solid dark asphalt junction roadbed (seamlessly merges all meeting arms)
+        ctx.beginPath();
+        ctx.arc(jx, jy, r, 0, Math.PI * 2);
+        ctx.fillStyle = '#0f172a';
+        ctx.fill();
+      }
+    }
+
+    // PASS 1B: White Road Markings (Solid outer edge lines, continuous safety line & dashed lane dividers)
+    for (const l of links) {
+      const path = l.path || polyOf(l);
+      if (!path || path.length < 2) continue;
+      const isConnector = l.kind === 'connector' || l.kind === 'slip' || l.is_junction;
+      const lanes = Math.max(1, l.lanes || 1);
+      const lwM = l.lane_width_m || 3.5;
+      const lwPx = lwM * T.pxPerM;
+      const carriagewayPx = lanes * lwPx;
+
+      if (!isConnector && carriagewayPx > 3) {
+        const screenPts = path.map(p => T.toScreen(p[0], p[1]));
+
+        // 1. Left solid outer continuous edge line
+        const leftEdge = offsetPolyline(screenPts, -carriagewayPx / 2);
+        ctx.beginPath();
+        ctx.moveTo(leftEdge[0][0], leftEdge[0][1]);
+        for (let i = 1; i < leftEdge.length; i++) ctx.lineTo(leftEdge[i][0], leftEdge[i][1]);
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.90)';
+        ctx.lineWidth = 1.8;
+        ctx.stroke();
+
+        // 2. Right solid continuous SAFETY LINE (shoulder / safety edge marking)
+        const rightSafety = offsetPolyline(screenPts, carriagewayPx / 2);
+        ctx.beginPath();
+        ctx.moveTo(rightSafety[0][0], rightSafety[0][1]);
+        for (let i = 1; i < rightSafety.length; i++) ctx.lineTo(rightSafety[i][0], rightSafety[i][1]);
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2.4; // Distinct, continuous safety line
+        ctx.stroke();
+
+        // 3. Crisp dotted/dashed white divider lines between EVERY lane (lanes - 1 dividers)
+        if (lanes > 1) {
+          const dashLen = Math.max(16, 24 * Math.min(1.8, T.pxPerM));
+          const gapLen = Math.max(10, 14 * Math.min(1.8, T.pxPerM));
+          ctx.setLineDash([dashLen, gapLen]);
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
+          ctx.lineWidth = 1.3;
+          for (let k = 1; k < lanes; k++) {
+            const off = (k - lanes / 2) * lwPx;
+            const dividerPts = offsetPolyline(screenPts, off);
+            ctx.beginPath();
+            ctx.moveTo(dividerPts[0][0], dividerPts[0][1]);
+            for (let i = 1; i < dividerPts.length; i++) ctx.lineTo(dividerPts[i][0], dividerPts[i][1]);
+            ctx.stroke();
+          }
+          ctx.setLineDash([]);
+        }
+      }
+    }
+
+    // PASS 1C: Stop lines across approach corridors entering signalized intersection
+    for (const l of links) {
+      if (l.kind !== 'approach' || !l.stop_line_m) continue;
+      const targetNode = (network.nodes || []).find((nd) => nd.id === l.to && (nd.signal || nd.type === 'signal'));
+      if (!targetNode) continue;
+      const path = l.path || polyOf(l);
+      if (!path || path.length < 2) continue;
+      const pEnd = path[path.length - 1];
+      const pPrev = path[path.length - 2];
+      const dx = pEnd[0] - pPrev[0];
+      const dy = pEnd[1] - pPrev[1];
+      const dLen = Math.hypot(dx, dy) || 1;
+      const nx = -dy / dLen;
+      const ny = dx / dLen;
+      const lanes = Math.max(1, l.lanes || 1);
+      const halfW = (lanes * (l.lane_width_m || 3.5)) * 0.5;
+      const [sx1, sy1] = T.toScreen(pEnd[0] + nx * halfW, pEnd[1] + ny * halfW);
+      const [sx2, sy2] = T.toScreen(pEnd[0] - nx * halfW, pEnd[1] - ny * halfW);
+
+      ctx.beginPath();
+      ctx.moveTo(sx1, sy1);
+      ctx.lineTo(sx2, sy2);
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 3.6; // Bold, crisp solid stop line
       ctx.stroke();
     }
 
+    // PASS 2: Selected link or Telemetry Heatmap Overlays (only drawn if active or selected)
     const selectedLink = selected?.kind === 'link' ? selected.id : null;
     for (const l of links) {
+      const isSel = l.id === selectedLink;
+      const hasOverlay = overlay !== 'none';
+      if (!isSel && !hasOverlay) continue;
+
       const path = l.path || polyOf(l);
       if (!path || path.length < 2) continue;
-      const isSel = l.id === selectedLink;
-      let color = '#7dd3fc';
-      let w = Math.max(1.6, 2.4 * T.pxPerM * 0.42);
 
-      if (overlay !== 'none') {
+      let color = null;
+      let w = 2.4;
+
+      if (hasOverlay) {
         const reads = det[l.id];
         let v = null;
         if (reads && reads.length) {
@@ -266,25 +452,23 @@ export default function Canvas({
         }
         if (v != null && v > 0.5) {
           color = overlay === 'speed' ? heatColor(v, 5, 65) : heatColor(v, 65, 5);
-        } else {
-          color = overlay === 'speed' ? '#334155' : '#334155';
+          w = Math.max(3.0, 4.0 * T.pxPerM * 0.5);
         }
-        w = Math.max(2.0, 3.2 * T.pxPerM * 0.5);
       }
-      if (isSel) { color = '#fbbf24'; w += 1.4; }
+      if (isSel) { color = '#fbbf24'; w = 4.0; }
 
-      ctx.beginPath();
-      const [x0, y0] = T.toScreen(path[0][0], path[0][1]);
-      ctx.moveTo(x0, y0);
-      for (let i = 1; i < path.length; i++) {
-        const [x, y] = T.toScreen(path[i][0], path[i][1]);
-        ctx.lineTo(x, y);
+      if (color) {
+        ctx.beginPath();
+        const [x0, y0] = T.toScreen(path[0][0], path[0][1]);
+        ctx.moveTo(x0, y0);
+        for (let i = 1; i < path.length; i++) {
+          const [x, y] = T.toScreen(path[i][0], path[i][1]);
+          ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = color;
+        ctx.lineWidth = w;
+        ctx.stroke();
       }
-      ctx.strokeStyle = color;
-      ctx.globalAlpha = l.kind === 'connector' || l.kind === 'slip' ? 0.75 : 0.92;
-      ctx.lineWidth = w;
-      ctx.stroke();
-      ctx.globalAlpha = 1;
     }
 
     // --- interpolated speed profile on the inspected link ------------------
@@ -336,17 +520,21 @@ export default function Canvas({
         if (!n) continue;
         const [x, y] = T.toScreen(n.x, n.y);
         const col = st.light === 'green' ? '#10b981' : st.light === 'amber' ? '#f59e0b' : '#ef4444';
+        ctx.save();
         ctx.beginPath();
-        ctx.arc(x, y, 9, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(10,16,26,0.9)';
+        ctx.arc(x, y, 11, 0, Math.PI * 2);
+        ctx.fillStyle = '#0f172a';
         ctx.fill();
+        ctx.shadowColor = col;
+        ctx.shadowBlur = 8;
         ctx.strokeStyle = col;
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 2.5;
         ctx.stroke();
         ctx.beginPath();
-        ctx.arc(x, y, 4.2, 0, Math.PI * 2);
+        ctx.arc(x, y, 5.5, 0, Math.PI * 2);
         ctx.fillStyle = col;
         ctx.fill();
+        ctx.restore();
         if (showLabels) {
           const sig = byId.get(st.id);
           const ph = sig?.phases?.[st.phase];
@@ -376,7 +564,9 @@ export default function Canvas({
     const vcMap = new Map(vcIds.map((c) => [c.id, c]));
     const linkById = new Map((network.links || []).map((l) => [l.id, l]));
     if (snap?.vehicles) {
-      for (const v of snap.vehicles) {
+      // Draw vehicles sorted by elevation layer (underpass -> ground -> flyover)
+      const sortedVehicles = [...snap.vehicles].sort((a, b) => (a.layer || 0) - (b.layer || 0));
+      for (const v of sortedVehicles) {
         const [x, y] = T.toScreen(v.x, v.y);
         if (x < -40 || y < -40 || x > size.w + 40 || y > size.h + 40) continue;
         const cls = vcMap.get(v.cls);
@@ -385,12 +575,14 @@ export default function Canvas({
         const L = Math.max(5.5, lenM * T.pxPerM);
         const Wd = Math.max(3.0, widM * T.pxPerM);
         ctx.save();
-        // place the glyph on its own lane, not on the shared link centreline
-        const linkOf = linkById.get(v.link);
-        const off = laneOffsetPx(v, linkOf, T.pxPerM) * T.pxPerM;
+        // The C++ engine computes exact lane coordinates, perfectly bound to the road
         ctx.translate(x, y);
         ctx.rotate(((v.hdg ?? 0) * Math.PI) / 180);
-        ctx.translate(0, off);
+        if ((v.layer || 0) > 0) {
+          ctx.shadowColor = 'rgba(0,0,0,0.5)';
+          ctx.shadowBlur = Math.max(3, 4 * T.pxPerM * 0.3);
+          ctx.shadowOffsetY = Math.max(1, 2 * T.pxPerM * 0.2);
+        }
         ctx.fillStyle = VEH_COLORS[v.cls] || '#cbd5e1';
         if (v.cls === 'two_wheeler') {
           ctx.beginPath();
@@ -428,6 +620,11 @@ export default function Canvas({
     // ground metres.  When the true ground scale is known the bar is drawn from
     // it and labelled as picture scale; otherwise it measures the schematic,
     // which is what vehicle spacing and lane widths are drawn in.
+    if (clipBounds) {
+      ctx.restore();
+    }
+
+    // --- scale bar ---------------------------------------------------------
     const groundMpp = imagery?.ground_m_per_px;
     if (groundMpp) {
       const NICE_G = [10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000];
@@ -579,6 +776,14 @@ function polyOf(l) {
       for (let i = 0; i <= n; i++) {
         const a = ((p.a0 + (sweep * i) / n) * Math.PI) / 180;
         out.push([p.c[0] + p.r * Math.cos(a), p.c[1] + p.r * Math.sin(a)]);
+      }
+    } else if (p.type === 'bezier') {
+      const n = 16;
+      for (let i = 0; i <= n; i++) {
+        const t = i / n, u = 1 - t;
+        const x = u*u*u*p.p0[0] + 3*u*u*t*p.p1[0] + 3*u*t*t*p.p2[0] + t*t*t*p.p3[0];
+        const y = u*u*u*p.p0[1] + 3*u*u*t*p.p1[1] + 3*u*t*t*p.p2[1] + t*t*t*p.p3[1];
+        out.push([x, y]);
       }
     }
   }

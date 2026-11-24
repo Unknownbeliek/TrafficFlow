@@ -9,7 +9,11 @@ import fs from 'node:fs';
 import { execFileSync } from 'node:child_process';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-const ENGINE = process.env.TRACKFLOW_ENGINE || path.join(ROOT, 'engine', 'trackflow_engine');
+const defaultEngine = path.join(ROOT, 'engine', 'trackflow_engine');
+const ENGINE = process.env.TRACKFLOW_ENGINE ||
+  (fs.existsSync(defaultEngine) ? defaultEngine :
+   fs.existsSync(defaultEngine + '.exe') ? defaultEngine + '.exe' :
+   (process.platform === 'win32' ? defaultEngine + '.exe' : defaultEngine));
 const DATA = process.env.TRACKFLOW_DATA || path.join(ROOT, 'site-data');
 const PORT = Number(process.env.PORT || 5173);
 const SITES = ['kalindi_kunj', 'ito', 'gaur_city', 'connaught_place', 'botanical_okhla'];
@@ -94,6 +98,7 @@ class Engine {
       console.error('[engine]', d.toString().trim());
     });
     this.proc.on('exit', (code) => {
+      console.log('[engine exit]', code, 'generation:', gen, 'current:', this.generation);
       if (gen !== this.generation) return;   // a superseded process: ignore
       this.alive = false;
       this.broadcast({ type: 'engine_down', code });
@@ -157,12 +162,14 @@ app.get('/api/sites', (_req, res) => {
       image: net.site.image,
     };
   });
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
   res.json(out);
 });
 
 app.get('/api/site/:id', (req, res) => {
   const file = path.join(DATA, req.params.id, 'network.json');
   if (!fs.existsSync(file)) return res.status(404).json({ error: 'no such site' });
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
   res.json(JSON.parse(fs.readFileSync(file, 'utf8')));
 });
 
@@ -179,8 +186,13 @@ app.get('/api/image/:id', (req, res) => {
   if (!fs.existsSync(netFile)) return res.status(404).end();
   const rel = JSON.parse(fs.readFileSync(netFile, 'utf8')).site?.image;
   if (!rel) return res.status(404).end();
-  const file = path.resolve(ROOT, rel);
+  let file = path.resolve(ROOT, rel);
+  if (!fs.existsSync(file)) {
+    const apple = file.replace(/\.png$/, '_apple.png');
+    if (fs.existsSync(apple)) file = apple;
+  }
   if (!file.startsWith(path.join(ROOT, 'section_img'))) return res.status(403).end();
+  if (!fs.existsSync(file)) return res.status(404).end();
   res.setHeader('Cache-Control', 'public, max-age=3600');
   res.sendFile(file);
 });
